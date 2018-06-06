@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/creadone/device_detector.svg?branch=master)](https://travis-ci.org/creadone/device_detector)
 
-The library for parse User Agent detect and the browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model.
+The library for parse User Agent and detect the browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model.
 
 ## Installation
 
@@ -30,8 +30,7 @@ response.browser_version #=> 12.0
 # If you need to get all info
 response.raw
 #=> [{"browser" => {"name" => "Microsoft Edge", "version" => "12.0"}},
-#    {"browser_engine" => {"name" => "Edge"}},
-#    {"oss" => {"name" => "Windows", "version" => "10"}}]
+#    {"browser_engine" => {"name" => "Edge"}} ...
 ```
 
 ## Testing
