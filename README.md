@@ -20,16 +20,16 @@ require "device_detector"
 "Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0"
 response = DeviceDetector::Detector.new(user_agent).call
 
-# Check browser
+# Check if browser detected
 response.browser? #=> true
 response.browser_name #=> Microsoft Edge
 response.browser_version #=> 12.0
 
-# If you need to get all about client info
+# If you need to get all info
 response.raw
 #=> [{"browser" => {"name" => "Microsoft Edge", "version" => "12.0"}},
-     {"browser_engine" => {"name" => "Edge"}},
-     {"oss" => {"name" => "Windows", "version" => "10"}}]
+#    {"browser_engine" => {"name" => "Edge"}},
+#    {"oss" => {"name" => "Windows", "version" => "10"}}]
 ```
 
 ## Testing
