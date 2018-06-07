@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/creadone/device_detector.svg?branch=master)](https://travis-ci.org/creadone/device_detector)
 
-The library for parse User Agent and detect the browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model. It is the alpha-version and not tested on production yet. The Library used regexes from matomo-org/device_detector.
+The library for parsing User Agent and browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model detection. Currently it is an alpha-version and haven't been tested on production yet. The Library uses regexes from matomo-org/device_detector.
 
 ## Installation
 
@@ -63,12 +63,14 @@ Available methods:
 
 ## Benchmarks
 
+Recent benchmarking of parsing 1000 user-agent strings on a MacBook Air with Intel Core i5 dual core (0.8 Ghz per core):
+
 ```
 crystal bench/raw_response.cr --release
 40.530000   1.420000   41.950000 (  39.998607)
 ```
 
-Recent benchmarking of parser 1000 user-agent string on a MacBook Air with Intel Core i5 dual core (0.8 Ghz per core). It's mean that `device_detector` can work with 25 RPS.
+It's mean that `device_detector` can work with 25 RPS.
 
 ## Testing
 
