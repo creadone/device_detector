@@ -15,9 +15,7 @@ module DeviceDetector
       result = [] of Result
       Settings::PARSERS.each do |parser|
         detector = parser.new(@user_agent)
-        unless detector.call.empty?
-          result.push({detector.kind => detector.call})
-        end
+        result.push({detector.kind => detector.call})
       end
       Response.new(result)
     end
