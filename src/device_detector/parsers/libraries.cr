@@ -18,7 +18,7 @@ module DeviceDetector
     end
 
     def call
-      detected_library = {} of String => String
+      detected_library = {"name" => "", "version" => ""}
       @libraries.each do |library|
         if Regex.new(library.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
           detected_library.merge!({"name" => library.name})

@@ -10,7 +10,7 @@ module DeviceDetector
     end
 
     def call
-      detected_vendor = {} of String => String
+      detected_vendor = {"vendor" => ""}
       @fragments.each do |fragment|
         vendor = fragment[0]
         regexes = fragment[1]

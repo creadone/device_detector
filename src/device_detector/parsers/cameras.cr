@@ -27,7 +27,7 @@ module DeviceDetector
     end
 
     def call
-      detected_camera = {} of String => String
+      detected_camera = {"vendor" => "", "model" => "", "device" => ""}
       @cameras.to_a.reverse.to_h.each do |camera|
         # Shortcats
         vendor = camera[0]

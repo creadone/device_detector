@@ -18,7 +18,7 @@ module DeviceDetector
     end
 
     def call
-      detected_pim = {} of String => String
+      detected_pim = {"name" => "", "version" => ""}
       @pims.reverse_each do |pim|
         if Regex.new(pim.regex) =~ @user_agent
           detected_pim.merge!({"name" => pim.name})

@@ -24,7 +24,7 @@ module DeviceDetector
     end
 
     def call
-      detected_tv = {} of String => String
+      detected_tv = {"model" => "", "vendor" => ""}
       @tvs.to_a.reverse.to_h.each do |item|
         vendor = item[0]
         device = item[1]

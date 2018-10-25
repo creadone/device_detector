@@ -27,7 +27,7 @@ module DeviceDetector
     end
 
     def call
-      detected_console = {} of String => String
+      detected_console = {"vendor" => "", "model" => ""}
       @consoles.each do |console|
         vendor = console[0]
         device = console[1]

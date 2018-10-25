@@ -18,7 +18,7 @@ module DeviceDetector
     end
 
     def call
-      detected_player = {} of String => String
+      detected_player = {"name" => "", "version" => ""}
       @mediaplayers.each do |player|
         if Regex.new(player.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
           detected_player.merge!({"name" => player.name})

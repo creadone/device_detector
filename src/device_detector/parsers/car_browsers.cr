@@ -18,7 +18,7 @@ module DeviceDetector
     end
 
     def call
-      detected_car_browser = {} of String => String
+      detected_car_browser = {"vendor" => "", "device" => "", "model" => ""}
       @car_browsers.each do |item|
         vendor = item[0]
         browser = item[1]

@@ -27,7 +27,7 @@ module DeviceDetector
     end
 
     def call
-      detected_player = {} of String => String
+      detected_player = {"vendor" => "", "model" => ""}
       @media_players.each do |item|
         vendor = item[0]
         device = item[1]

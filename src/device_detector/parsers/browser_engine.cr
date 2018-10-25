@@ -15,7 +15,7 @@ module DeviceDetector
     end
 
     def call
-      detected_engine = {} of String => String
+      detected_engine = {"name" => ""}
       @engines.reverse_each do |engine|
         if Regex.new(engine.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
           detected_engine.merge!({"name" => engine.name})
