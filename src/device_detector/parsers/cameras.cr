@@ -36,7 +36,7 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModel)
           device.models.each do |model|
-            if Regex.new(model.regex) =~ @user_agent
+            if Regex.new(model.regex, Settings::REGEX_OPTS) =~ @user_agent
               detected_camera.merge!({"vendor" => vendor})
               if capture_groups?(model.name)
                 filled_name = fill_groups(model.name, model.regex, @user_agent)
@@ -50,7 +50,7 @@ module DeviceDetector
 
         # --> If device has one model
         if device.is_a?(SingleModel)
-          if Regex.new(device.regex) =~ @user_agent
+          if Regex.new(device.regex, Settings::REGEX_OPTS) =~ @user_agent
             detected_camera.merge!({"vendor" => vendor, "device" => device.name})
           end
         end

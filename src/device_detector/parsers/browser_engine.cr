@@ -17,7 +17,7 @@ module DeviceDetector
     def call
       detected_engine = {"name" => ""}
       @engines.reverse_each do |engine|
-        if Regex.new(engine.regex) =~ @user_agent
+        if Regex.new(engine.regex, Settings::REGEX_OPTS) =~ @user_agent
           detected_engine.merge!({"name" => engine.name})
         end
       end

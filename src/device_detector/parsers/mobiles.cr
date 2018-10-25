@@ -36,7 +36,7 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModelMobile)
           device.models.each do |model|
-            if Regex.new(model.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+            if Regex.new(model.regex, Settings::REGEX_OPTS) =~ @user_agent
               # Fill known keys
               detected_device.merge!({"vendor" => vendor})
               detected_device.merge!({"type" => device.type.to_s})
@@ -53,7 +53,7 @@ module DeviceDetector
 
         # --> If device has one model
         if device.is_a?(SingleModelMobile)
-          if Regex.new(device.regex) =~ @user_agent
+          if Regex.new(device.regex, Settings::REGEX_OPTS) =~ @user_agent
             # Fill known keys
             detected_device.merge!({"vendor" => vendor})
             detected_device.merge!({"type" => device.type.to_s})
