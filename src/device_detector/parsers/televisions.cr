@@ -32,7 +32,7 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModelTV)
           device.models.each do |model|
-            if Regex.new(model.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+            if Regex.new(model.regex) =~ @user_agent
               # Fill known keys
               detected_tv.merge!({"vendor" => vendor})
               # If model name contains capture groups
@@ -48,7 +48,7 @@ module DeviceDetector
 
         # --> If device has one model
         if device.is_a?(SingleModelTV)
-          if Regex.new(device.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+          if Regex.new(device.regex) =~ @user_agent
             # Fill known keys
             detected_tv.merge!({"vendor" => vendor})
             # If model name contains capture groups

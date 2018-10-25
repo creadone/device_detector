@@ -22,7 +22,7 @@ module DeviceDetector
       @car_browsers.each do |item|
         vendor = item[0]
         browser = item[1]
-        if Regex.new(browser.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+        if Regex.new(browser.regex) =~ @user_agent
           detected_car_browser.merge!({
             "vendor" => vendor,
             "device" => browser.device,

@@ -20,7 +20,7 @@ module DeviceDetector
     def call
       detected_player = {"name" => "", "version" => ""}
       @mediaplayers.each do |player|
-        if Regex.new(player.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+        if Regex.new(player.regex) =~ @user_agent
           detected_player.merge!({"name" => player.name})
           if capture_groups?(player.version)
             version = fill_groups(player.version, player.regex, @user_agent)

@@ -18,7 +18,7 @@ module DeviceDetector
     def call
       detected_bot = {"name" => ""}
       @bots.reverse_each do |bot|
-        if Regex.new(bot.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+        if Regex.new(bot.regex) =~ @user_agent
           detected_bot.merge!({"name" => bot.name})
         end
       end
