@@ -16,14 +16,14 @@ module DeviceDetector
 
     def bot?
       @results.each do |result|
-        return true if result.has_key?("bot")
+        return true unless result.dig?("bot", "name").empty?
       end
       false
     end
 
     def bot_name
       @results.each do |result|
-        return result["bot"]["name"] if result.has_key?("bot")
+        return result.dig?("bot", "name")
       end
     end
 
@@ -31,14 +31,14 @@ module DeviceDetector
 
     def browser_engine?
       @results.each do |result|
-        return true if result.has_key?("browser_engine")
+        return true unless result.dig?("browser_engine", "name").empty?
       end
       false
     end
 
     def browser_engine_name
       @results.each do |result|
-        return result["browser_engine"]["name"] if result.has_key?("browser_engine")
+        return result.dig?("browser_engine", "name")
       end
     end
 
@@ -46,20 +46,20 @@ module DeviceDetector
 
     def browser?
       @results.each do |result|
-        return true if result.has_key?("browser")
+        return true unless result.dig?("browser", "name").empty?
       end
       false
     end
 
     def browser_name
       @results.each do |result|
-        return result["browser"]["name"] if result.has_key?("browser")
+        return result.dig?["browser"]["name"]?
       end
     end
 
     def browser_version
       @results.each do |result|
-        return result["browser"]["version"] if result.has_key?("browser")
+        return result["browser"]["version"]?
       end
     end
 
@@ -67,20 +67,20 @@ module DeviceDetector
 
     def camera?
       @results.each do |result|
-        return true if result.has_key?("camera")
+        return true unless result["camera"]["model"].empty?
       end
       false
     end
 
     def camera_vendor
       @results.each do |result|
-        return result["camera"]["vendor"] if result.has_key?("camera")
+        return result["camera"]["vendor"]?
       end
     end
 
     def camera_model
       @results.each do |result|
-        return result["camera"]["device"] if result.has_key?("camera")
+        return result["camera"]["device"]?
       end
     end
 
@@ -88,20 +88,20 @@ module DeviceDetector
 
     def car_browser?
       @results.each do |result|
-        return true if result.has_key?("car_browser")
+        return true unless result["car_browser"]["model"].empty?
       end
       false
     end
 
     def car_browser_vendor
       @results.each do |result|
-        return result["car_browser"]["vendor"] if result.has_key?("car_browser")
+        return result["car_browser"]["vendor"]?
       end
     end
 
     def car_browser_model
       @results.each do |result|
-        return result["car_browser"]["model"] if result.has_key?("car_browser")
+        return result["car_browser"]["model"]?
       end
     end
 
@@ -109,20 +109,20 @@ module DeviceDetector
 
     def console?
       @results.each do |result|
-        return true if result.has_key?("console")
+        return true unless result["console"]["model"].empty?
       end
       false
     end
 
     def console_vendor
       @results.each do |result|
-        return result["console"]["vendor"] if result.has_key?("console")
+        return result["console"]["vendor"]?
       end
     end
 
     def console_model
       @results.each do |result|
-        return result["console"]["model"] if result.has_key?("console")
+        return result["console"]["model"]?
       end
     end
 
@@ -130,20 +130,20 @@ module DeviceDetector
 
     def feed_reader?
       @results.each do |result|
-        return true if result.has_key?("feed_reader")
+        return true unless result.dig?("feed_reader", "name").empty?
       end
       false
     end
 
     def feed_reader_name
       @results.each do |result|
-        return result["feed_reader"]["name"] if result.has_key?("feed_reader")
+        return result.dig?("feed_reader", "name")
       end
     end
 
     def feed_reader_version
       @results.each do |result|
-        return result["feed_reader"]["version"] if result.has_key?("feed_reader")
+        return result["feed_reader"]["version"]?
       end
     end
 
@@ -335,5 +335,6 @@ module DeviceDetector
         return result["vendorfragment"]["vendor"] if result.has_key?("vendorfragment")
       end
     end
+
   end
 end
