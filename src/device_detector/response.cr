@@ -16,14 +16,14 @@ module DeviceDetector
 
     def bot?
       @results.each do |result|
-        return true unless result.dig?("bot", "name").nil?
+        return !result.dig?("bot", "name").try &.blank? if result.has_key?("bot")
       end
       false
     end
 
     def bot_name
       @results.each do |result|
-        return result.dig?("bot", "name")
+        return result.dig?("bot", "name") if result.has_key?("bot")
       end
     end
 
@@ -31,14 +31,14 @@ module DeviceDetector
 
     def browser_engine?
       @results.each do |result|
-        return true unless result.dig?("browser_engine", "name").nil?
+        return !result.dig?("browser_engine", "name").try &.blank? if result.has_key?("browser_engine")
       end
       false
     end
 
     def browser_engine_name
       @results.each do |result|
-        return result.dig?("browser_engine", "name")
+        return result.dig?("browser_engine", "name") if result.has_key?("browser_engine")
       end
     end
 
@@ -46,20 +46,20 @@ module DeviceDetector
 
     def browser?
       @results.each do |result|
-        return true unless result.dig?("browser", "name").nil?
+        return !result.dig?("browser", "name").try &.blank? if result.has_key?("browser")
       end
       false
     end
 
     def browser_name
       @results.each do |result|
-        return result.dig?("browser", "name")
+        return result.dig?("browser", "name") if result.has_key?("browser")
       end
     end
 
     def browser_version
       @results.each do |result|
-        return result.dig?("browser", "version")
+        return result.dig?("browser", "version") if result.has_key?("browser")
       end
     end
 
@@ -67,20 +67,20 @@ module DeviceDetector
 
     def camera?
       @results.each do |result|
-        return true unless result.dig?("camera", "model").nil?
+        return !result.dig?("camera", "model").try &.blank? if result.has_key?("camera")
       end
       false
     end
 
     def camera_vendor
       @results.each do |result|
-        return result.dig?("camera", "vendor")
+        return result.dig?("camera", "vendor") if result.has_key?("camera")
       end
     end
 
     def camera_model
       @results.each do |result|
-        return result.dig?("camera", "device")
+        return result.dig?("camera", "model") if result.has_key?("camera")
       end
     end
 
@@ -88,20 +88,20 @@ module DeviceDetector
 
     def car_browser?
       @results.each do |result|
-        return true unless result.dig?("car_browser", "model").nil?
+        return !result.dig?("car_browser", "model").try &.blank? if result.has_key?("car_browser")
       end
       false
     end
 
     def car_browser_vendor
       @results.each do |result|
-        return result.dig?("car_browser", "vendor")
+        return result.dig?("car_browser", "vendor") if result.has_key?("car_browser")
       end
     end
 
     def car_browser_model
       @results.each do |result|
-        return result.dig?("car_browser", "model")
+        return result.dig?("car_browser", "model") if result.has_key?("car_browser")
       end
     end
 
@@ -109,7 +109,7 @@ module DeviceDetector
 
     def console?
       @results.each do |result|
-        return true unless result.dig?("console", "model").nil?
+        return true unless result.dig?("console", "model").not_nil!.blank?
       end
       false
     end
@@ -130,7 +130,7 @@ module DeviceDetector
 
     def feed_reader?
       @results.each do |result|
-        return true unless @results.dig?("feed_reader", "name").nil?
+        return true unless @results.dig?("feed_reader", "name").not_nil!.blank?
       end
       false
     end
@@ -151,7 +151,7 @@ module DeviceDetector
 
     def library?
       @results.each do |result|
-        return true unless result.dig?("library", "name").nil?
+        return true unless result.dig?("library", "name").not_nil!.blank?
       end
       false
     end
@@ -172,7 +172,7 @@ module DeviceDetector
 
     def mediaplayer?
       @results.each do |result|
-        return true unless result.dig?("mediaplayer", "name").nil?
+        return true unless result.dig?("mediaplayer", "name").not_nil!.blank?
       end
       false
     end
@@ -193,7 +193,7 @@ module DeviceDetector
 
     def mobile_app?
       @results.each do |result|
-        return true unless result.dig?("mobile_app", "name").nil?
+        return true unless result.dig?("mobile_app", "name").not_nil!.blank?
       end
       false
     end
@@ -214,7 +214,7 @@ module DeviceDetector
 
     def mobile_device?
       @results.each do |result|
-        return true unless result.dig?("mobile", "device").nil?
+        return true unless result.dig?("mobile", "device").not_nil!.blank?
       end
       false
     end
@@ -241,7 +241,7 @@ module DeviceDetector
 
     def os?
       @results.each do |result|
-        return true unless result.dig?("oss", "name").nil?
+        return true unless result.dig?("oss", "name").not_nil!.blank?
       end
       false
     end
@@ -262,7 +262,7 @@ module DeviceDetector
 
     def pim?
       @results.each do |result|
-        return true unless result.dig?("pim", "name").nil?
+        return true unless result.dig?("pim", "name").not_nil!.blank?
       end
       false
     end
@@ -283,7 +283,7 @@ module DeviceDetector
 
     def portable_media_player?
       @results.each do |result|
-        return true unless result.dig?("portable_media_player", "model").nil?
+        return true unless result.dig?("portable_media_player", "model").not_nil!.blank?
       end
       false
     end
@@ -304,7 +304,7 @@ module DeviceDetector
 
     def tv?
       @results.each do |result|
-        return true unless result.dig?("tv", "model").nil?
+        return true unless result.dig?("tv", "model").not_nil!.blank?
       end
       false
     end
@@ -325,7 +325,7 @@ module DeviceDetector
 
     def vendorfragment?
       @results.each do |result|
-        return true unless result.dig?("vendorfragment", "vendor").nil?
+        return true unless result.dig?("vendorfragment", "vendor").not_nil!.blank?
       end
       false
     end
