@@ -18,9 +18,9 @@ module DeviceDetector
     end
 
     def call
-      detected_reader = {} of String => String
+      detected_reader = {"name" => "", "version" => ""}
       @readers.each do |reader|
-        if Regex.new(reader.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+        if Regex.new(reader.regex, Settings::REGEX_OPTS) =~ @user_agent
           detected_reader.merge!({"name" => reader.name})
           if capture_groups?(reader.version.to_s)
             version = fill_groups(reader.version.to_s, reader.regex, @user_agent)

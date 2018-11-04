@@ -18,9 +18,9 @@ module DeviceDetector
     end
 
     def call
-      detected_os = {} of String => String
+      detected_os = {"name" => "", "version" => ""}
       @oss.reverse_each do |os|
-        if Regex.new(os.regex) =~ @user_agent
+        if Regex.new(os.regex, Settings::REGEX_OPTS) =~ @user_agent
           # If name contains capture groups
           if capture_groups?(os.name)
             name = fill_groups(os.name, os.regex, @user_agent)

@@ -24,7 +24,7 @@ module DeviceDetector
     end
 
     def call
-      detected_tv = {} of String => String
+      detected_tv = {"model" => "", "vendor" => ""}
       @tvs.to_a.reverse.to_h.each do |item|
         vendor = item[0]
         device = item[1]
@@ -32,7 +32,7 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModelTV)
           device.models.each do |model|
-            if Regex.new(model.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+            if Regex.new(model.regex, Settings::REGEX_OPTS) =~ @user_agent
               # Fill known keys
               detected_tv.merge!({"vendor" => vendor})
               # If model name contains capture groups
@@ -48,7 +48,7 @@ module DeviceDetector
 
         # --> If device has one model
         if device.is_a?(SingleModelTV)
-          if Regex.new(device.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+          if Regex.new(device.regex) =~ @user_agent
             # Fill known keys
             detected_tv.merge!({"vendor" => vendor})
             # If model name contains capture groups

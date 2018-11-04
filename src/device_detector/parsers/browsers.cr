@@ -22,9 +22,9 @@ module DeviceDetector
     end
 
     def call
-      detected_browser = {} of String => String
+      detected_browser = {"name" => "", "version" => ""}
       @browsers.reverse_each do |browser|
-        if Regex.new(browser.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+        if Regex.new(browser.regex, Settings::REGEX_OPTS) =~ @user_agent
           detected_browser.merge!({"name" => browser.name})
           if browser.version_present?
             if capture_groups?(browser.version.to_s)

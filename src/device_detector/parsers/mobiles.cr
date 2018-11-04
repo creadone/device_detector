@@ -27,7 +27,7 @@ module DeviceDetector
     end
 
     def call
-      detected_device = {} of String => String
+      detected_device = {"device" => "", "vendor" => "", "type" => ""}
       @mobiles.each do |mobile|
         # Shortcats
         vendor = mobile[0]
@@ -36,10 +36,10 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModelMobile)
           device.models.each do |model|
-            if Regex.new(model.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+            if Regex.new(model.regex, Settings::REGEX_OPTS) =~ @user_agent
               # Fill known keys
               detected_device.merge!({"vendor" => vendor})
-              detected_device.merge!({"type" => device.type.not_nil!}) if device.type_present?
+              detected_device.merge!({"type" => device.type.to_s})
               # If model name contains cature groups
               if capture_groups?(model.model)
                 model_name = fill_groups(model.model, model.regex, @user_agent)
@@ -53,10 +53,10 @@ module DeviceDetector
 
         # --> If device has one model
         if device.is_a?(SingleModelMobile)
-          if Regex.new(device.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+          if Regex.new(device.regex, Settings::REGEX_OPTS) =~ @user_agent
             # Fill known keys
             detected_device.merge!({"vendor" => vendor})
-            detected_device.merge!({"type" => device.type.not_nil!}) if device.type_present?
+            detected_device.merge!({"type" => device.type.to_s})
             # If model name contains cature groups
             if capture_groups?(device.model)
               model = fill_groups(device.model, device.regex, @user_agent)

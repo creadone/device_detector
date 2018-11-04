@@ -18,9 +18,9 @@ module DeviceDetector
     end
 
     def call
-      detected_app = {} of String => String
+      detected_app = {"name" => "", "version" => ""}
       @mobile_apps.each do |app|
-        if Regex.new(app.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+        if Regex.new(app.regex, Settings::REGEX_OPTS) =~ @user_agent
           # -> If name contains capture groups
           if capture_groups?(app.name)
             name = fill_groups(app.name, app.regex, @user_agent)

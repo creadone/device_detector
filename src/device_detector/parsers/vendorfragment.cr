@@ -10,12 +10,12 @@ module DeviceDetector
     end
 
     def call
-      detected_vendor = {} of String => String
+      detected_vendor = {"vendor" => ""}
       @fragments.each do |fragment|
         vendor = fragment[0]
         regexes = fragment[1]
         regexes.each do |regex|
-          if Regex.new(regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+          if Regex.new(regex, Settings::REGEX_OPTS) =~ @user_agent
             detected_vendor.merge!({"vendor" => vendor})
           end
         end

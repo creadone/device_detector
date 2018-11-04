@@ -27,7 +27,7 @@ module DeviceDetector
     end
 
     def call
-      detected_console = {} of String => String
+      detected_console = {"vendor" => "", "model" => ""}
       @consoles.each do |console|
         vendor = console[0]
         device = console[1]
@@ -35,7 +35,7 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModelConsole)
           device.models.each do |model|
-            if Regex.new(model.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+            if Regex.new(model.regex, Settings::REGEX_OPTS) =~ @user_agent
               detected_console.merge!({"vendor" => vendor})
               if capture_groups?(model.model)
                 filled_name = fill_groups(model.model, model.regex, @user_agent)
@@ -49,7 +49,7 @@ module DeviceDetector
 
         # --> If device has many models
         if device.is_a?(SingleModelConsole)
-          if Regex.new(device.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+          if Regex.new(device.regex, Settings::REGEX_OPTS) =~ @user_agent
             detected_console.merge!({"vendor" => vendor})
             if capture_groups?(device.model)
               filled_name = fill_groups(device.model, device.regex, @user_agent)

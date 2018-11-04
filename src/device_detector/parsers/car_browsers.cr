@@ -18,11 +18,11 @@ module DeviceDetector
     end
 
     def call
-      detected_car_browser = {} of String => String
+      detected_car_browser = {"vendor" => "", "device" => "", "model" => ""}
       @car_browsers.each do |item|
         vendor = item[0]
         browser = item[1]
-        if Regex.new(browser.regex, Regex::Options::IGNORE_CASE) =~ @user_agent
+        if Regex.new(browser.regex, Settings::REGEX_OPTS) =~ @user_agent
           detected_car_browser.merge!({
             "vendor" => vendor,
             "device" => browser.device,
