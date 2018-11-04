@@ -135,4 +135,19 @@ describe "Response" do
     it "should return true if VendorFragment detected" { response.vendorfragment?.should be_true }
     it "should return vendor" { response.vendorfragment_vendor.should eq "Acer" }
   end
+
+  describe "TrafficType" do
+    describe "Bot" do
+      user_agent = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+      response = DeviceDetector::Detector.new(user_agent).call
+      it "should return true if traffic from bot" { response.traffic_type.should eq "bot" }
+    end
+
+    describe "Human" do
+      user_agent = "Mozilla/5.0 (iPad; CPU OS 5_1 like Mac OS X; en-us) AppleWebKit/534.46 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53"
+      response = DeviceDetector::Detector.new(user_agent).call
+      it "should return true if traffic from human" { response.traffic_type.should eq "human" }
+    end
+  end
+
 end

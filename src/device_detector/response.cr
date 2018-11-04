@@ -337,5 +337,15 @@ module DeviceDetector
       end
     end
 
+    # --> to.click related methods
+
+    def traffic_type
+      if [library?, bot?].any? { |m| m == true }
+        return "bot"
+      else
+        return "human"
+      end
+    end
+
   end
 end
