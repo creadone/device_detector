@@ -1,5 +1,5 @@
 class Hash(K,V)
-  
+
   def dig?(key : K, *subkeys)
     if (value = self[key]?) && value.responds_to?(:dig?)
       value.dig?(*subkeys)
