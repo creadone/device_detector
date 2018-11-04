@@ -149,5 +149,4 @@ describe "Response" do
       it "should return true if traffic from human" { response.traffic_type.should eq "human" }
     end
   end
-
 end

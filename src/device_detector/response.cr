@@ -237,7 +237,6 @@ module DeviceDetector
       end
     end
 
-
     # --> OSS
 
     def os?
@@ -346,6 +345,5 @@ module DeviceDetector
         return "human"
       end
     end
-
   end
 end

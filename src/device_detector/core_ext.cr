@@ -1,5 +1,4 @@
-class Hash(K,V)
-
+class Hash(K, V)
   def dig?(key : K, *subkeys)
     if (value = self[key]?) && value.responds_to?(:dig?)
       value.dig?(*subkeys)
@@ -18,9 +17,8 @@ class Hash(K,V)
     raise KeyError.new "Hash value not diggable for key: #{key.inspect}"
   end
 
-   # :nodoc:
+  # :nodoc:
   def dig(key : K)
     self[key]
   end
-
 end
