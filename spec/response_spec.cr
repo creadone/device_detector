@@ -10,6 +10,13 @@ describe "Response" do
     end
   end
 
+  describe "Lite version" do
+    user_agent = "Googlebot (gocrawl v0.4)"
+    response = DeviceDetector::Detector.new(user_agent).lite
+    it "should return true if bot detected" { response.bot?.should be_true }
+    it "should return bot name" { response.bot_name.should eq("Googlebot") }
+  end
+
   describe "Bot" do
     user_agent = "Googlebot (gocrawl v0.4)"
     response = DeviceDetector::Detector.new(user_agent).call

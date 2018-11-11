@@ -1,7 +1,7 @@
 module DeviceDetector
   module Settings
-    # Used parsers
-    PARSERS = [
+    # Full complect
+    FULL = [
       BotStore,
       BrowserStore,
       BrowserEngineStore,
@@ -18,6 +18,12 @@ module DeviceDetector
       PortableMediaPlayerStore,
       TelevisionStore,
       VendorFragmentStore,
+    ]
+
+    # Only for bot and mobile device detection
+    LITE = [
+      BotStore,
+      MobileStore,
     ]
 
     # Regex options

@@ -1,5 +1,7 @@
 module DeviceDetector
   class Response
+    class NotEmplementedException < Exception; end
+
     alias InputStructure = Array(Hash(String, Hash(String, String)))
 
     def initialize(results : InputStructure)
@@ -344,6 +346,11 @@ module DeviceDetector
       else
         return "human"
       end
+    end
+
+    macro method_missing(m)
+      method_name = {{ m.name.stringify }}
+      raise NotEmplementedException.new("Method #{method_name} not implemented yet.")
     end
   end
 end

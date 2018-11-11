@@ -11,13 +11,22 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    def call
+    def parse(stack)
       result = [] of Result
-      Settings::PARSERS.each do |parser|
+      stack.each do |parser|
         detector = parser.new(@user_agent)
         result.push({detector.kind => detector.call})
       end
       Response.new(result)
+    end
+
+    macro method_missing(m)
+      {% if m.name.id.stringify == "call" %}
+        stack = Settings::FULL
+      {% else %}
+        stack = Settings::{{ m.name.id.stringify.upcase.id }}
+      {% end %}
+      parse(stack)
     end
   end
 end
