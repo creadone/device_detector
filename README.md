@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/creadone/device_detector.svg?branch=master)](https://travis-ci.org/creadone/device_detector)
 
-The library for parsing User Agent and browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model detection. Currently it is an alpha-version and haven't been tested on production yet. The Library uses regexes from matomo-org/device_detector.
+The library for parsing User Agent and browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model detection. Currently it is an alpha-version and haven't been tested on production yet. The Library uses regexes from [matomo-org/device-detector](https://github.com/matomo-org/device-detector).
 
 ## Installation
 
@@ -14,22 +14,111 @@ dependencies:
     github: creadone/device_detector
 ```
 
+Then run `shards`
+
 ## Usage
 
-```crystal
+```Crystal
 require "device_detector"
 
 user_agent = "Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0"
-response = DeviceDetector::Detector.new(user_agent).call
+response = DeviceDetector::Detector.new(user_agent).call # For use all parsers
+response = DeviceDetector::Detector.new(user_agent).lite  # For use only bot and mobile
 
 # Check if browser detected
 response.browser? #=> true
 
-# Get browser name
+# browser name
 response.browser_name #=> Microsoft Edge
 
-# Get browser version
+# browser version
 response.browser_version #=> 12.0
+
+# get raw response with
+pp response.raw
+
+[{
+    "bot" => {
+      "name" => ""
+    }
+  },
+  {
+    "browser" => {
+      "name" => "", "version" => ""
+    }
+  },
+  {
+    "browser_engine" => {
+      "name" => ""
+    }
+  },
+  {
+    "camera" => {
+      "vendor" => "", "model" => "", "device" => ""
+    }
+  },
+  {
+    "car_browser" => {
+      "vendor" => "", "device" => "", "model" => ""
+    }
+  },
+  {
+    "console" => {
+      "vendor" => "", "model" => ""
+    }
+  },
+  {
+    "feed_reader" => {
+      "name" => "", "version" => ""
+    }
+  },
+  {
+    "library" => {
+      "name" => "", "version" => ""
+    }
+  },
+  {
+    "mediaplayer" => {
+      "name" => "", "version" => ""
+    }
+  },
+  {
+    "mobile_app" => {
+      "name" => "", "version" => ""
+    }
+  },
+  {
+    "mobile" => {
+      "device" => "", "vendor" => "", "type" => ""
+    }
+  },
+  {
+    "oss" => {
+      "name" => "", "version" => ""
+    }
+  },
+  {
+    "pim" => {
+      "name" => "", "version" => ""
+    }
+  },
+  {
+    "portable_media_player" => {
+      "vendor" => "", "model" => ""
+    }
+  },
+  {
+    "tv" => {
+      "model" => "", "vendor" => ""
+    }
+  },
+  {
+    "vendorfragment" => {
+      "vendor" => ""
+    }
+  }
+]
+
 ```
 
 Available methods:
@@ -66,11 +155,13 @@ Available methods:
 Recent benchmarking of parsing 1000 user-agent strings on a MacBook Air with Intel Core i5 dual core (0.8 Ghz per core):
 
 ```
-crystal bench/raw_response.cr --release
-40.530000   1.420000   41.950000 (  39.998607)
+bench/raw_response.cr --release
+            user     system      total        real
+full:   6.770000   0.100000   6.870000 (  6.805766)
+lite:   5.370000   0.080000   5.450000 (  5.378346)
 ```
 
-It's mean that `device_detector` can work with 25 RPS.
+It's mean that `device_detector` can work with 1000 / 6.8 ~ 147 QPS.
 
 ## Testing
 
