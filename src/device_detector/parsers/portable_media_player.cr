@@ -1,5 +1,5 @@
 module DeviceDetector
-  class PortableMediaPlayerStore
+  struct PortableMediaPlayerStore
     include Helper
 
     getter kind = "portable_media_player"
@@ -10,7 +10,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class SingleModelPlayer
+    struct SingleModelPlayer
       YAML.mapping(
         regex: String,
         device: String?,
@@ -18,7 +18,7 @@ module DeviceDetector
       )
     end
 
-    class MultiModelPlayer
+    struct MultiModelPlayer
       YAML.mapping(
         regex: String,
         device: {type: String, presence: true},

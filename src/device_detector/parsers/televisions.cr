@@ -1,5 +1,5 @@
 module DeviceDetector
-  class TelevisionStore
+  struct TelevisionStore
     include Helper
 
     getter kind = "tv"
@@ -9,14 +9,14 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class SingleModelTV
+    struct SingleModelTV
       YAML.mapping(
         regex: String,
         model: String
       )
     end
 
-    class MultiModelTV
+    struct MultiModelTV
       YAML.mapping(
         regex: String,
         models: Array(SingleModelTV)

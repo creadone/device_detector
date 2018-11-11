@@ -1,5 +1,5 @@
 module DeviceDetector
-  class ConsoleStore
+  struct ConsoleStore
     include Helper
 
     getter kind = "console"
@@ -10,7 +10,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class SingleModelConsole
+    struct SingleModelConsole
       YAML.mapping(
         regex: String,
         device: String?,
@@ -18,7 +18,7 @@ module DeviceDetector
       )
     end
 
-    class MultiModelConsole
+    struct MultiModelConsole
       YAML.mapping(
         regex: String,
         device: String,

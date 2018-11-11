@@ -4,7 +4,7 @@ require "./settings"
 require "./response"
 
 module DeviceDetector
-  class Detector
+  struct Detector
     alias Result = Hash(String, Hash(String, String))
 
     def initialize(user_agent : String)

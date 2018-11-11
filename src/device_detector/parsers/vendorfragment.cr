@@ -1,5 +1,5 @@
 module DeviceDetector
-  class VendorFragmentStore
+  struct VendorFragmentStore
     include Helper
 
     getter kind = "vendorfragment"

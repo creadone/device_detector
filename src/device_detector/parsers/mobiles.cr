@@ -1,5 +1,5 @@
 module DeviceDetector
-  class MobileStore
+  struct MobileStore
     include Helper
 
     getter kind = "mobile"
@@ -10,7 +10,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class SingleModelMobile
+    struct SingleModelMobile
       YAML.mapping(
         regex: String,
         type: {type: String?, key: "device", presence: true},
@@ -18,7 +18,7 @@ module DeviceDetector
       )
     end
 
-    class MultiModelMobile
+    struct MultiModelMobile
       YAML.mapping(
         regex: String,
         type: {type: String?, key: "device", presence: true},

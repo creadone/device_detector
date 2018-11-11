@@ -1,5 +1,5 @@
 module DeviceDetector
-  class CarBrowserStore
+  struct CarBrowserStore
     include Helper
 
     getter kind = "car_browser"
@@ -9,7 +9,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class SingleModelBrowser
+    struct SingleModelBrowser
       YAML.mapping(
         regex: String,
         device: String,

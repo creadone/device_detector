@@ -1,5 +1,5 @@
 module DeviceDetector
-  class FeedReaderStore
+  struct FeedReaderStore
     include Helper
 
     getter kind = "feed_reader"
@@ -9,7 +9,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class Reader
+    struct Reader
       YAML.mapping(
         regex: String,
         name: String,

@@ -1,5 +1,5 @@
 module DeviceDetector
-  class BotStore
+  struct BotStore
     getter kind = "bot"
 
     def initialize(user_agent : String)
@@ -7,7 +7,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class Bot
+    struct Bot
       YAML.mapping(
         regex: String,
         name: String,

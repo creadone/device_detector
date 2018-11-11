@@ -1,5 +1,5 @@
 module DeviceDetector
-  class LibraryStore
+  struct LibraryStore
     include Helper
 
     getter kind = "library"
@@ -9,7 +9,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class Library
+    struct Library
       YAML.mapping(
         regex: String,
         name: String,

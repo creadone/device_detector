@@ -1,7 +1,7 @@
 require "baked_file_system"
 
 module DeviceDetector
-  class Storage
+  struct Storage
     extend BakedFileSystem
     bake_folder "./regexes"
   end

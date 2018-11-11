@@ -1,5 +1,5 @@
 module DeviceDetector
-  class PIMStore
+  struct PIMStore
     include Helper
 
     getter kind = "pim"
@@ -9,7 +9,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class PIM
+    struct PIM
       YAML.mapping(
         regex: String,
         name: String,

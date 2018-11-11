@@ -1,5 +1,5 @@
 module DeviceDetector
-  class MediaplayerStore
+  struct MediaplayerStore
     include Helper
 
     getter kind = "mediaplayer"
@@ -9,7 +9,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class Mediaplayer
+    struct Mediaplayer
       YAML.mapping(
         regex: String,
         name: String,

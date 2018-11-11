@@ -1,5 +1,5 @@
 module DeviceDetector
-  class MobileAppStore
+  struct MobileAppStore
     include Helper
 
     getter kind = "mobile_app"
@@ -9,7 +9,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class MobileApp
+    struct MobileApp
       YAML.mapping(
         regex: String,
         name: String,

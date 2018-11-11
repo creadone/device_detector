@@ -1,5 +1,5 @@
 module DeviceDetector
-  class Response
+  struct Response
     class NotEmplementedException < Exception; end
 
     alias InputStructure = Array(Hash(String, Hash(String, String)))

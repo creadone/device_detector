@@ -1,5 +1,5 @@
 module DeviceDetector
-  class BrowserStore
+  struct BrowserStore
     include Helper
 
     getter kind = "browser"
@@ -9,7 +9,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class Browser
+    struct Browser
       YAML.mapping(
         regex: String,
         name: String,

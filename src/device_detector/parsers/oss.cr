@@ -1,5 +1,5 @@
 module DeviceDetector
-  class OSSStore
+  struct OSSStore
     include Helper
 
     getter kind = "oss"
@@ -9,7 +9,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class OSS
+    struct OSS
       YAML.mapping(
         regex: String,
         name: String,

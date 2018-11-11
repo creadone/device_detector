@@ -17,13 +17,13 @@ module DeviceDetector
       PIMStore,
       PortableMediaPlayerStore,
       TelevisionStore,
-      VendorFragmentStore,
+      VendorFragmentStore
     ]
 
     # Only for bot and mobile device detection
     LITE = [
       BotStore,
-      MobileStore,
+      MobileStore
     ]
 
     # Regex options

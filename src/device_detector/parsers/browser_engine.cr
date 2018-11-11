@@ -1,5 +1,5 @@
 module DeviceDetector
-  class BrowserEngineStore
+  struct BrowserEngineStore
     getter kind = "browser_engine"
 
     def initialize(user_agent : String)
@@ -7,7 +7,7 @@ module DeviceDetector
       @user_agent = user_agent
     end
 
-    class Engine
+    struct Engine
       YAML.mapping(
         regex: String,
         name: String
