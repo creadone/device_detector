@@ -1,11 +1,10 @@
 module DeviceDetector
   struct FeedReaderStore
     include Helper
-
     getter kind = "feed_reader"
+    @@readers = Array(Reader).from_yaml(Storage.get("feed_readers.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @readers = Array(Reader).from_yaml(Storage.get("feed_readers.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -17,9 +16,14 @@ module DeviceDetector
       )
     end
 
+    def readers
+      return @@readers if @@readers
+      @@readers = Array(Reader).from_yaml(Storage.get("feed_readers.yml").gets_to_end)
+    end
+
     def call
       detected_reader = {"name" => "", "version" => ""}
-      @readers.each do |reader|
+      readers.each do |reader|
         if Regex.new(reader.regex, Settings::REGEX_OPTS) =~ @user_agent
           detected_reader.merge!({"name" => reader.name})
           if capture_groups?(reader.version.to_s)

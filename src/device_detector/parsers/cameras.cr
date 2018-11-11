@@ -1,12 +1,10 @@
 module DeviceDetector
   struct CameraStore
     include Helper
-
     getter kind = "camera"
+    @@cameras = Hash(String, SingleModel | MultiModel).from_yaml(Storage.get("cameras.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @cameras = Hash(String, SingleModel | MultiModel)
-        .from_yaml(Storage.get("cameras.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -26,9 +24,14 @@ module DeviceDetector
       )
     end
 
+    def cameras
+      return @@cameras if @@cameras
+      @@cameras = Hash(String, SingleModel | MultiModel).from_yaml(Storage.get("cameras.yml").gets_to_end)
+    end
+
     def call
       detected_camera = {"vendor" => "", "model" => "", "device" => ""}
-      @cameras.to_a.reverse.to_h.each do |camera|
+      cameras.to_a.reverse.to_h.each do |camera|
         # Shortcats
         vendor = camera[0]
         device = camera[1]

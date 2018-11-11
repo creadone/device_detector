@@ -1,11 +1,10 @@
 module DeviceDetector
   struct TelevisionStore
     include Helper
-
     getter kind = "tv"
+    @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -23,9 +22,14 @@ module DeviceDetector
       )
     end
 
+    def tvs
+      return @@tvs if @@tvs
+      @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml").gets_to_end)
+    end
+
     def call
       detected_tv = {"model" => "", "vendor" => ""}
-      @tvs.to_a.reverse.to_h.each do |item|
+      tvs.to_a.reverse.to_h.each do |item|
         vendor = item[0]
         device = item[1]
 

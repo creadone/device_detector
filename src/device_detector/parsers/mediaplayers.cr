@@ -1,11 +1,10 @@
 module DeviceDetector
   struct MediaplayerStore
     include Helper
-
     getter kind = "mediaplayer"
+    @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayers.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayers.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -17,9 +16,14 @@ module DeviceDetector
       )
     end
 
+    def mediaplayers
+      return @@mediaplayers if @@mediaplayers
+      @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayers.yml").gets_to_end)
+    end
+
     def call
       detected_player = {"name" => "", "version" => ""}
-      @mediaplayers.each do |player|
+      mediaplayers.each do |player|
         if Regex.new(player.regex, Settings::REGEX_OPTS) =~ @user_agent
           detected_player.merge!({"name" => player.name})
           if capture_groups?(player.version)

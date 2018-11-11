@@ -1,11 +1,10 @@
 module DeviceDetector
   struct BrowserStore
     include Helper
-
     getter kind = "browser"
+    @@browsers = Array(Browser).from_yaml(Storage.get("browsers.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @browsers = Array(Browser).from_yaml(Storage.get("browsers.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -21,9 +20,14 @@ module DeviceDetector
       )
     end
 
+    def browsers
+      return @@browsers if @@browsers
+      @@browsers = Array(Browser).from_yaml(Storage.get("browsers.yml").gets_to_end)
+    end
+
     def call
       detected_browser = {"name" => "", "version" => ""}
-      @browsers.reverse_each do |browser|
+      browsers.reverse_each do |browser|
         if Regex.new(browser.regex, Settings::REGEX_OPTS) =~ @user_agent
           detected_browser.merge!({"name" => browser.name})
           if browser.version_present?

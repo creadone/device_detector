@@ -1,12 +1,10 @@
 module DeviceDetector
   struct PortableMediaPlayerStore
     include Helper
-
     getter kind = "portable_media_player"
+    @@media_players = Hash(String, SingleModelPlayer | MultiModelPlayer).from_yaml(Storage.get("portable_media_player.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @media_players = Hash(String, SingleModelPlayer | MultiModelPlayer)
-        .from_yaml(Storage.get("portable_media_player.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -26,9 +24,14 @@ module DeviceDetector
       )
     end
 
+    def media_players
+      return @@media_players if @@media_players
+      @@media_players = Hash(String, SingleModelPlayer | MultiModelPlayer).from_yaml(Storage.get("portable_media_player.yml").gets_to_end)
+    end
+
     def call
       detected_player = {"vendor" => "", "model" => ""}
-      @media_players.each do |item|
+      media_players.each do |item|
         vendor = item[0]
         device = item[1]
 

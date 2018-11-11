@@ -1,12 +1,10 @@
 module DeviceDetector
   struct MobileStore
     include Helper
-
     getter kind = "mobile"
+    @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobiles.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @mobiles = Hash(String, SingleModelMobile | MultiModelMobile)
-        .from_yaml(Storage.get("mobiles.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -26,9 +24,14 @@ module DeviceDetector
       )
     end
 
+    def mobiles
+      return @@mobiles if @@mobiles
+      @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobiles.yml").gets_to_end)
+    end
+
     def call
       detected_device = {"device" => "", "vendor" => "", "type" => ""}
-      @mobiles.each do |mobile|
+      mobiles.each do |mobile|
         # Shortcats
         vendor = mobile[0]
         device = mobile[1]

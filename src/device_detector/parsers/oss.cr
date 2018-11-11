@@ -1,11 +1,10 @@
 module DeviceDetector
   struct OSSStore
     include Helper
-
     getter kind = "oss"
+    @@oss = Array(OSS).from_yaml(Storage.get("oss.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @oss = Array(OSS).from_yaml(Storage.get("oss.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -17,9 +16,14 @@ module DeviceDetector
       )
     end
 
+    def oss
+      return @@oss if @@oss
+      @@oss = Array(OSS).from_yaml(Storage.get("oss.yml").gets_to_end)
+    end
+
     def call
       detected_os = {"name" => "", "version" => ""}
-      @oss.reverse_each do |os|
+      oss.reverse_each do |os|
         if Regex.new(os.regex, Settings::REGEX_OPTS) =~ @user_agent
           # If name contains capture groups
           if capture_groups?(os.name)

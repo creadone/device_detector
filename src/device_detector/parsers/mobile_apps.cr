@@ -1,11 +1,10 @@
 module DeviceDetector
   struct MobileAppStore
     include Helper
-
     getter kind = "mobile_app"
+    @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -17,9 +16,14 @@ module DeviceDetector
       )
     end
 
+    def mobile_apps
+      return @@mobile_apps if @@mobile_apps
+      @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml").gets_to_end)
+    end
+
     def call
       detected_app = {"name" => "", "version" => ""}
-      @mobile_apps.each do |app|
+      mobile_apps.each do |app|
         if Regex.new(app.regex, Settings::REGEX_OPTS) =~ @user_agent
           # -> If name contains capture groups
           if capture_groups?(app.name)

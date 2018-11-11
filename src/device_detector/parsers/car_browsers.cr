@@ -1,11 +1,10 @@
 module DeviceDetector
   struct CarBrowserStore
     include Helper
-
     getter kind = "car_browser"
+    @@car_browsers = Hash(String, SingleModelBrowser).from_yaml(Storage.get("car_browsers.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @car_browsers = Hash(String, SingleModelBrowser).from_yaml(Storage.get("car_browsers.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -17,9 +16,14 @@ module DeviceDetector
       )
     end
 
+    def car_browsers
+      return @@car_browsers if @@car_browsers
+      @@car_browsers = Hash(String, SingleModelBrowser).from_yaml(Storage.get("car_browsers.yml").gets_to_end)
+    end
+
     def call
       detected_car_browser = {"vendor" => "", "device" => "", "model" => ""}
-      @car_browsers.each do |item|
+      car_browsers.each do |item|
         vendor = item[0]
         browser = item[1]
         if Regex.new(browser.regex, Settings::REGEX_OPTS) =~ @user_agent

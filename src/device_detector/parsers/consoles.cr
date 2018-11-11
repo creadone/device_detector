@@ -1,12 +1,10 @@
 module DeviceDetector
   struct ConsoleStore
     include Helper
-
     getter kind = "console"
+    @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml").gets_to_end)
 
     def initialize(user_agent : String)
-      @consoles = Hash(String, MultiModelConsole | SingleModelConsole)
-        .from_yaml(Storage.get("consoles.yml").gets_to_end)
       @user_agent = user_agent
     end
 
@@ -26,9 +24,14 @@ module DeviceDetector
       )
     end
 
+    def consoles
+      return @@consoles if @@consoles
+      @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml").gets_to_end)
+    end
+
     def call
       detected_console = {"vendor" => "", "model" => ""}
-      @consoles.each do |console|
+      consoles.each do |console|
         vendor = console[0]
         device = console[1]
 
