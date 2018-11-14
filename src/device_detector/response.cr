@@ -216,7 +216,7 @@ module DeviceDetector
 
     def mobile_device?
       @results.each do |result|
-        return !result.dig?("mobile", "model").try &.blank? if result.has_key?("mobile")
+        return !result.dig?("mobile", "vendor").try &.blank? if result.has_key?("mobile")
       end
       false
     end
