@@ -180,3 +180,4 @@ crystal spec
 ## Contributors
 
 - [@creadone](https://github.com/creadone) Sergey Fedorov - creator, maintainer
+- [@delef](https://github.com/delef) Ivan Palamarchuk - code optimization
