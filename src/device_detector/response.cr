@@ -17,9 +17,9 @@ module DeviceDetector
       raise NotEmplementedException.new("Method #{method_name} not implemented yet.")
     end
 
-    macro entity(name, keys)
-      {% for key in keys %}
-        {% if key == keys.first %}
+    macro def_entity(name, keys)
+      {% for key, index in keys %}
+        {% if index == 0 %}
           def {{name.id}}?
             @results.each do |result|
               if result.has_key?({{name}})
@@ -41,22 +41,22 @@ module DeviceDetector
       {% end %}
     end
 
-    entity "bot", ["name"]
-    entity "browser", ["name", "version"]
-    entity "browser_engine", ["name"]
-    entity "camera", ["device", "vendor"]
-    entity "car_browser", ["model", "vendor"]
-    entity "console", ["model", "vendor"]
-    entity "feed_reader", ["name", "version"]
-    entity "library", ["name", "version"]
-    entity "mediaplayer", ["name", "version"]
-    entity "mobile_app", ["name", "version"]
-    entity "mobile", ["vendor", "type", "model"]
-    entity "oss", ["name", "version"]
-    entity "pim", ["name", "version"]
-    entity "portable_media_player", ["model", "vendor"]
-    entity "tv", ["model", "vendor"]
-    entity "vendorfragment", ["vendor"]
+    def_entity "bot", ["name"]
+    def_entity "browser", ["name", "version"]
+    def_entity "browser_engine", ["name"]
+    def_entity "camera", ["device", "vendor"]
+    def_entity "car_browser", ["model", "vendor"]
+    def_entity "console", ["model", "vendor"]
+    def_entity "feed_reader", ["name", "version"]
+    def_entity "library", ["name", "version"]
+    def_entity "mediaplayer", ["name", "version"]
+    def_entity "mobile_app", ["name", "version"]
+    def_entity "mobile", ["vendor", "type", "model"]
+    def_entity "oss", ["name", "version"]
+    def_entity "pim", ["name", "version"]
+    def_entity "portable_media_player", ["model", "vendor"]
+    def_entity "tv", ["model", "vendor"]
+    def_entity "vendorfragment", ["vendor"]
 
     # --> Old API support
 
