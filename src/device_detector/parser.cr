@@ -1,3 +1,3 @@
 require "yaml"
 require "./helper"
-require "./parsers/*"
+require "./parser/*"

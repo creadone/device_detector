@@ -1,6 +1,7 @@
-module DeviceDetector
-  struct PIMStore
+module DeviceDetector::Parser
+  struct PIM
     include Helper
+    
     getter kind = "pim"
     @@pims = Array(PIM).from_yaml(Storage.get("pim.yml").gets_to_end)
 
@@ -24,7 +25,7 @@ module DeviceDetector
     def call
       detected_pim = {"name" => "", "version" => ""}
       pims.reverse_each do |pim|
-        if Regex.new(pim.regex, Settings::REGEX_OPTS) =~ @user_agent
+        if Regex.new(pim.regex, Setting::REGEX_OPTS) =~ @user_agent
           detected_pim.merge!({"name" => pim.name})
           if capture_groups?(pim.version)
             version = fill_groups(pim.version, pim.regex, @user_agent)

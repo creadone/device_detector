@@ -1,8 +1,9 @@
-module DeviceDetector
-  struct TelevisionStore
+module DeviceDetector::Parser
+  struct Television
     include Helper
+
     getter kind = "tv"
-    @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml").gets_to_end)
+    @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("television.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -24,7 +25,7 @@ module DeviceDetector
 
     def tvs
       return @@tvs if @@tvs
-      @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml").gets_to_end)
+      @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("television.yml").gets_to_end)
     end
 
     def call
@@ -36,7 +37,7 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModelTV)
           device.models.each do |model|
-            if Regex.new(model.regex, Settings::REGEX_OPTS) =~ @user_agent
+            if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
               # Fill known keys
               detected_tv.merge!({"vendor" => vendor})
               # If model name contains capture groups

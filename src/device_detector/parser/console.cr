@@ -1,8 +1,9 @@
-module DeviceDetector
-  struct ConsoleStore
+module DeviceDetector::Parser
+  struct Console
     include Helper
+    
     getter kind = "console"
-    @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml").gets_to_end)
+    @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("console.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -26,7 +27,7 @@ module DeviceDetector
 
     def consoles
       return @@consoles if @@consoles
-      @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml").gets_to_end)
+      @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("console.yml").gets_to_end)
     end
 
     def call
@@ -38,7 +39,7 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModelConsole)
           device.models.each do |model|
-            if Regex.new(model.regex, Settings::REGEX_OPTS) =~ @user_agent
+            if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
               detected_console.merge!({"vendor" => vendor})
               if capture_groups?(model.model)
                 filled_name = fill_groups(model.model, model.regex, @user_agent)
@@ -52,7 +53,7 @@ module DeviceDetector
 
         # --> If device has many models
         if device.is_a?(SingleModelConsole)
-          if Regex.new(device.regex, Settings::REGEX_OPTS) =~ @user_agent
+          if Regex.new(device.regex, Setting::REGEX_OPTS) =~ @user_agent
             detected_console.merge!({"vendor" => vendor})
             if capture_groups?(device.model)
               filled_name = fill_groups(device.model, device.regex, @user_agent)
