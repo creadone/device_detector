@@ -1,14 +1,15 @@
-module DeviceDetector
-  struct OSSStore
+module DeviceDetector::Parser
+  struct OS
     include Helper
-    getter kind = "oss"
-    @@oss = Array(OSS).from_yaml(Storage.get("oss.yml").gets_to_end)
+
+    getter kind = "os"
+    @@os = Array(OS).from_yaml(Storage.get("os.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
     end
 
-    struct OSS
+    struct OS
       YAML.mapping(
         regex: String,
         name: String,
@@ -16,15 +17,15 @@ module DeviceDetector
       )
     end
 
-    def oss
-      return @@oss if @@oss
-      @@oss = Array(OSS).from_yaml(Storage.get("oss.yml").gets_to_end)
+    def os
+      return @@os if @@os
+      @@os = Array(OS).from_yaml(Storage.get("os.yml").gets_to_end)
     end
 
     def call
       detected_os = {"name" => "", "version" => ""}
-      oss.reverse_each do |os|
-        if Regex.new(os.regex, Settings::REGEX_OPTS) =~ @user_agent
+      os.reverse_each do |os|
+        if Regex.new(os.regex, Setting::REGEX_OPTS) =~ @user_agent
           # If name contains capture groups
           if capture_groups?(os.name)
             name = fill_groups(os.name, os.regex, @user_agent)

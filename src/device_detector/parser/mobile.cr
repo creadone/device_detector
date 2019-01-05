@@ -1,8 +1,9 @@
-module DeviceDetector
-  struct MobileStore
+module DeviceDetector::Parser
+  struct Mobile
     include Helper
+    
     getter kind = "mobile"
-    @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobiles.yml").gets_to_end)
+    @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobile.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -26,7 +27,7 @@ module DeviceDetector
 
     def mobiles
       return @@mobiles if @@mobiles
-      @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobiles.yml").gets_to_end)
+      @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobile.yml").gets_to_end)
     end
 
     def call
@@ -39,7 +40,7 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModelMobile)
           device.models.each do |model|
-            if Regex.new(model.regex, Settings::REGEX_OPTS) =~ @user_agent
+            if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
               # Fill known keys
               detected_device.merge!({"vendor" => vendor})
               detected_device.merge!({"type" => device.type.to_s})
@@ -56,7 +57,7 @@ module DeviceDetector
 
         # --> If device has one model
         if device.is_a?(SingleModelMobile)
-          if Regex.new(device.regex, Settings::REGEX_OPTS) =~ @user_agent
+          if Regex.new(device.regex, Setting::REGEX_OPTS) =~ @user_agent
             # Fill known keys
             detected_device.merge!({"vendor" => vendor})
             detected_device.merge!({"type" => device.type.to_s})

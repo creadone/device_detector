@@ -1,7 +1,7 @@
-module DeviceDetector
-  struct BotStore
+module DeviceDetector::Parser
+  struct Bot
     getter kind = "bot"
-    @@bots = Array(Bot).from_yaml(Storage.get("bots.yml").gets_to_end)
+    @@bots = Array(Bot).from_yaml(Storage.get("bot.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -23,7 +23,7 @@ module DeviceDetector
     def call
       detected_bot = {"name" => ""}
       bots.reverse_each do |bot|
-        if Regex.new(bot.regex, Settings::REGEX_OPTS) =~ @user_agent
+        if Regex.new(bot.regex, Setting::REGEX_OPTS) =~ @user_agent
           detected_bot.merge!({"name" => bot.name})
         end
       end

@@ -1,8 +1,9 @@
-module DeviceDetector
-  struct LibraryStore
+module DeviceDetector::Parser
+  struct Library
     include Helper
+
     getter kind = "library"
-    @@libraries = Array(Library).from_yaml(Storage.get("libraries.yml").gets_to_end)
+    @@libraries = Array(Library).from_yaml(Storage.get("library.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -18,13 +19,13 @@ module DeviceDetector
 
     def libraries
       return @@libraries if @@libraries
-      @@libraries = Array(Library).from_yaml(Storage.get("libraries.yml").gets_to_end)
+      @@libraries = Array(Library).from_yaml(Storage.get("library.yml").gets_to_end)
     end
 
     def call
       detected_library = {"name" => "", "version" => ""}
       libraries.each do |library|
-        if Regex.new(library.regex, Settings::REGEX_OPTS) =~ @user_agent
+        if Regex.new(library.regex, Setting::REGEX_OPTS) =~ @user_agent
           detected_library.merge!({"name" => library.name})
           if capture_groups?(library.version)
             version = fill_groups(library.version, library.regex, @user_agent)

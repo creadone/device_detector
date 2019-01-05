@@ -1,5 +1,5 @@
-module DeviceDetector
-  struct BrowserEngineStore
+module DeviceDetector::Parser
+  struct BrowserEngine
     getter kind = "browser_engine"
     @@engines = Array(Engine).from_yaml(Storage.get("browser_engine.yml").gets_to_end)
 
@@ -22,7 +22,7 @@ module DeviceDetector
     def call
       detected_engine = {"name" => ""}
       engines.reverse_each do |engine|
-        if Regex.new(engine.regex, Settings::REGEX_OPTS) =~ @user_agent
+        if Regex.new(engine.regex, Setting::REGEX_OPTS) =~ @user_agent
           detected_engine.merge!({"name" => engine.name})
         end
       end

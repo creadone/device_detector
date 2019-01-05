@@ -1,6 +1,7 @@
-module DeviceDetector
-  struct PortableMediaPlayerStore
+module DeviceDetector::Parser
+  struct PortableMediaPlayer
     include Helper
+    
     getter kind = "portable_media_player"
     @@media_players = Hash(String, SingleModelPlayer | MultiModelPlayer).from_yaml(Storage.get("portable_media_player.yml").gets_to_end)
 
@@ -38,7 +39,7 @@ module DeviceDetector
         # --> If device has many models
         if device.is_a?(MultiModelPlayer)
           device.models.each do |model|
-            if Regex.new(model.regex, Settings::REGEX_OPTS) =~ @user_agent
+            if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
               # Fill known keys
               detected_player.merge!({"vendor" => vendor})
               # If model name contains capture groups
