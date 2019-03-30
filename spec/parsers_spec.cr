@@ -147,6 +147,14 @@ describe "In the parsers" do
       result["vendor"].should eq "Hisense"
       result["model"].should eq "HE65M7000UWTS"
     end
+
+    it "should not have vendor or model of tv for browser UA" do
+      user_agent = "Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0"
+      detector = DeviceDetector::Parser::Television.new user_agent
+      result = detector.call
+      result["vendor"].should eq ""
+      result["model"].should eq ""
+    end
   end
 
   describe "VendorFragment" do
