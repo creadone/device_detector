@@ -85,6 +85,14 @@
     name: 'Apple Inc'
     url: 'http://www.apple.com'
 
+- regex: 'Arachni'
+  name: 'Arachni'
+  category: 'Security Checker'
+  url: 'http://www.arachni-scanner.com'
+  producer:
+    name: 'Sarosys LLC'
+    url: 'http://www.sarosys.com/'
+
 - regex: 'Castro 2, Episode Duration Lookup'
   name: 'Castro 2'
   category: 'Service Agent'
@@ -506,6 +514,14 @@
     name: 'NTT Resonant'
     url: 'http://goo.ne.jp'
 
+- regex: 'Google Search Console'
+  name: 'Google Search Console'
+  category: 'Crawler'
+  url: 'https://search.google.com/search-console/about'
+  producer:
+    name: 'Google Inc.'
+    url: 'http://www.google.com'
+
 - regex: 'Google Page Speed Insights'
   name: 'Google PageSpeed Insights'
   category: 'Site Monitor'
@@ -570,7 +586,7 @@
     name: 'Visual Meta'
     url: 'https://www.shopalike.cz/'
 
-- regex: 'Googlebot(-Mobile|-Image|-Video|-News)?|Feedfetcher-Google|Google-Test|Google-Site-Verification|Google Web Preview|AdsBot-Google(-Mobile)?|Google-Adwords-Instant|Mediapartners-Google|Google.*/\+/web/snippet|GoogleProducer|Google[ -]Publisher[ -]Plugin|Google-Shopping-Quality|Google-Adwords-DisplayAds|Google-Assess'
+- regex: 'Googlebot(-Mobile|-Image|-Video|-News)?|Feedfetcher-Google|Google-Test|Google-Site-Verification|Google Web Preview|AdsBot-Google(-Mobile)?|Google-Adwords-Instant|APIs-Google|Mediapartners-Google|Google.*/\+/web/snippet|GoogleProducer|Google[ -]Publisher[ -]Plugin|Google-Shopping-Quality|Google-Adwords-DisplayAds|Google-Assess|Google-AdWords-Express|Google-speakr|Google-Read-Aloud'
   name: 'Googlebot'
   category: 'Search bot'
   url: 'http://www.google.com/bot.html'
@@ -711,6 +727,10 @@
   producer:
     name: 'Robert Graham'
     url: 'https://github.com/robertdavidgraham'
+
+- regex: 'Mastodon/'
+  name: 'Mastodon Bot'
+  category: 'Social Media Agent'
 
 - regex: 'meanpathbot'
   name: 'Meanpath Bot'
@@ -1227,7 +1247,7 @@
   category: 'Search bot'
 
 - regex: 'TelegramBot'
-  name: 'TelgramBot'
+  name: 'TelegramBot'
   url: 'https://telegram.org/blog/bot-revolution'
 
 - regex: 'TLSProbe'
