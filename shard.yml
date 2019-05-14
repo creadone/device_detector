@@ -8,10 +8,10 @@ authors:
 description: |
   Device detection library will parse User Agent and detect the browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model.
 
-crystal: 0.27.0
+crystal: 0.28.0
 license: MIT
 
 dependencies:
   baked_file_system:
     github: schovi/baked_file_system
-    version: 0.9.7
+    version: 0.9.8
