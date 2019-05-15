@@ -39,15 +39,17 @@ module DeviceDetector::Parser
 
         # If device has many models
         if device.is_a?(MultiModel)
-          device.models.each do |model|
-            if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
-              detected_camera["vendor"] = vendor
+          if Regex.new(device.regex) =~ @user_agent
+            device.models.each do |model|
+              if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
+                detected_camera["vendor"] = vendor
 
-              if capture_groups?(model.name)
-                filled_name = fill_groups(model.name, model.regex, @user_agent)
-                detected_camera["model"] = filled_name
-              else
-                detected_camera["model"] = model.name
+                if capture_groups?(model.name)
+                  filled_name = fill_groups(model.name, model.regex, @user_agent)
+                  detected_camera["model"] = filled_name
+                else
+                  detected_camera["model"] = model.name
+                end
               end
             end
           end
@@ -61,7 +63,7 @@ module DeviceDetector::Parser
           end
         end
       end
-      
+
       detected_camera
     end
   end

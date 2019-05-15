@@ -1,7 +1,7 @@
 module DeviceDetector::Parser
   struct Console
     include Helper
-    
+
     getter kind = "console"
     @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("console.yml").gets_to_end)
 
@@ -38,14 +38,16 @@ module DeviceDetector::Parser
 
         # --> If device has many models
         if device.is_a?(MultiModelConsole)
-          device.models.each do |model|
-            if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
-              detected_console.merge!({"vendor" => vendor})
-              if capture_groups?(model.model)
-                filled_name = fill_groups(model.model, model.regex, @user_agent)
-                detected_console.merge!({"model" => filled_name})
-              else
-                detected_console.merge!({"model" => model.model})
+          if Regex.new(device.regex) =~ @user_agent
+            device.models.each do |model|
+              if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
+                detected_console.merge!({"vendor" => vendor})
+                if capture_groups?(model.model)
+                  filled_name = fill_groups(model.model, model.regex, @user_agent)
+                  detected_console.merge!({"model" => filled_name})
+                else
+                  detected_console.merge!({"model" => model.model})
+                end
               end
             end
           end

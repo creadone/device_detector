@@ -36,16 +36,18 @@ module DeviceDetector::Parser
 
         # --> If device has many models
         if device.is_a?(MultiModelTV)
-          device.models.each do |model|
-            if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
-              # Fill known keys
-              detected_tv.merge!({"vendor" => vendor})
-              # If model name contains capture groups
-              if capture_groups?(model.model)
-                model_name = fill_groups(model.model, model.regex, @user_agent)
-                detected_tv.merge!({"model" => model_name})
-              else
-                detected_tv.merge!({"model" => model.model})
+          if Regex.new(device.regex) =~ @user_agent
+            device.models.each do |model|
+              if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
+                # Fill known keys
+                detected_tv.merge!({"vendor" => vendor})
+                # If model name contains capture groups
+                if capture_groups?(model.model)
+                  model_name = fill_groups(model.model, model.regex, @user_agent)
+                  detected_tv.merge!({"model" => model_name})
+                else
+                  detected_tv.merge!({"model" => model.model})
+                end
               end
             end
           end

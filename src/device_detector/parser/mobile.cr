@@ -1,7 +1,7 @@
 module DeviceDetector::Parser
   struct Mobile
     include Helper
-    
+
     getter kind = "mobile"
     @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobile.yml").gets_to_end)
 
@@ -39,17 +39,19 @@ module DeviceDetector::Parser
 
         # --> If device has many models
         if device.is_a?(MultiModelMobile)
-          device.models.each do |model|
-            if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
-              # Fill known keys
-              detected_device.merge!({"vendor" => vendor})
-              detected_device.merge!({"type" => device.type.to_s})
-              # If model name contains cature groups
-              if capture_groups?(model.model)
-                model_name = fill_groups(model.model, model.regex, @user_agent)
-                detected_device.merge!({"model" => model_name})
-              else
-                detected_device.merge!({"model" => model.model})
+          if Regex.new(device.regex) =~ @user_agent
+            device.models.each do |model|
+              if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
+                # Fill known keys
+                detected_device.merge!({"vendor" => vendor})
+                detected_device.merge!({"type" => device.type.to_s})
+                # If model name contains cature groups
+                if capture_groups?(model.model)
+                  model_name = fill_groups(model.model, model.regex, @user_agent)
+                  detected_device.merge!({"model" => model_name})
+                else
+                  detected_device.merge!({"model" => model.model})
+                end
               end
             end
           end
