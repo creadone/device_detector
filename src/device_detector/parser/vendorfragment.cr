@@ -3,7 +3,7 @@ module DeviceDetector::Parser
     include Helper
 
     getter kind = "vendorfragment"
-    @@fragments = Hash(String, Array(String)).from_yaml(Storage.get("vendorfragment.yml").gets_to_end)
+    @@fragments = Hash(String, Array(String)).from_yaml(Storage.get("vendorfragments.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -11,7 +11,7 @@ module DeviceDetector::Parser
 
     def fragments
       return @@fragments if @@fragments
-      @@fragments = Hash(String, Array(String)).from_yaml(Storage.get("vendorfragment.yml").gets_to_end)
+      @@fragments = Hash(String, Array(String)).from_yaml(Storage.get("vendorfragments.yml").gets_to_end)
     end
 
     def call

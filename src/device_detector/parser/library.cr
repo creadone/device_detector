@@ -3,7 +3,7 @@ module DeviceDetector::Parser
     include Helper
 
     getter kind = "library"
-    @@libraries = Array(Library).from_yaml(Storage.get("library.yml").gets_to_end)
+    @@libraries = Array(Library).from_yaml(Storage.get("libraries.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -19,7 +19,7 @@ module DeviceDetector::Parser
 
     def libraries
       return @@libraries if @@libraries
-      @@libraries = Array(Library).from_yaml(Storage.get("library.yml").gets_to_end)
+      @@libraries = Array(Library).from_yaml(Storage.get("libraries.yml").gets_to_end)
     end
 
     def call

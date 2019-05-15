@@ -1,9 +1,9 @@
 module DeviceDetector::Parser
   struct Mediaplayer
     include Helper
-    
+
     getter kind = "mediaplayer"
-    @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayer.yml").gets_to_end)
+    @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayers.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -19,7 +19,7 @@ module DeviceDetector::Parser
 
     def mediaplayers
       return @@mediaplayers if @@mediaplayers
-      @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayer.yml").gets_to_end)
+      @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayers.yml").gets_to_end)
     end
 
     def call

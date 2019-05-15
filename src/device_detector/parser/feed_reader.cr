@@ -3,7 +3,7 @@ module DeviceDetector::Parser
     include Helper
 
     getter kind = "feed_reader"
-    @@readers = Array(Reader).from_yaml(Storage.get("feed_reader.yml").gets_to_end)
+    @@readers = Array(Reader).from_yaml(Storage.get("feed_readers.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -19,7 +19,7 @@ module DeviceDetector::Parser
 
     def readers
       return @@readers if @@readers
-      @@readers = Array(Reader).from_yaml(Storage.get("feed_reader.yml").gets_to_end)
+      @@readers = Array(Reader).from_yaml(Storage.get("feed_readers.yml").gets_to_end)
     end
 
     def call

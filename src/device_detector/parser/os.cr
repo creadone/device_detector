@@ -3,7 +3,7 @@ module DeviceDetector::Parser
     include Helper
 
     getter kind = "os"
-    @@os = Array(OS).from_yaml(Storage.get("os.yml").gets_to_end)
+    @@os = Array(OS).from_yaml(Storage.get("oss.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -19,7 +19,7 @@ module DeviceDetector::Parser
 
     def os
       return @@os if @@os
-      @@os = Array(OS).from_yaml(Storage.get("os.yml").gets_to_end)
+      @@os = Array(OS).from_yaml(Storage.get("oss.yml").gets_to_end)
     end
 
     def call

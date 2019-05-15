@@ -1,7 +1,7 @@
 module DeviceDetector::Parser
   struct PIM
     include Helper
-    
+
     getter kind = "pim"
     @@pims = Array(PIM).from_yaml(Storage.get("pim.yml").gets_to_end)
 

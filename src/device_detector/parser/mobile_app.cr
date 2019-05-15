@@ -3,7 +3,7 @@ module DeviceDetector::Parser
     include Helper
 
     getter kind = "mobile_app"
-    @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_app.yml").gets_to_end)
+    @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -19,7 +19,7 @@ module DeviceDetector::Parser
 
     def mobile_apps
       return @@mobile_apps if @@mobile_apps
-      @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_app.yml").gets_to_end)
+      @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml").gets_to_end)
     end
 
     def call

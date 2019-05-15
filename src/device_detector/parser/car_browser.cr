@@ -1,9 +1,9 @@
 module DeviceDetector::Parser
   struct CarBrowser
     include Helper
-    
+
     getter kind = "car_browser"
-    @@car_browsers = Hash(String, SingleModelBrowser).from_yaml(Storage.get("car_browser.yml").gets_to_end)
+    @@car_browsers = Hash(String, SingleModelBrowser).from_yaml(Storage.get("car_browsers.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -19,7 +19,7 @@ module DeviceDetector::Parser
 
     def car_browsers
       return @@car_browsers if @@car_browsers
-      @@car_browsers = Hash(String, SingleModelBrowser).from_yaml(Storage.get("car_browser.yml").gets_to_end)
+      @@car_browsers = Hash(String, SingleModelBrowser).from_yaml(Storage.get("car_browsers.yml").gets_to_end)
     end
 
     def call

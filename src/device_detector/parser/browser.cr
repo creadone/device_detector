@@ -1,9 +1,9 @@
 module DeviceDetector::Parser
   struct Browser
     include Helper
-    
+
     getter kind = "browser"
-    @@browsers = Array(Browser).from_yaml(Storage.get("browser.yml").gets_to_end)
+    @@browsers = Array(Browser).from_yaml(Storage.get("browsers.yml").gets_to_end)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -23,7 +23,7 @@ module DeviceDetector::Parser
 
     def browsers
       return @@browsers if @@browsers
-      @@browsers = Array(Browser).from_yaml(Storage.get("browser.yml").gets_to_end)
+      @@browsers = Array(Browser).from_yaml(Storage.get("browsers.yml").gets_to_end)
     end
 
     def call
