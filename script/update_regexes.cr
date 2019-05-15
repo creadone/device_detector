@@ -1,4 +1,5 @@
-# It updates the local regexes from downloaded original repository
+# It download the original repository and updating local regexes
+# TODO: Check remote regexes and skip update if no changes 
 
 require "http/client"
 require "file_utils"
