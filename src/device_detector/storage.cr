@@ -4,9 +4,8 @@ module DeviceDetector
   struct Storage
     extend BakedFileSystem
 
-    regexes = Dir.glob("./src/device_detector/regexes/**/*.yml")
-    regexes.each do |path|
-      bake_file File.basename(path), File.read(path)
-    end
+    bake_folder "./regexes"
+    bake_folder "./regexes/client"
+    bake_folder "./regexes/device"
   end
 end
