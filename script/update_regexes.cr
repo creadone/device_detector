@@ -1,5 +1,5 @@
 # It download the original repository and updating local regexes
-# TODO: Check remote regexes and skip update if no changes 
+# TODO: Check remote regexes and skip update if no changes
 
 require "http/client"
 require "file_utils"
@@ -36,7 +36,8 @@ if File.exists?(local_archive_path)
     File.delete(local_archive_path)
   end
 else
-  raise "Downloaded repo not found"
+  raise "Regexes repo not found"
 end
 
-puts "Done"
+puts "Updated"
+puts "Don't forget run spec"
