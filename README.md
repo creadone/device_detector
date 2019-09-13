@@ -14,7 +14,7 @@ dependencies:
     github: creadone/device_detector
 ```
 
-Then run `shards`
+Then run `shards install`
 
 ## Usage
 
@@ -22,8 +22,8 @@ Then run `shards`
 require "device_detector"
 
 user_agent = "Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0"
-response = DeviceDetector::Detector.new(user_agent).call # For use all parsers
-response = DeviceDetector::Detector.new(user_agent).lite  # For use only bot and mobile
+response = DeviceDetector::Detector.new(user_agent).call  # All parsers
+response = DeviceDetector::Detector.new(user_agent).lite  # Only for bot and mobile
 
 # Check if browser detected
 response.browser? #=> true
@@ -47,71 +47,9 @@ pp response.raw
       "name" => "", "version" => ""
     }
   },
-  {
-    "browser_engine" => {
-      "name" => ""
-    }
-  },
-  {
-    "camera" => {
-      "vendor" => "", "model" => "", "device" => ""
-    }
-  },
-  {
-    "car_browser" => {
-      "vendor" => "", "device" => "", "model" => ""
-    }
-  },
-  {
-    "console" => {
-      "vendor" => "", "model" => ""
-    }
-  },
-  {
-    "feed_reader" => {
-      "name" => "", "version" => ""
-    }
-  },
-  {
-    "library" => {
-      "name" => "", "version" => ""
-    }
-  },
-  {
-    "mediaplayer" => {
-      "name" => "", "version" => ""
-    }
-  },
-  {
-    "mobile_app" => {
-      "name" => "", "version" => ""
-    }
-  },
-  {
-    "mobile" => {
-      "device" => "", "vendor" => "", "type" => ""
-    }
-  },
-  {
-    "oss" => {
-      "name" => "", "version" => ""
-    }
-  },
-  {
-    "pim" => {
-      "name" => "", "version" => ""
-    }
-  },
-  {
-    "portable_media_player" => {
-      "vendor" => "", "model" => ""
-    }
-  },
-  {
-    "tv" => {
-      "model" => "", "vendor" => ""
-    }
-  },
+
+  {...},
+
   {
     "vendorfragment" => {
       "vendor" => ""
@@ -154,20 +92,31 @@ Available methods:
 
 Recent benchmarking of parsing 1000 user-agent strings on a MacBook Air with Intel Core i5 dual core (0.8 Ghz per core):
 
+Crystal 0.30.1 (2019-08-13)
+LLVM: 8.0.1
+Default target: x86_64-apple-macosx
+
 ```
 bench/raw_response.cr --release
             user     system      total        real
-full:   6.770000   0.100000   6.870000 (  6.805766)
-lite:   5.370000   0.080000   5.450000 (  5.378346)
+full:   5.880000   0.060000   5.940000 (  5.940340)
+lite:   3.880000   0.040000   3.920000 (  3.953958)
 ```
 
-It's mean that `device_detector` can work with 1000 / 6.8 ~ 147 QPS.
+It's mean that `device_detector` can work with 1000 / 5.9 ~ 169 QPS.
 
 ## Testing
 
 ```
 crystal spec
 ```
+
+## Update regexes
+
+```
+crystal scripts/update_regexes.cr
+```
+
 
 ## Contributing
 
