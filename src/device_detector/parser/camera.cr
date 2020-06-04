@@ -43,7 +43,6 @@ module DeviceDetector::Parser
             device.models.each do |model|
               if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
                 detected_camera["vendor"] = vendor
-
                 if capture_groups?(model.name)
                   filled_name = fill_groups(model.name, model.regex, @user_agent)
                   detected_camera["model"] = filled_name

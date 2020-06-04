@@ -17,22 +17,22 @@ module DeviceDetector
     end
 
     ENTITIES = {
-      bot: ["name"],
-      browser: ["name", "version"],
-      browser_engine: ["name"],
-      camera: ["device", "vendor"],
-      car_browser: ["model", "vendor"],
-      console: ["model", "vendor"],
-      feed_reader: ["name", "version"],
-      library: ["name", "version"],
-      mediaplayer: ["name", "version"],
-      mobile_app: ["name", "version"],
-      mobile: ["vendor", "type", "model"],
-      os: ["name", "version"],
-      pim: ["name", "version"],
+      bot:                   ["name"],
+      browser:               ["name", "version"],
+      browser_engine:        ["name"],
+      camera:                ["device", "vendor"],
+      car_browser:           ["model", "vendor"],
+      console:               ["model", "vendor"],
+      feed_reader:           ["name", "version"],
+      library:               ["name", "version"],
+      mediaplayer:           ["name", "version"],
+      mobile_app:            ["name", "version"],
+      mobile:                ["vendor", "type", "model"],
+      os:                    ["name", "version"],
+      pim:                   ["name", "version"],
       portable_media_player: ["model", "vendor"],
-      tv: ["model", "vendor"],
-      vendorfragment: ["vendor"]
+      tv:                    ["model", "vendor"],
+      vendorfragment:        ["vendor"],
     }
 
     {% for entity_name, keys in ENTITIES %}

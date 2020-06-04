@@ -17,13 +17,13 @@ module DeviceDetector
       Parser::PIM,
       Parser::PortableMediaPlayer,
       Parser::Television,
-      Parser::VendorFragment
+      Parser::VendorFragment,
     ]
 
     # Only for bot and mobile device detection
     LITE = [
       Parser::Bot,
-      Parser::Mobile
+      Parser::Mobile,
     ]
 
     # Regex options

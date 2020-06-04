@@ -12,7 +12,7 @@ module DeviceDetector
 
     def parse(stack)
       result = [] of Result
-      
+
       stack.each do |parser|
         detector = parser.new(@user_agent)
         result.push({detector.kind => detector.call})

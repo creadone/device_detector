@@ -185,7 +185,7 @@ describe "Response" do
   describe "OS" do
     user_agent = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.8) Gecko Fedora/1.9.0.8-1.fc10 Kazehakase/0.5.6"
     response = DeviceDetector::Detector.new(user_agent).call
-    
+
     it "should return true if OS detected" { response.os?.should be_true }
     it "should return name" do
       response.os.name.should eq "Fedora"
@@ -244,7 +244,7 @@ describe "Response" do
   describe "VendorFragment" do
     user_agent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/7.0; SLCC2; .NET CLR 2.0.50727; Media Center PC 6.0; MAAR; Tablet PC 2.0; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)"
     response = DeviceDetector::Detector.new(user_agent).call
-    
+
     it "should return true if VendorFragment detected" { response.vendorfragment?.should be_true }
     it "should return vendor" do
       response.vendorfragment.vendor.should eq "Acer"
