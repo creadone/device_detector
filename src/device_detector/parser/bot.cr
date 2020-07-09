@@ -8,11 +8,11 @@ module DeviceDetector::Parser
     end
 
     struct Bot
-      YAML.mapping(
-        regex: String,
-        name: String,
-        category: {type: String, nilable: true, presence: true},
-      )
+      include YAML::Serializable
+
+      property regex : String
+      property name : String
+      property category : String?
     end
 
     def bots

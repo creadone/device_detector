@@ -10,19 +10,25 @@ module DeviceDetector::Parser
     end
 
     struct SingleModelMobile
-      YAML.mapping(
-        regex: String,
-        type: {type: String?, key: "device", presence: true},
-        model: String
-      )
+      include YAML::Serializable
+
+      property regex : String
+
+      @[YAML::Field(key: "device")]
+      property type : String?
+
+      property model : String
     end
 
     struct MultiModelMobile
-      YAML.mapping(
-        regex: String,
-        type: {type: String?, key: "device", presence: true},
-        models: Array(SingleModelMobile)
-      )
+      include YAML::Serializable
+
+      property regex : String
+
+      @[YAML::Field(key: "device")]
+      property type : String?
+
+      property models : Array(SingleModelMobile)
     end
 
     def mobiles

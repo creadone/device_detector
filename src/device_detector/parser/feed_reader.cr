@@ -10,11 +10,11 @@ module DeviceDetector::Parser
     end
 
     struct Reader
-      YAML.mapping(
-        regex: String,
-        name: String,
-        version: {type: String?, presence: true}
-      )
+      include YAML::Serializable
+
+      property regex : String
+      property name : String
+      property version : String?
     end
 
     def readers

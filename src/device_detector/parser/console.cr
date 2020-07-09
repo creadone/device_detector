@@ -10,19 +10,19 @@ module DeviceDetector::Parser
     end
 
     struct SingleModelConsole
-      YAML.mapping(
-        regex: String,
-        device: String?,
-        model: String
-      )
+      include YAML::Serializable
+
+      property regex : String
+      property device : String?
+      property model : String
     end
 
     struct MultiModelConsole
-      YAML.mapping(
-        regex: String,
-        device: String,
-        models: Array(SingleModelConsole)
-      )
+      include YAML::Serializable
+
+      property regex : String
+      property device : String
+      property models : Array(SingleModelConsole)
     end
 
     def consoles

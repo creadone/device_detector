@@ -8,10 +8,10 @@ module DeviceDetector::Parser
     end
 
     struct Engine
-      YAML.mapping(
-        regex: String,
-        name: String
-      )
+      include YAML::Serializable
+
+      property regex : String
+      property name : String
     end
 
     def engines

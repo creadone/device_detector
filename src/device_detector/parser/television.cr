@@ -10,17 +10,17 @@ module DeviceDetector::Parser
     end
 
     struct SingleModelTV
-      YAML.mapping(
-        regex: String,
-        model: String
-      )
+      include YAML::Serializable
+
+      property regex : String
+      property model : String
     end
 
     struct MultiModelTV
-      YAML.mapping(
-        regex: String,
-        models: Array(SingleModelTV)
-      )
+      include YAML::Serializable
+      
+      property regex : String
+      property models : Array(SingleModelTV)
     end
 
     def tvs

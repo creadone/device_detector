@@ -1,6 +1,6 @@
 require "http/client"
 require "file_utils"
-require "zip"
+require "compress/zip"
 
 remote_repo_url = "https://codeload.github.com/matomo-org/device-detector/zip/master"
 repo_archive_name = File.basename(remote_repo_url)
@@ -14,7 +14,7 @@ HTTP::Client.get(remote_repo_url) do |response|
 end
 
 if File.exists?(local_archive_path)
-  Zip::File.open(local_archive_path) do |file|
+  Compress::Zip::File.open(local_archive_path) do |file|
     yamls = file.entries.select { |e| e.filename.includes?("yml") }
 
     yamls.each do |entry|
@@ -33,4 +33,4 @@ else
 end
 
 puts "Updated"
-puts "Don't forget run `Crystal spec`"
+puts "Don't forget run `crystal spec`"

@@ -10,11 +10,11 @@ module DeviceDetector::Parser
     end
 
     struct MobileApp
-      YAML.mapping(
-        regex: String,
-        name: String,
-        version: String?
-      )
+      include YAML::Serializable
+
+      property regex : String
+      property name : String
+      property version : String?
     end
 
     def mobile_apps
@@ -33,7 +33,7 @@ module DeviceDetector::Parser
           else
             detected_app.merge!({"name" => app.name})
           end
-          # -> If name contains capture groups
+          # -> If version contains capture groups
           if capture_groups?(app.version.to_s)
             version = fill_groups(app.version.to_s, app.regex, @user_agent)
             detected_app.merge!({"version" => version.to_s})

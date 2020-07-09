@@ -10,11 +10,11 @@ module DeviceDetector::Parser
     end
 
     struct PIM
-      YAML.mapping(
-        regex: String,
-        name: String,
-        version: String
-      )
+      include YAML::Serializable
+
+      property regex : String
+      property name : String
+      property version : String
     end
 
     def pims

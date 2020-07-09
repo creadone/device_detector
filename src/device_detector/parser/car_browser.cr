@@ -20,18 +20,18 @@ module DeviceDetector::Parser
     #       model: ''
 
     struct SingleModelBrowser
-      YAML.mapping(
-        regex: String,
-        model: String,
-      )
+      include YAML::Serializable
+
+      property regex : String
+      property model : String
     end
 
     struct MultiModelBrowser
-      YAML.mapping(
-        regex: String,
-        device: String,
-        models: Array(SingleModelBrowser)
-      )
+      include YAML::Serializable
+
+      property regex  : String
+      property device : String
+      property models : Array(SingleModelBrowser)
     end
 
     def car_browsers
@@ -43,7 +43,7 @@ module DeviceDetector::Parser
       detected_car_browser = {"vendor" => "", "device" => "", "model" => ""}
 
       car_browsers.each do |item|
-        vendor = item[0]
+        vendor  = item[0]
         browser = item[1]
 
         if browser.is_a?(SingleModelBrowser)
