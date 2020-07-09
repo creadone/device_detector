@@ -22,7 +22,7 @@ module DeviceDetector::Parser
     struct MultiModel
       include YAML::Serializable
 
-      property regex  : String
+      property regex : String
       property device : String
       property models : Array(SingleModel)
     end

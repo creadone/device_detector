@@ -18,7 +18,7 @@ module DeviceDetector::Parser
 
     struct MultiModelTV
       include YAML::Serializable
-      
+
       property regex : String
       property models : Array(SingleModelTV)
     end
