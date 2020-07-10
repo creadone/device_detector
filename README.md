@@ -2,7 +2,11 @@
 
 [![Build Status](https://travis-ci.org/creadone/device_detector.svg?branch=master)](https://travis-ci.org/creadone/device_detector)
 
-The library for parsing User Agent and browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model detection. Currently it is an alpha-version and haven't been tested on production yet. The Library uses regexes from [matomo-org/device-detector](https://github.com/matomo-org/device-detector).
+The library for parsing User Agent and browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model detection.
+
+* Support latest Crystal version and update script for private use or immediately updates.
+* Currently it is **production version** and works fine more that 2 years.
+* The Library uses regexes from [matomo-org/device-detector](https://github.com/matomo-org/device-detector).
 
 ## Installation
 
@@ -117,6 +121,12 @@ crystal spec
 crystal scripts/update_regexes.cr
 ```
 
+## ToDo
+
+- [] Support [overloading of base rules](https://github.com/matomo-org/device-detector/issues/5962)
+- [] CLI & HTTP version
+- [] More lighter and faster the `lite` version
+- [] Reload regexes on the fly (may be)
 
 ## Contributing
 
