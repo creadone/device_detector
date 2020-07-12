@@ -5,7 +5,7 @@
 The library for parsing User Agent and browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model detection.
 
 * Support latest Crystal version and update script for private use or immediately updates.
-* Currently it is **production version** and works fine more that 2 years.
+* Currently it is production version and works fine more that 2 years.
 * The Library uses regexes from [matomo-org/device-detector](https://github.com/matomo-org/device-detector).
 
 ## Installation
