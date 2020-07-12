@@ -3,7 +3,7 @@ module DeviceDetector::Parser
     include Helper
 
     getter kind = "pim"
-    @@pims = Array(PIM).from_yaml(Storage.get("pim.yml").gets_to_end)
+    @@pims = Array(PIM).from_yaml(Storage.get("pim.yml"))
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -19,7 +19,7 @@ module DeviceDetector::Parser
 
     def pims
       return @@pims if @@pims
-      @@pims = Array(PIM).from_yaml(Storage.get("pim.yml").gets_to_end)
+      @@pims = Array(PIM).from_yaml(Storage.get("pim.yml"))
     end
 
     def call

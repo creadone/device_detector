@@ -1,7 +1,7 @@
 module DeviceDetector::Parser
   struct Bot
     getter kind = "bot"
-    @@bots = Array(Bot).from_yaml(Storage.get("bots.yml").gets_to_end)
+    @@bots = Array(Bot).from_yaml(Storage.get("bots.yml"))
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -17,7 +17,7 @@ module DeviceDetector::Parser
 
     def bots
       return @@bots if @@bots
-      @@bots = Array(Bot).from_yaml(Storage.get("bots.yml").gets_to_end)
+      @@bots = Array(Bot).from_yaml(Storage.get("bots.yml"))
     end
 
     def call

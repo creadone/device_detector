@@ -1,7 +1,7 @@
 module DeviceDetector::Parser
   struct BrowserEngine
     getter kind = "browser_engine"
-    @@engines = Array(Engine).from_yaml(Storage.get("browser_engine.yml").gets_to_end)
+    @@engines = Array(Engine).from_yaml(Storage.get("browser_engine.yml"))
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -16,7 +16,7 @@ module DeviceDetector::Parser
 
     def engines
       return @@engines if @@engines
-      @@engines = Array(Engine).from_yaml(Storage.get("browser_engine.yml").gets_to_end)
+      @@engines = Array(Engine).from_yaml(Storage.get("browser_engine.yml"))
     end
 
     def call

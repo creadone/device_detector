@@ -1,11 +1,18 @@
-require "baked_file_system"
-
 module DeviceDetector
   struct Storage
-    extend BakedFileSystem
+    @@container = {} of String => String
 
-    bake_folder "./regexes"
-    bake_folder "./regexes/client"
-    bake_folder "./regexes/device"
+    def self.setup_regexes
+      Dir.glob(File.join(Setting::REGEXES_PATH, "**/*.yml")).each do |path|
+        name = File.basename(path)
+        @@container[name] = File.read(path)
+      end
+    end
+
+    def self.get(file_name : String)
+      @@container[file_name]
+    end
+
+    self.setup_regexes
   end
 end

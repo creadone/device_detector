@@ -3,7 +3,7 @@ module DeviceDetector::Parser
     include Helper
 
     getter kind = "console"
-    @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml").gets_to_end)
+    @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml"))
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -27,7 +27,7 @@ module DeviceDetector::Parser
 
     def consoles
       return @@consoles if @@consoles
-      @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml").gets_to_end)
+      @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml"))
     end
 
     def call
