@@ -1,5 +1,5 @@
 name: device_detector
-version: 0.3.6
+version: 0.3.7
 
 authors:
   - creadone <creadone@gmail.com>
@@ -10,8 +10,3 @@ description: |
 
 crystal: 0.35.1
 license: MIT
-
-dependencies:
-  baked_file_system:
-    github: schovi/baked_file_system
-    version: 0.9.8
