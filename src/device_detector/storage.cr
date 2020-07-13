@@ -3,8 +3,11 @@ module DeviceDetector
     @@container = {} of String => String
     @@ready_to_use = false
 
+    FILE_ROOT = Path[__FILE__].expand.dirname
+    REGEXES_PATH = File.join(FILE_ROOT, "regexes", "**/*.yml")
+
     def self.setup_regexes
-      Dir.glob(File.join(Setting::REGEXES_PATH, "**/*.yml")).each do |path|
+      Dir.glob(REGEXES_PATH).each do |path|
         name = File.basename(path)
         @@container[name] = File.read(path)
       end

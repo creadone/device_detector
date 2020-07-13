@@ -28,7 +28,5 @@ module DeviceDetector
 
     # Regex options
     REGEX_OPTS = Regex::Options::IGNORE_CASE
-
-    REGEXES_PATH = "./regexes"
   end
 end
