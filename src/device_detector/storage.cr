@@ -1,26 +1,36 @@
+require "baked_file_system"
+
 module DeviceDetector
   struct Storage
-    @@container = {} of String => String
-    @@ready_to_use = false
+    extend BakedFileSystem
 
-    FILE_ROOT = Path[__FILE__].expand.dirname
-    REGEXES_PATH = File.join(FILE_ROOT, "regexes", "**/*.yml")
+    INSTANCE = new
 
-    def self.setup_regexes
-      Dir.glob(REGEXES_PATH).each do |path|
-        name = File.basename(path)
-        @@container[name] = File.read(path)
-      end
-      @@ready_to_use = true
+    def self.instance
+      INSTANCE
     end
 
-    def self.get(file_name : String)
-      if @@ready_to_use
-        @@container[file_name]
-      else
-        self.setup_regexes
-        @@container[file_name]
-      end
+    bake_folder "./regexes"
+    bake_folder "./regexes/client"
+    bake_folder "./regexes/device"
+
+    def self.get(path)
+      find_file(path).as(BakedFileSystem::BakedFile).gets_to_end
     end
+
+    def self.find_file(path)
+      path = path.strip
+      path = "/" + path unless path.starts_with?("/")
+
+      file = @@files.find do |file|
+        file.path == path
+      end
+
+      return nil unless file
+
+      file.rewind
+      file
+    end
+
   end
 end
