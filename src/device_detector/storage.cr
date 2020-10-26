@@ -31,6 +31,5 @@ module DeviceDetector
       file.rewind
       file
     end
-
   end
 end
