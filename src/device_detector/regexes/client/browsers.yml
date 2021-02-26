@@ -5,8 +5,112 @@
 # @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
 ###############
 
+# deg-degan (https://degdegan.com/)
+- regex: 'Degdegan/(\d+[\.\d]+)'
+  name: 'deg-degan'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# JavaFX (https://docs.oracle.com/javase/8/javafx/embedded-browser-tutorial/overview.htm)
+- regex: 'JavaFX/(\d+[\.\d]+)'
+  name: 'JavaFX'
+  version: '$1'
+  engine:
+    default: 'WebKit'
+
+# Chedot (https://landing.chedot.com/)
+- regex: 'Chedot/(\d+[\.\d]+)'
+  name: 'Chedot'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# Chromium GOST (https://github.com/deemru/chromium-gost)
+- regex: 'Chrome/(\d+[\.\d]+) \(Chromium GOST\)'
+  name: 'Chromium GOST'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# Deledao (https://www.deledao.com/)
+- regex: '(?:DeledaoPersonal|DeledaoFamily)/(\d+[\.\d]+)'
+  name: 'Deledao'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# HasBrowser (https://browser.hascoding.com)
+- regex: 'HasBrowser/(\d+[\.\d]+)'
+  name: 'HasBrowser'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# Byffox (https://byffox.sourceforge.io/index.php)
+- regex: 'Byffox/(\d+[\.\d]+)'
+  name: 'Byffox'
+  version: '$1'
+  engine:
+    default: 'Gecko'
+
+# CoolBrowser (https://play.google.com/store/apps/details?id=com.easybrowser.browser.coolbrowser)
+- regex: 'Chrome/(\d+[\.\d]+).+AgentWeb.+UCBrowser'
+  name: 'CoolBrowser'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# Dot Browser (https://dothq.co/)
+- regex: 'DotBrowser/(\d+[\.\d]+)'
+  name: 'Dot Browser'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# Craving Explorer (https://www.crav-ing.com/)
+- regex: 'CravingExplorer/(\d+[\.\d]+)'
+  name: 'Craving Explorer'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# DeskBrowse (https://web.archive.org/web/20170614060014/http://deskbrowse.org/)
+- regex: 'DeskBrowse/(\d+[\.\d]+)'
+  name: 'DeskBrowse'
+  version: '$1'
+
+# Lolifox
+- regex: 'Lolifox/(\d+[\.\d]+)'
+  name: 'Lolifox'
+  version: '$1'
+
+# Qutebrowser (https://qutebrowser.org/)
+- regex: 'qutebrowser/(\d+[\.\d]+).+Chrome'
+  name: 'Qutebrowser'
+  version: '$1'
+  engine:
+    default: 'Blink'
+- regex: 'qutebrowser(?:/(\d+[\.\d]+))?'
+  name: 'Qutebrowser'
+  version: '$1'
+
+# Flast (https://github.com/FascodeNet/Flast)
+- regex: 'flast/(\d+[\.\d]+)'
+  name: 'Flast'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# PolyBrowser (https://github.com/PolySuite/PolyBrowser)
+- regex: 'PolyBrowser/(\d+[\.\d]+)'
+  name: 'PolyBrowser'
+  version: '$1'
+  engine:
+    default: 'Gecko'
+
 # BriskBard (https://www.briskbard.com/)
-- regex: Chrome.+BriskBard/(\d+[\.\d]+)
+- regex: 'Chrome.+BriskBard/(\d+[\.\d]+)'
   name: 'BriskBard'
   version: '$1'
   engine:
@@ -509,7 +613,7 @@
   version: '$1'
 
 # Jio Browser (https://play.google.com/store/apps/details?id=com.jio.web)
-- regex: 'JioBrowser(?:/(\d+[\.\d]+))?'
+- regex: 'Jio(?:Browser|Pages)(?:/(\d+[\.\d]+))?'
   name: 'Jio Browser'
   version: '$1'
   engine:
@@ -566,6 +670,11 @@
     default: 'Blink'
 
 # Qwant Mobile
+- regex: 'QwantiOS/(\d+[\.\d]+)'
+  name: 'Qwant Mobile'
+  version: '$1'
+  engine:
+    default: 'WebKit'
 - regex: 'QwantMobile(?:/(\d+[\.\d]+))?'
   name: 'Qwant Mobile'
   version: '$1'
@@ -709,7 +818,7 @@
 
 
 #Avant Browser
-- regex: 'Avant Browser'
+- regex: 'Avant ?Browser'
   name: 'Avant Browser'
   version: ''
   engine:
@@ -727,7 +836,7 @@
   engine:
     default: 'WebKit'
     versions:
-      28: 'Blink'
+      '28': 'Blink'
 
 #Atomic Web Browser
 - regex: 'AtomicBrowser(?:/(\d+[\.\d]+))?'
@@ -799,7 +908,7 @@
   engine:
     default: 'Gecko'
     versions:
-      3: 'WebKit'
+      '3': 'WebKit'
 
 # Jig Browser Plus (https://jig.jp/)
 - regex: 'JigBrowserPlus/(?:(\d+[\.\d]+))?'
@@ -1090,8 +1199,8 @@
     default: ''
     versions:
       '3.5': 'Elektra'
-      7: 'Presto'
-      15: 'Blink'
+      '7': 'Presto'
+      '15': 'Blink'
 
 #Rekonq
 - regex: 'rekonq(?:/(\d+[\.\d]+))?'
@@ -1114,7 +1223,7 @@
   engine:
     default: 'WebKit'
     versions:
-      28: 'Blink'
+      '28': 'Blink'
 
 #ChromePlus
 - regex: 'ChromePlus(?:/(\d+[\.\d]+))?'
@@ -1140,12 +1249,12 @@
       4: '' # multiple (KHTML or WebKit)
 
 #Baidu Browser
-- regex: '(?:baidubrowser|bdbrowser_i18n|bdbrowser|FlyFlow|BaiduHD)(?:[/ ](\d+[\.\d]*))?'
+- regex: '(?:baidubrowser|bdbrowser(?:(?:hd)?_i18n)?|FlyFlow|BaiduHD)(?:[/ ](\d+[\.\d]*))?'
   name: 'Baidu Browser'
   version: '$1'
 
 #Baidu Spark
-- regex: '(?:(?:BD)?Spark|BIDUBrowser)[/ ](\d+[\.\d]*)'
+- regex: '(?:(?:BD)?Spark(?:Safe)?|BIDUBrowser)[/ ](\d+[\.\d]*)'
   name: 'Baidu Spark'
   version: '$1'
 
@@ -1195,6 +1304,13 @@
   version: '$1'
 
 #Maxthon
+- regex: 'Chrome.+Maxthon(?:.+\(portable\))?/(\d+[\.\d]+)'
+  name: 'Maxthon'
+  version: '$1'
+  engine:
+    default: 'WebKit'
+    versions:
+      '5.2': 'Blink'
 - regex: '(?:Maxthon(?:%20Browser)?|MxBrowser(?:-inhouse|-iPhone)?)[ /](\d+[\.\d]+)'
   name: 'Maxthon'
   version: '$1'
@@ -1291,8 +1407,8 @@
 # This browser (http://coccoc.vn/) is built on top of Chromium with
 # additional features for Vietnamese users. Its regex has to be placed
 # before generic Chrome regex, or Chrome regex will match first and
-# the browser is mistaken as "Chrome".
-- regex: '(?:coc_coc_browser|coccocbrowser)(?:/(\d+[\.\d]+))?'
+# the browser is mistaken as 'Chrome".
+- regex: '(?:coc_coc_browser|coccocbrowser|CocCoc)(?:/(\d+[\.\d]+))?'
   name: 'Coc Coc'
   version: '$1'
   engine:
@@ -1969,11 +2085,6 @@
 #Coast
 - regex: 'Coast(?:/(\d+[\.\d]+))?'
   name: 'Coast'
-  version: '$1'
-
-#Qutebrowser
-- regex: 'qutebrowser(?:/(\d+[\.\d]+))?'
-  name: 'Qutebrowser'
   version: '$1'
 
 # surf (https://surf.suckless.org/)
