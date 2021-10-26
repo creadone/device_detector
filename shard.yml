@@ -1,5 +1,5 @@
 name: device_detector
-version: 0.3.16
+version: 0.3.17
 
 authors:
   - creadone <creadone@gmail.com>
@@ -8,7 +8,7 @@ authors:
 description: |
   Device detection library will parse User Agent and detect the browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model.
 
-crystal: 0.36.1
+crystal: 1.2.0
 license: MIT
 
 dependencies:
