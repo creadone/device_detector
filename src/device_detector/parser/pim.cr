@@ -14,7 +14,7 @@ module DeviceDetector::Parser
 
       property regex : String
       property name : String
-      property version : String
+      property version : String?
     end
 
     def pims
@@ -25,13 +25,13 @@ module DeviceDetector::Parser
     def call
       detected_pim = {"name" => "", "version" => ""}
       pims.reverse_each do |pim|
-        if Regex.new(pim.regex, Setting::REGEX_OPTS) =~ @user_agent
+        if regex(pim.regex) =~ @user_agent
           detected_pim.merge!({"name" => pim.name})
-          if capture_groups?(pim.version)
-            version = fill_groups(pim.version, pim.regex, @user_agent)
+          if capture_groups?(pim.version.to_s)
+            version = fill_groups(pim.version.to_s, pim.regex, @user_agent)
             detected_pim.merge!({"version" => version})
           else
-            detected_pim.merge!({"version" => pim.version})
+            detected_pim.merge!({"version" => pim.version.to_s})
           end
         end
       end

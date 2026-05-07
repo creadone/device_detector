@@ -14,7 +14,7 @@ module DeviceDetector::Parser
 
       property regex : String
       property name : String
-      property version : String
+      property version : String?
     end
 
     def mediaplayers
@@ -25,14 +25,15 @@ module DeviceDetector::Parser
     def call
       detected_player = {"name" => "", "version" => ""}
       mediaplayers.each do |player|
-        if Regex.new(player.regex, Setting::REGEX_OPTS) =~ @user_agent
+        if regex(player.regex) =~ @user_agent
           detected_player.merge!({"name" => player.name})
-          if capture_groups?(player.version)
-            version = fill_groups(player.version, player.regex, @user_agent)
+          if capture_groups?(player.version.to_s)
+            version = fill_groups(player.version.to_s, player.regex, @user_agent)
             detected_player.merge!({"version" => version})
           else
-            detected_player.merge!({"version" => player.version})
+            detected_player.merge!({"version" => player.version.to_s})
           end
+          break
         end
       end
       detected_player

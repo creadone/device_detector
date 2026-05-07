@@ -5,6 +5,8 @@ module DeviceDetector::Parser
     getter kind = "mobile"
     @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobiles.yml"))
 
+    MOBILE_HINTS = /Mobile|Mobi|Android|iPhone|iPad|iPod|Windows Phone|BlackBerry|BB10|Opera Mini|Opera Mobi|IEMobile|Kindle|Silk|webOS|Tizen|KaiOS|Maemo|MeeGo|Symbian|PlayBook|Tablet|Phone|MIDP|CLDC|Nokia|Samsung|SonyEricsson|HTC|Huawei/i
+
     def initialize(user_agent : String)
       @user_agent = user_agent
     end
@@ -38,6 +40,8 @@ module DeviceDetector::Parser
 
     def call
       detected_device = {"device" => "", "vendor" => "", "type" => ""}
+      return detected_device if desktop?(@user_agent) && !(MOBILE_HINTS =~ @user_agent)
+
       mobiles.each do |mobile|
         # Shortcats
         vendor = mobile[0]
@@ -45,9 +49,9 @@ module DeviceDetector::Parser
 
         # --> If device has many models
         if device.is_a?(MultiModelMobile)
-          if Regex.new(device.regex) =~ @user_agent
+          if regex(device.regex) =~ @user_agent
             device.models.each do |model|
-              if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
+              if regex(model.regex) =~ @user_agent
                 # Fill known keys
                 detected_device.merge!({"vendor" => vendor})
                 detected_device.merge!({"type" => device.type.to_s})
@@ -58,6 +62,7 @@ module DeviceDetector::Parser
                 else
                   detected_device.merge!({"model" => model.model})
                 end
+                break
               end
             end
           end
@@ -65,7 +70,7 @@ module DeviceDetector::Parser
 
         # --> If device has one model
         if device.is_a?(SingleModelMobile)
-          if Regex.new(device.regex, Setting::REGEX_OPTS) =~ @user_agent
+          if regex(device.regex) =~ @user_agent
             # Fill known keys
             detected_device.merge!({"vendor" => vendor})
             detected_device.merge!({"type" => device.type.to_s})
@@ -78,6 +83,7 @@ module DeviceDetector::Parser
             end
           end
         end
+        break unless detected_device["vendor"].blank?
       end
       detected_device
     end

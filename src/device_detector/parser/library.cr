@@ -5,6 +5,8 @@ module DeviceDetector::Parser
     getter kind = "library"
     @@libraries = Array(Library).from_yaml(Storage.get("libraries.yml"))
 
+    LIBRARY_HINTS = /curl|libcurl|wget|python|java|okhttp|httpclient|http.rb|Go-http-client|axios|node|ruby|perl|php|postman/i
+
     def initialize(user_agent : String)
       @user_agent = user_agent
     end
@@ -14,7 +16,7 @@ module DeviceDetector::Parser
 
       property regex : String
       property name : String
-      property version : String
+      property version : String?
     end
 
     def libraries
@@ -24,15 +26,18 @@ module DeviceDetector::Parser
 
     def call
       detected_library = {"name" => "", "version" => ""}
+      return detected_library if human_browser?(@user_agent) && !(LIBRARY_HINTS =~ @user_agent)
+
       libraries.each do |library|
-        if Regex.new(library.regex, Setting::REGEX_OPTS) =~ @user_agent
+        if regex(library.regex) =~ @user_agent
           detected_library.merge!({"name" => library.name})
-          if capture_groups?(library.version)
-            version = fill_groups(library.version, library.regex, @user_agent)
+          if capture_groups?(library.version.to_s)
+            version = fill_groups(library.version.to_s, library.regex, @user_agent)
             detected_library.merge!({"version" => version})
           else
-            detected_library.merge!({"version" => library.version})
+            detected_library.merge!({"version" => library.version.to_s})
           end
+          break
         end
       end
       detected_library
