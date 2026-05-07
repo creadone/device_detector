@@ -5,6 +5,8 @@ module DeviceDetector::Parser
     getter kind = "mobile_app"
     @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml"))
 
+    MOBILE_APP_HINTS = /Mobile|Mobi|Android|iPhone|iPad|iPod|Windows Phone|CFNetwork|Darwin|FBAN|FBAV|WhatsApp|Instagram|Telegram|Twitter|Line\//i
+
     def initialize(user_agent : String)
       @user_agent = user_agent
     end
@@ -24,8 +26,10 @@ module DeviceDetector::Parser
 
     def call
       detected_app = {"name" => "", "version" => ""}
+      return detected_app if desktop?(@user_agent) && !(MOBILE_APP_HINTS =~ @user_agent)
+
       mobile_apps.each do |app|
-        if Regex.new(app.regex, Setting::REGEX_OPTS) =~ @user_agent
+        if regex(app.regex) =~ @user_agent
           # -> If name contains capture groups
           if capture_groups?(app.name)
             name = fill_groups(app.name, app.regex, @user_agent)
@@ -40,6 +44,7 @@ module DeviceDetector::Parser
           else
             detected_app.merge!({"version" => app.version.to_s})
           end
+          break
         end
       end
       detected_app

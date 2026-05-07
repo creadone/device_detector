@@ -38,9 +38,9 @@ module DeviceDetector::Parser
 
         # --> If device has many models
         if device.is_a?(MultiModelPlayer)
-          if Regex.new(device.regex) =~ @user_agent
+          if regex(device.regex) =~ @user_agent
             device.models.each do |model|
-              if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
+              if regex(model.regex) =~ @user_agent
                 # Fill known keys
                 detected_player.merge!({"vendor" => vendor})
                 # If model name contains capture groups
@@ -50,6 +50,7 @@ module DeviceDetector::Parser
                 else
                   detected_player.merge!({"model" => model.model})
                 end
+                break
               end
             end
           end
@@ -57,7 +58,7 @@ module DeviceDetector::Parser
 
         # --> If device has one model
         if device.is_a?(SingleModelPlayer)
-          if Regex.new(device.regex) =~ @user_agent
+          if regex(device.regex) =~ @user_agent
             # Fill known keys
             detected_player.merge!({"vendor" => vendor})
             # If model name contains capture groups
@@ -69,6 +70,7 @@ module DeviceDetector::Parser
             end
           end
         end
+        break unless detected_player["vendor"].blank?
       end
       detected_player
     end

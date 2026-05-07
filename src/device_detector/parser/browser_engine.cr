@@ -22,7 +22,7 @@ module DeviceDetector::Parser
     def call
       detected_engine = {"name" => ""}
       engines.reverse_each do |engine|
-        if Regex.new(engine.regex, Setting::REGEX_OPTS) =~ @user_agent
+        if Helper.regex(engine.regex) =~ @user_agent
           detected_engine.merge!({"name" => engine.name})
         end
       end

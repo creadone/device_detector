@@ -47,7 +47,7 @@ module DeviceDetector::Parser
         browser = item[1]
 
         if browser.is_a?(SingleModelBrowser)
-          if Regex.new(browser.regex, Setting::REGEX_OPTS) =~ @user_agent
+          if regex(browser.regex) =~ @user_agent
             detected_car_browser.merge!({
               "vendor" => vendor,
               "model"  => browser.model,
@@ -56,9 +56,9 @@ module DeviceDetector::Parser
         end
 
         if browser.is_a?(MultiModelBrowser)
-          if Regex.new(browser.regex) =~ @user_agent
+          if regex(browser.regex) =~ @user_agent
             browser.models.each do |model|
-              if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
+              if regex(model.regex) =~ @user_agent
                 detected_car_browser.merge!({"vendor" => vendor, "device" => browser.device})
                 if capture_groups?(model.model)
                   filled_name = fill_groups(model.model, model.regex, @user_agent)
@@ -66,10 +66,12 @@ module DeviceDetector::Parser
                 else
                   detected_car_browser.merge!({"model" => model.model})
                 end
+                break
               end
             end
           end
         end
+        break unless detected_car_browser["vendor"].blank?
       end
 
       detected_car_browser

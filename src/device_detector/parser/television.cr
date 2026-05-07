@@ -5,6 +5,8 @@ module DeviceDetector::Parser
     getter kind = "tv"
     @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml"))
 
+    TV_HINTS = /TV|HbbTV|SmartTV|NetCast|Web0S|Tizen|BRAVIA|AFT|Roku|CrKey|AppleTV|GoogleTV|Aquos|Viera|DTV/i
+
     def initialize(user_agent : String)
       @user_agent = user_agent
     end
@@ -30,15 +32,17 @@ module DeviceDetector::Parser
 
     def call
       detected_tv = {"model" => "", "vendor" => ""}
+      return detected_tv if desktop?(@user_agent) && !(TV_HINTS =~ @user_agent)
+
       tvs.to_a.reverse.to_h.each do |item|
         vendor = item[0]
         device = item[1]
 
         # --> If device has many models
         if device.is_a?(MultiModelTV)
-          if Regex.new(device.regex) =~ @user_agent
+          if regex(device.regex) =~ @user_agent
             device.models.each do |model|
-              if Regex.new(model.regex, Setting::REGEX_OPTS) =~ @user_agent
+              if regex(model.regex) =~ @user_agent
                 # Fill known keys
                 detected_tv.merge!({"vendor" => vendor})
                 # If model name contains capture groups
@@ -48,6 +52,7 @@ module DeviceDetector::Parser
                 else
                   detected_tv.merge!({"model" => model.model})
                 end
+                break
               end
             end
           end
@@ -55,7 +60,7 @@ module DeviceDetector::Parser
 
         # --> If device has one model
         if device.is_a?(SingleModelTV)
-          if Regex.new(device.regex) =~ @user_agent
+          if regex(device.regex) =~ @user_agent
             # Fill known keys
             detected_tv.merge!({"vendor" => vendor})
             # If model name contains capture groups
@@ -67,6 +72,7 @@ module DeviceDetector::Parser
             end
           end
         end
+        break unless detected_tv["vendor"].blank?
       end
       detected_tv
     end

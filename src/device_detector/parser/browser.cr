@@ -5,6 +5,8 @@ module DeviceDetector::Parser
     getter kind = "browser"
     @@browsers = Array(Browser).from_yaml(Storage.get("browsers.yml"))
 
+    EDGE_SPARTAN_REGEX = /(?<!motorola )Edge[ \/](\d+[\.\d]+)/i
+
     def initialize(user_agent : String)
       @user_agent = user_agent
     end
@@ -24,8 +26,15 @@ module DeviceDetector::Parser
 
     def call
       detected_browser = {"name" => "", "version" => ""}
+
+      if match = @user_agent.match(EDGE_SPARTAN_REGEX)
+        detected_browser["name"] = "Microsoft Edge"
+        detected_browser["version"] = match[1]? || ""
+        return detected_browser
+      end
+
       browsers.reverse_each do |browser|
-        if Regex.new(browser.regex, Setting::REGEX_OPTS) =~ @user_agent
+        if regex(browser.regex) =~ @user_agent
           detected_browser.merge!({"name" => browser.name})
           if version = browser.version
             if capture_groups?(version.to_s)
