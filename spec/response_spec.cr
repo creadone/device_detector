@@ -215,7 +215,7 @@ describe "Response" do
     user_agent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows CE; IEMobile 6.12; Microsoft ZuneHD 4.3)"
     response = DeviceDetector::Detector.new(user_agent).call
 
-    it "should return true if PIM detected" { response.portable_media_player?.should be_true }
+    it "should return true if portable media player detected" { response.portable_media_player?.should be_true }
     it "should return vendor" do
       response.portable_media_player.vendor.should eq "Microsoft"
       response.portable_media_player_vendor.should eq "Microsoft"

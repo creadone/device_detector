@@ -45,21 +45,21 @@ module DeviceDetector::Parser
         return detected_os
       end
 
-      os.reverse_each do |os|
-        if regex(os.regex) =~ @user_agent
+      os.reverse_each do |operating_system|
+        if regex(operating_system.regex) =~ @user_agent
           # If name contains capture groups
-          if capture_groups?(os.name)
-            name = fill_groups(os.name, os.regex, @user_agent)
+          if capture_groups?(operating_system.name)
+            name = fill_groups(operating_system.name, operating_system.regex, @user_agent)
             detected_os.merge!({"name" => name})
           else
-            detected_os.merge!({"name" => os.name})
+            detected_os.merge!({"name" => operating_system.name})
           end
           # If version contains capture groups
-          if capture_groups?(os.version.to_s)
-            version = fill_groups(os.version.to_s, os.regex, @user_agent)
+          if capture_groups?(operating_system.version.to_s)
+            version = fill_groups(operating_system.version.to_s, operating_system.regex, @user_agent)
             detected_os.merge!({"version" => version})
           else
-            detected_os.merge!({"version" => os.version.to_s})
+            detected_os.merge!({"version" => operating_system.version.to_s})
           end
           break unless detected_os["version"].blank?
         end

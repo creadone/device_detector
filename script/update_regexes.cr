@@ -15,7 +15,7 @@ end
 
 if File.exists?(local_archive_path)
   Compress::Zip::File.open(local_archive_path) do |file|
-    yamls = file.entries.select { |e| e.filename.includes?("yml") }
+    yamls = file.entries.select(&.filename.includes?("yml"))
 
     yamls.each do |entry|
       relative_category_path = entry.filename.split("/regexes/").last

@@ -1,6 +1,6 @@
 module DeviceDetector
   module Setting
-    # Full complect
+    # Full parser set
     FULL = [
       Parser::Bot,
       Parser::Browser,

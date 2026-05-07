@@ -35,7 +35,7 @@ module DeviceDetector::Parser
     def call
       detected_camera = {"vendor" => "", "model" => "", "device" => ""}
       cameras.to_a.reverse.to_h.each do |camera|
-        # Shortcats
+        # Shortcuts
         vendor = camera[0]
         device = camera[1]
 

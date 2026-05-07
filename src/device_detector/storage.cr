@@ -15,15 +15,18 @@ module DeviceDetector
     bake_folder "./regexes/device"
 
     def self.get(path)
-      find_file(path).as(BakedFileSystem::BakedFile).gets_to_end
+      file = find_file(path)
+      raise "Embedded regex file not found: #{path}" unless file
+
+      file.gets_to_end
     end
 
     def self.find_file(path)
       path = path.strip
       path = "/" + path unless path.starts_with?("/")
 
-      file = @@files.find do |file|
-        file.path == path
+      file = @@files.find do |embedded_file|
+        embedded_file.path == path
       end
 
       return nil unless file

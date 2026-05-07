@@ -43,7 +43,7 @@ module DeviceDetector::Parser
       return detected_device unless MOBILE_HINTS =~ @user_agent
 
       mobiles.each do |mobile|
-        # Shortcats
+        # Shortcuts
         vendor = mobile[0]
         device = mobile[1]
 
@@ -55,7 +55,7 @@ module DeviceDetector::Parser
                 # Fill known keys
                 detected_device.merge!({"vendor" => vendor})
                 detected_device.merge!({"type" => device.type.to_s})
-                # If model name contains cature groups
+                # If model name contains capture groups
                 if capture_groups?(model.model)
                   model_name = fill_groups(model.model, model.regex, @user_agent)
                   detected_device.merge!({"model" => model_name})
@@ -74,7 +74,7 @@ module DeviceDetector::Parser
             # Fill known keys
             detected_device.merge!({"vendor" => vendor})
             detected_device.merge!({"type" => device.type.to_s})
-            # If model name contains cature groups
+            # If model name contains capture groups
             if capture_groups?(device.model)
               model = fill_groups(device.model, device.regex, @user_agent)
               detected_device.merge!({"model" => model})

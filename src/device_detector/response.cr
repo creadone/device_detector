@@ -1,6 +1,8 @@
 module DeviceDetector
   class Response
-    class NotEmplementedException < Exception; end
+    class NotImplementedException < Exception; end
+
+    NotEmplementedException = NotImplementedException
 
     alias InputStructure = Array(Hash(String, Hash(String, String)))
 
@@ -13,7 +15,7 @@ module DeviceDetector
 
     macro method_missing(m)
       method_name = {{m.name.stringify}}
-      raise NotEmplementedException.new("Method #{method_name} not implemented yet.")
+      raise NotImplementedException.new("Method #{method_name} not implemented yet.")
     end
 
     ENTITIES = {
@@ -46,7 +48,7 @@ module DeviceDetector
           def {{key.id}}? : Bool
             @section.has_key?({{key}}) && !@section[{{key}}].try &.blank?
           end
-          
+
           def {{key.id}} : String?
             @section[{{key}}]?
           end
@@ -69,7 +71,7 @@ module DeviceDetector
             return {{class_name.id}}.new(result[{{entity_name.stringify}}])
           end
         end
-        
+
         {{class_name.id}}.new({} of String => String)
       end
 
@@ -108,7 +110,7 @@ module DeviceDetector
 
     # `to.click` related method
     def traffic_type
-      if [library?, bot?].any? { |m| m == true }
+      if library? || bot?
         "bot"
       else
         "human"

@@ -1,16 +1,12 @@
 # Device Detector
 
-[![Build Status](https://travis-ci.org/creadone/device_detector.svg?branch=master)](https://travis-ci.org/creadone/device_detector)
+Device Detector is a Crystal shard for parsing `User-Agent` strings. It detects bots, browsers, browser engines, operating systems, client applications, devices, vendors, models, and a few specialized device classes such as TVs, cameras, consoles, car browsers, and portable media players.
 
-The library for parsing User Agent and browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model detection.
-
-* Support latest Crystal version and update script for private use or immediately updates.
-* Currently it is production version and works fine more that 2 years.
-* The Library uses regexes from [matomo-org/device-detector](https://github.com/matomo-org/device-detector).
+The parser uses regex data from [matomo-org/device-detector](https://github.com/matomo-org/device-detector) and embeds it into the shard at compile time.
 
 ## Installation
 
-Add this to your application's `shard.yml`:
+Add the shard to your application's `shard.yml`:
 
 ```yaml
 dependencies:
@@ -18,131 +14,167 @@ dependencies:
     github: creadone/device_detector
 ```
 
-Then run `shards install`
+Then install dependencies:
+
+```sh
+shards install
+```
 
 ## Usage
 
-```Crystal
+```crystal
 require "device_detector"
 
 user_agent = "Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0"
-response = DeviceDetector::Detector.new(user_agent).call  # All parsers
-response = DeviceDetector::Detector.new(user_agent).lite  # Only for bot and mobile
 
-# Check if browser detected
-response.browser? #=> true
+response = DeviceDetector::Detector.new(user_agent).call
 
-# browser name
-response.browser_name #=> Microsoft Edge
-
-# browser version
-response.browser_version #=> 12.0
-
-# get raw response with
-pp response.raw
-
-[{
-    "bot" => {
-      "name" => ""
-    }
-  },
-  {
-    "browser" => {
-      "name" => "", "version" => ""
-    }
-  },
-
-  {...},
-
-  {
-    "vendorfragment" => {
-      "vendor" => ""
-    }
-  }
-]
-
+response.browser?             # => true
+response.browser.name         # => "Microsoft Edge"
+response.browser.version      # => "12.0"
+response.os.name              # => "Windows"
+response.os.version           # => "10"
+response.traffic_type         # => "human"
 ```
 
-Available methods:
+Use `#call` to run the full parser stack. Use `#lite` when you only need bot and mobile-device detection:
 
-<table>
-  <tr>
-    <td>bot?<br />bot_name</td>
-    <td>browser_engine?<br />browser_engine_name</td>
-    <td>browser?<br />browser_name<br />browser_version</td>
-    <td>camera?<br />camera_vendor<br />camera_model</td>
-  </tr>
-  <tr>
-    <td>car_browser?<br />car_browser_vendor<br />car_browser_model</td>
-    <td>console?<br />console_vendor<br />console_model</td>
-    <td>feed_reader?<br />feed_reader_name<br />feed_reader_version</td>
-    <td>library?<br />library_name<br />library_version</td>
-  </tr>
-  <tr>
-    <td>mediaplayer?<br />mediaplayer_name<br />mediaplayer_version</td>
-    <td>mobile_app?<br />mobile_app_name<br />mobile_app_version</td>
-    <td>mobile_device?<br />mobile_device_vendor<br />mobile_device_type<br />mobile_device_model</td>
-    <td>os?<br />os_name<br />os_version</td>
-  </tr>
-  <tr>
-    <td>pim?<br />pim_name<br />pim_version</td>
-    <td>portable_media_player?<br />portable_media_player_vendor<br />portable_media_player_model</td>
-    <td>tv?<br />tv_vendor<br />tv_model</td>
-    <td>vendorfragment?<br />vendorfragment_vendor</td>
-  </tr>
-</table>
+```crystal
+full_response = DeviceDetector::Detector.new(user_agent).call
+lite_response = DeviceDetector::Detector.new(user_agent).lite
+```
+
+`Response#raw` returns the raw parser output:
+
+```crystal
+pp response.raw
+```
+
+The raw value is an `Array(Hash(String, Hash(String, String)))`. Missing values are represented as empty strings in the raw data; typed accessors return `String?`.
+
+## Response API
+
+Each detected section has a predicate and an object-style accessor:
+
+```crystal
+response.browser?        # => Bool
+response.browser.name    # => String?
+response.browser.version # => String?
+```
+
+Available sections and fields:
+
+| Section | Predicate | Fields |
+| --- | --- | --- |
+| Bot | `bot?` | `bot.name` |
+| Browser | `browser?` | `browser.name`, `browser.version` |
+| Browser engine | `browser_engine?` | `browser_engine.name` |
+| Camera | `camera?` | `camera.device`, `camera.vendor` |
+| Car browser | `car_browser?` | `car_browser.model`, `car_browser.vendor` |
+| Console | `console?` | `console.model`, `console.vendor` |
+| Feed reader | `feed_reader?` | `feed_reader.name`, `feed_reader.version` |
+| Library | `library?` | `library.name`, `library.version` |
+| Mediaplayer | `mediaplayer?` | `mediaplayer.name`, `mediaplayer.version` |
+| Mobile app | `mobile_app?` | `mobile_app.name`, `mobile_app.version` |
+| Mobile device | `mobile?` | `mobile.vendor`, `mobile.type`, `mobile.model` |
+| OS | `os?` | `os.name`, `os.version` |
+| PIM | `pim?` | `pim.name`, `pim.version` |
+| Portable media player | `portable_media_player?` | `portable_media_player.model`, `portable_media_player.vendor` |
+| TV | `tv?` | `tv.model`, `tv.vendor` |
+| Vendor fragment | `vendorfragment?` | `vendorfragment.vendor` |
+
+Legacy flat accessors are still available for compatibility:
+
+```crystal
+response.browser_name
+response.browser_version
+response.mobile_device?
+response.mobile_device_vendor
+response.mobile_device_type
+response.mobile_device_model
+response.camera_model
+```
+
+## Traffic Type
+
+`Response#traffic_type` returns `"bot"` when a bot or client library was detected. Otherwise it returns `"human"`.
+
+```crystal
+response.traffic_type # => "bot" | "human"
+```
 
 ## Benchmarks
 
-Run the benchmark in release mode:
+Run benchmarks in release mode:
 
 ```sh
 crystal run --release bench/raw_response.cr
 ```
 
-Recent benchmark of parsing 10,000 unique user-agent strings:
+Example result for parsing 10,000 unique user-agent strings:
 
+```text
 Crystal 1.17.1 (2025-07-22)
 LLVM: 21.1.0
 Default target: aarch64-apple-darwin23.1.0
 
-```
 workload: 10000 unique user-agents
-full:  3209.13 user-agent/sec (3.116112s)
-lite: 10856.07 user-agent/sec (0.921143s)
+full:  3738.70 user-agent/sec (2.674724s)
+lite: 11038.74 user-agent/sec (0.905900s)
 ```
 
-The benchmark also enforces a minimum full parser speed of 150 user-agent/sec.
+The benchmark enforces a minimum full-parser speed of 150 user-agent/sec.
 
-## Testing
+## Development
 
+Install dependencies:
+
+```sh
+shards install
 ```
+
+Run tests:
+
+```sh
 crystal spec
 ```
 
-## Update regexes
+Run the linter:
 
+```sh
+bin/ameba
 ```
-crystal scripts/update_regexes.cr
+
+Check formatting:
+
+```sh
+crystal tool format --check src spec script bench
 ```
 
-## ToDo
+## Updating Regexes
 
-* Support [overloading of base rules](https://github.com/matomo-org/device-detector/issues/5962)
-* CLI & HTTP version
-* More lighter and faster the `lite` version
-* Reload regexes on the fly (may be)
+Regex files live under `src/device_detector/regexes` and are based on `matomo-org/device-detector`.
+
+To refresh them:
+
+```sh
+crystal run script/update_regexes.cr
+crystal spec
+bin/ameba
+```
+
+Review the regex diff before committing it.
 
 ## Contributing
 
-1. Fork it ( https://github.com/creadone/device_detector/fork )
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-5. Create a new Pull Request
+1. Fork the repository.
+2. Create a feature branch.
+3. Make the change with tests when behavior changes.
+4. Run `crystal spec`, `bin/ameba`, and the formatter check.
+5. Open a pull request.
 
 ## Contributors
 
 - [@creadone](https://github.com/creadone) Sergey Fedorov - creator, maintainer
-- [@delef](https://github.com/delef) Ivan Palamarchuk - new api, code optimization
-- [@zaycker](https://github.com/zaycker) Yuriy Zaitsev - fix check order
+- [@delef](https://github.com/delef) Ivan Palamarchuk - new API, code optimization
+- [@zaycker](https://github.com/zaycker) Yuriy Zaitsev - parser order fix
