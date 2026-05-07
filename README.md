@@ -100,15 +100,16 @@ Run the benchmark in release mode:
 crystal run --release bench/raw_response.cr
 ```
 
-Recent benchmark of parsing 1000 user-agent strings:
+Recent benchmark of parsing 10,000 unique user-agent strings:
 
 Crystal 1.17.1 (2025-07-22)
 LLVM: 21.1.0
 Default target: aarch64-apple-darwin23.1.0
 
 ```
-full: 32564.14 user-agent/sec (0.030709s)
-lite: 687895.58 user-agent/sec (0.001454s)
+workload: 10000 unique user-agents
+full:  3209.13 user-agent/sec (3.116112s)
+lite: 10856.07 user-agent/sec (0.921143s)
 ```
 
 The benchmark also enforces a minimum full parser speed of 150 user-agent/sec.

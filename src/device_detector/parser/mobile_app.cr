@@ -26,7 +26,7 @@ module DeviceDetector::Parser
 
     def call
       detected_app = {"name" => "", "version" => ""}
-      return detected_app if desktop?(@user_agent) && !(MOBILE_APP_HINTS =~ @user_agent)
+      return detected_app unless MOBILE_APP_HINTS =~ @user_agent
 
       mobile_apps.each do |app|
         if regex(app.regex) =~ @user_agent

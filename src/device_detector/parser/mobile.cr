@@ -40,7 +40,7 @@ module DeviceDetector::Parser
 
     def call
       detected_device = {"device" => "", "vendor" => "", "type" => ""}
-      return detected_device if desktop?(@user_agent) && !(MOBILE_HINTS =~ @user_agent)
+      return detected_device unless MOBILE_HINTS =~ @user_agent
 
       mobiles.each do |mobile|
         # Shortcats

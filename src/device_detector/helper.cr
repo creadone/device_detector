@@ -2,15 +2,20 @@ module DeviceDetector
   module Helper
     extend self
 
-    @@regexes = {} of Tuple(String, Regex::Options) => Regex
+    @@regexes = {} of String => Regex
+    @@regexes_with_options = {} of Tuple(String, Regex::Options) => Regex
 
     CAPTURE_GROUP_REGEX = /(\$\d)/
     HUMAN_BROWSER_HINTS = /Mozilla|AppleWebKit|Chrome|Safari|Firefox|Edge|Edg|MSIE|Trident/i
     DESKTOP_HINTS       = /Windows NT|Macintosh|X11|CrOS/i
 
-    def regex(pattern : String, options : Regex::Options = Setting::REGEX_OPTS)
+    def regex(pattern : String)
+      @@regexes[pattern] ||= Regex.new(pattern, Setting::REGEX_OPTS)
+    end
+
+    def regex(pattern : String, options : Regex::Options)
       key = {pattern, options}
-      @@regexes[key] ||= Regex.new(pattern, options)
+      @@regexes_with_options[key] ||= Regex.new(pattern, options)
     end
 
     def human_browser?(user_agent : String)

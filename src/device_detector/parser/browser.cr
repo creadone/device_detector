@@ -5,6 +5,7 @@ module DeviceDetector::Parser
     getter kind = "browser"
     @@browsers = Array(Browser).from_yaml(Storage.get("browsers.yml"))
 
+    BROWSER_HINTS      = /AppleWebKit|Chrome|Safari|Firefox|Edge|Edg|MSIE|Trident|Opera|OPR|YaBrowser|UCBrowser|SamsungBrowser|Vivaldi/i
     EDGE_SPARTAN_REGEX = /(?<!motorola )Edge[ \/](\d+[\.\d]+)/i
 
     def initialize(user_agent : String)
@@ -26,6 +27,7 @@ module DeviceDetector::Parser
 
     def call
       detected_browser = {"name" => "", "version" => ""}
+      return detected_browser unless BROWSER_HINTS =~ @user_agent
 
       if match = @user_agent.match(EDGE_SPARTAN_REGEX)
         detected_browser["name"] = "Microsoft Edge"

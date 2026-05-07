@@ -32,7 +32,7 @@ module DeviceDetector::Parser
 
     def call
       detected_tv = {"model" => "", "vendor" => ""}
-      return detected_tv if desktop?(@user_agent) && !(TV_HINTS =~ @user_agent)
+      return detected_tv unless TV_HINTS =~ @user_agent
 
       tvs.to_a.reverse.to_h.each do |item|
         vendor = item[0]
