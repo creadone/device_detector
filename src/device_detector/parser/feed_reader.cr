@@ -4,6 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "feed_reader"
     @@readers = Array(Reader).from_yaml(Storage.get("feed_readers.yml"))
+    @@overall_regex = nil.as(Regex?)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -22,8 +23,14 @@ module DeviceDetector::Parser
       @@readers = Array(Reader).from_yaml(Storage.get("feed_readers.yml"))
     end
 
+    def overall_regex
+      @@overall_regex ||= regex(readers.map(&.regex).join("|"))
+    end
+
     def call
       detected_reader = {"name" => "", "version" => ""}
+      return detected_reader unless overall_regex =~ @user_agent
+
       readers.each do |reader|
         if regex(reader.regex) =~ @user_agent
           detected_reader.merge!({"name" => reader.name})

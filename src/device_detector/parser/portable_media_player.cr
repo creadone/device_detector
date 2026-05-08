@@ -4,6 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "portable_media_player"
     @@media_players = Hash(String, SingleModelPlayer | MultiModelPlayer).from_yaml(Storage.get("portable_media_player.yml"))
+    @@overall_regex = nil.as(Regex?)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -30,8 +31,14 @@ module DeviceDetector::Parser
       @@media_players = Hash(String, SingleModelPlayer | MultiModelPlayer).from_yaml(Storage.get("portable_media_player.yml"))
     end
 
+    def overall_regex
+      @@overall_regex ||= regex(media_players.values.map(&.regex).join("|"))
+    end
+
     def call
       detected_player = {"vendor" => "", "model" => ""}
+      return detected_player unless overall_regex =~ @user_agent
+
       media_players.each do |item|
         vendor = item[0]
         device = item[1]

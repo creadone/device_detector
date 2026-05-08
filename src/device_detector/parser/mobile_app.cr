@@ -4,6 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "mobile_app"
     @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml"))
+    @@overall_regex = nil.as(Regex?)
 
     MOBILE_APP_HINTS = /Mobile|Mobi|Android|iPhone|iPad|iPod|Windows Phone|CFNetwork|Darwin|FBAN|FBAV|WhatsApp|Instagram|Telegram|Twitter|Line\//i
 
@@ -24,9 +25,14 @@ module DeviceDetector::Parser
       @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml"))
     end
 
+    def overall_regex
+      @@overall_regex ||= regex(mobile_apps.map(&.regex).join("|"))
+    end
+
     def call
       detected_app = {"name" => "", "version" => ""}
       return detected_app unless MOBILE_APP_HINTS =~ @user_agent
+      return detected_app unless overall_regex =~ @user_agent
 
       mobile_apps.each do |app|
         if regex(app.regex) =~ @user_agent

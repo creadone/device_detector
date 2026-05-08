@@ -28,9 +28,10 @@ module DeviceDetector::Parser
       detected_bot = {"name" => ""}
       return detected_bot if human_browser?(@user_agent) && !(BOT_HINTS =~ @user_agent)
 
-      bots.reverse_each do |bot|
+      bots.each do |bot|
         if regex(bot.regex) =~ @user_agent
           detected_bot.merge!({"name" => bot.name})
+          break
         end
       end
       detected_bot

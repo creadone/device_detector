@@ -4,6 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "mediaplayer"
     @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayers.yml"))
+    @@overall_regex = nil.as(Regex?)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -22,8 +23,14 @@ module DeviceDetector::Parser
       @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayers.yml"))
     end
 
+    def overall_regex
+      @@overall_regex ||= regex(mediaplayers.map(&.regex).join("|"))
+    end
+
     def call
       detected_player = {"name" => "", "version" => ""}
+      return detected_player unless overall_regex =~ @user_agent
+
       mediaplayers.each do |player|
         if regex(player.regex) =~ @user_agent
           detected_player.merge!({"name" => player.name})

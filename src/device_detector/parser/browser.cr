@@ -35,7 +35,7 @@ module DeviceDetector::Parser
         return detected_browser
       end
 
-      browsers.reverse_each do |browser|
+      browsers.each do |browser|
         if regex(browser.regex) =~ @user_agent
           detected_browser.merge!({"name" => browser.name})
           if version = browser.version
@@ -46,6 +46,7 @@ module DeviceDetector::Parser
               detected_browser.merge!({"version" => version.to_s})
             end
           end
+          break
         end
       end
       detected_browser

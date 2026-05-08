@@ -119,8 +119,8 @@ LLVM: 21.1.0
 Default target: aarch64-apple-darwin23.1.0
 
 workload: 10000 unique user-agents
-full:  3738.70 user-agent/sec (2.674724s)
-lite: 11038.74 user-agent/sec (0.905900s)
+full:  4409.90 user-agent/sec (2.267623s)
+lite: 11332.39 user-agent/sec (0.882426s)
 ```
 
 The benchmark enforces a minimum full-parser speed of 150 user-agent/sec.

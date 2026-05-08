@@ -4,6 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "tv"
     @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml"))
+    @@overall_regex = nil.as(Regex?)
 
     TV_HINTS = /TV|HbbTV|SmartTV|NetCast|Web0S|Tizen|BRAVIA|AFT|Roku|CrKey|AppleTV|GoogleTV|Aquos|Viera|DTV/i
 
@@ -30,9 +31,14 @@ module DeviceDetector::Parser
       @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml"))
     end
 
+    def overall_regex
+      @@overall_regex ||= regex(tvs.values.map(&.regex).join("|"))
+    end
+
     def call
       detected_tv = {"model" => "", "vendor" => ""}
       return detected_tv unless TV_HINTS =~ @user_agent
+      return detected_tv unless overall_regex =~ @user_agent
 
       tvs.to_a.reverse.to_h.each do |item|
         vendor = item[0]

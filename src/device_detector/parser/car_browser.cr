@@ -4,6 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "car_browser"
     @@car_browsers = Hash(String, MultiModelBrowser | SingleModelBrowser).from_yaml(Storage.get("car_browsers.yml"))
+    @@overall_regex = nil.as(Regex?)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -39,8 +40,13 @@ module DeviceDetector::Parser
       @@car_browsers = Hash(String, MultiModelBrowser | SingleModelBrowser).from_yaml(Storage.get("car_browsers.yml"))
     end
 
+    def overall_regex
+      @@overall_regex ||= regex(car_browsers.values.map(&.regex).join("|"))
+    end
+
     def call
       detected_car_browser = {"vendor" => "", "device" => "", "model" => ""}
+      return detected_car_browser unless overall_regex =~ @user_agent
 
       car_browsers.each do |item|
         vendor = item[0]

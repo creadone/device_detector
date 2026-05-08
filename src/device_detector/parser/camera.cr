@@ -4,6 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "camera"
     @@cameras = Hash(String, SingleModel | MultiModel).from_yaml(Storage.get("cameras.yml"))
+    @@overall_regex = nil.as(Regex?)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -32,8 +33,14 @@ module DeviceDetector::Parser
       @@cameras = Hash(String, SingleModel | MultiModel).from_yaml(Storage.get("cameras.yml"))
     end
 
+    def overall_regex
+      @@overall_regex ||= regex(cameras.values.map(&.regex).join("|"))
+    end
+
     def call
       detected_camera = {"vendor" => "", "model" => "", "device" => ""}
+      return detected_camera unless overall_regex =~ @user_agent
+
       cameras.to_a.reverse.to_h.each do |camera|
         # Shortcuts
         vendor = camera[0]

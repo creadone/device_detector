@@ -4,6 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "console"
     @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml"))
+    @@overall_regex = nil.as(Regex?)
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -30,8 +31,14 @@ module DeviceDetector::Parser
       @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml"))
     end
 
+    def overall_regex
+      @@overall_regex ||= regex(consoles.values.map(&.regex).join("|"))
+    end
+
     def call
       detected_console = {"vendor" => "", "model" => ""}
+      return detected_console unless overall_regex =~ @user_agent
+
       consoles.each do |console|
         vendor = console[0]
         device = console[1]
