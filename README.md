@@ -1,5 +1,7 @@
 # Device Detector
 
+[Русская версия](README.ru.md)
+
 Device Detector is a Crystal shard for parsing `User-Agent` strings. It detects bots, browsers, browser engines, operating systems, client applications, devices, vendors, models, and a few specialized device classes such as TVs, cameras, consoles, car browsers, and portable media players.
 
 The parser uses regex data from [matomo-org/device-detector](https://github.com/matomo-org/device-detector), generates token indexes for the largest rule sets, and embeds both the regexes and indexes into the shard at compile time.
