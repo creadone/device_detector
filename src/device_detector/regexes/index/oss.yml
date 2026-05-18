@@ -1,0 +1,1354 @@
+0-6:
+  - 123
+  - 127
+0-9:
+  - 233
+  - 234
+  - 235
+  - 236
+  - 253
+0-9a-z:
+  - 286
+012:
+  - 248
+10.+bliss_maple:
+  - 71
+106:
+  - 110
+1357:
+  - 110
+18_7.+version:
+  - 255
+2-5:
+  - 88
+2000:
+  - 224
+2003:
+  - 222
+2003server:
+  - 222
+2008serverr2:
+  - 219
+2012server:
+  - 217
+2012serverr2:
+  - 215
+2016:
+  - 214
+2019:
+  - 214
+2022:
+  - 214
+2025:
+  - 214
+20macintosh:
+  - 259
+  - 277
+3-9:
+  - 240
+  - 241
+  - 242
+  - 243
+  - 244
+  - 245
+  - 246
+  - 250
+3.+nokiabrowser:
+  - 292
+  - 293
+4640x:
+  - 166
+6-9:
+  - 120
+801:
+  - 110
+919:
+  - 110
+a-z:
+  - 136
+  - 140
+  - 143
+  - 330
+a-z0-9:
+  - 59
+  - 168
+a-z0-9_:
+  - 122
+abc:
+  - 272
+acbhkt:
+  - 112
+acr_:
+  - 144
+adfgjkmorstq:
+  - 112
+adr:
+  - 136
+  - 143
+aeo:
+  - 112
+aft:
+  - 112
+airplay:
+  - 276
+aix:
+  - 310
+ali:
+  - 92
+allview_tx1_quasar:
+  - 137
+alpine:
+  - 44
+amazon:
+  - 112
+amiga-aweb:
+  - 149
+amigaos:
+  - 148
+  - 149
+amigavoyager:
+  - 149
+amzn:
+  - 73
+andr:
+  - 112
+andr0id:
+  - 124
+android:
+  - 71
+  - 75
+  - 76
+  - 91
+  - 116
+  - 117
+  - 123
+  - 125
+  - 127
+  - 128
+  - 129
+  - 130
+  - 131
+  - 132
+  - 133
+  - 134
+  - 135
+  - 136
+  - 138
+  - 141
+  - 143
+android-:
+  - 142
+android_:
+  - 126
+androidtv:
+  - 126
+anghami:
+  - 136
+antennapod:
+  - 144
+aosc:
+  - 49
+aosp:
+  - 125
+  - 136
+api:
+  - 127
+  - 133
+  - 141
+app:
+  - 135
+apple:
+  - 233
+  - 234
+  - 239
+  - 259
+  - 277
+  - 284
+apple-:
+  - 270
+apple-ios.+osversion:
+  - 269
+appleexchangewebservices:
+  - 284
+applet:
+  - 306
+appletv:
+  - 235
+  - 237
+  - 273
+applewebkit.:
+  - 135
+arcaos:
+  - 5
+arch:
+  - 177
+arm:
+  - 98
+  - 99
+armadillo:
+  - 52
+aros:
+  - 28
+asplinux:
+  - 199
+asurada:
+  - 123
+atlas:
+  - 123
+aws:
+  - 73
+azure:
+  - 19
+backtrack:
+  - 197
+  - 199
+bada:
+  - 304
+baidu:
+  - 38
+bb10:
+  - 286
+bean:
+  - 138
+beos:
+  - 291
+beyondpod:
+  - 144
+bits:
+  - 230
+black:
+  - 286
+blackandroid:
+  - 129
+blackberry:
+  - 289
+blackpanther:
+  - 22
+bmp:
+  - 306
+bpod:
+  - 290
+brask:
+  - 123
+bravia:
+  - 125
+bread:
+  - 138
+breezy:
+  - 195
+brew:
+  - 306
+brightsign:
+  - 59
+  - 60
+browser:
+  - 199
+  - 284
+brox:
+  - 123
+brya:
+  - 123
+bsd:
+  - 312
+caixamagica:
+  - 83
+callpod:
+  - 136
+captivenetworksupport:
+  - 276
+castro:
+  - 272
+casts:
+  - 272
+catalyst:
+  - 281
+centos:
+  - 182
+  - 183
+  - 184
+  - 185
+  - 197
+  - 199
+cfnetwork:
+  - 259
+  - 277
+cherry:
+  - 123
+chrome:
+  - 120
+chromebook:
+  - 122
+cinnamon:
+  - 330
+cldc:
+  - 331
+clear-linux-os:
+  - 43
+clearphone:
+  - 76
+cloud:
+  - 16
+cm-:
+  - 106
+com:
+  - 136
+  - 259
+  - 277
+  - 284
+contiki:
+  - 1
+coolita:
+  - 11
+  - 12
+coral:
+  - 123
+cordova-amazon-fireos:
+  - 113
+corsola:
+  - 123
+cos:
+  - 75
+cosmote_my_mini_tab:
+  - 137
+cpu:
+  - 233
+  - 243
+  - 254
+  - 257
+cros:
+  - 122
+cryptoapi:
+  - 210
+cyanogenmod:
+  - 107
+cygwin_95-4:
+  - 228
+cygwin_98-4:
+  - 227
+cygwin_me-4:
+  - 226
+cygwin_nt-10:
+  - 212
+cygwin_nt-4:
+  - 225
+cygwin_nt-5:
+  - 222
+  - 223
+  - 224
+cygwin_nt-6:
+  - 213
+  - 216
+  - 218
+  - 220
+  - 221
+d+-:
+  - 122
+d.-:
+  - 39
+  - 40
+  - 41
+  - 48
+  - 62
+dapper:
+  - 194
+darwin:
+  - 259
+  - 277
+  - 284
+de106:
+  - 110
+debian:
+  - 191
+  - 197
+  - 199
+dedede:
+  - 123
+deepin:
+  - 198
+delivery-optimization:
+  - 210
+deluxe:
+  - 144
+diordna:
+  - 145
+doggcatcher:
+  - 144
+dows:
+  - 212
+dragonfly:
+  - 317
+drallion:
+  - 123
+dt190:
+  - 110
+dt2002c:
+  - 110
+dtv:
+  - 21
+dvkbuntu:
+  - 169
+dvp:
+  - 166
+edgy:
+  - 193
+electrobsd:
+  - 313
+elementary:
+  - 7
+elm:
+  - 123
+enterprise:
+  - 180
+  - 181
+  - 199
+erry:
+  - 286
+erry.+version:
+  - 286
+eulerosv:
+  - 46
+eve:
+  - 123
+fb4a:
+  - 139
+fbios:
+  - 264
+fbmd:
+  - 240
+  - 263
+fbsv:
+  - 93
+  - 139
+  - 240
+  - 263
+  - 264
+fbw.+fbsv:
+  - 206
+fedora:
+  - 39
+  - 186
+  - 197
+  - 199
+feisty:
+  - 192
+fenix:
+  - 174
+finney:
+  - 69
+fire:
+  - 111
+firecyano:
+  - 138
+firefox:
+  - 301
+firetvstick2018:
+  - 112
+fizz:
+  - 123
+for:
+  - 131
+  - 136
+  - 247
+  - 251
+foresight:
+  - 161
+forios:
+  - 264
+four:
+  - 312
+freebox:
+  - 199
+freebsd:
+  - 314
+freebsd.+android:
+  - 119
+fritz:
+  - 55
+fuchsia:
+  - 285
+fydeos:
+  - 109
+genix:
+  - 34
+gentoo:
+  - 197
+  - 199
+  - 201
+geos:
+  - 36
+geralt:
+  - 123
+ghostbsd:
+  - 6
+ginger:
+  - 138
+gnewsense:
+  - 35
+gnu:
+  - 158
+google:
+  - 125
+googletv:
+  - 307
+googletv_:
+  - 126
+grid:
+  - 82
+grunt:
+  - 123
+guybrush:
+  - 123
+haiku:
+  - 232
+hana:
+  - 123
+handbrake:
+  - 230
+hardy:
+  - 190
+harmonyos:
+  - 103
+hascodingos:
+  - 171
+hat:
+  - 180
+  - 181
+  - 197
+  - 199
+hatch:
+  - 123
+hbbtv:
+  - 88
+  - 90
+helio:
+  - 170
+helix:
+  - 51
+hmd:
+  - 14
+hmos:
+  - 104
+hp-ux:
+  - 311
+hpwos:
+  - 202
+i386:
+  - 259
+  - 277
+icatcher:
+  - 272
+icru_:
+  - 275
+iemobile:
+  - 97
+imac:
+  - 284
+inferno:
+  - 303
+instacast:
+  - 272
+int:
+  - 73
+ios:
+  - 234
+  - 235
+  - 243
+  - 244
+  - 247
+  - 251
+  - 252
+  - 254
+  - 256
+  - 257
+  - 258
+  - 261
+  - 262
+  - 268
+  - 272
+  - 274
+  - 276
+iot:
+  - 100
+ipad:
+  - 240
+  - 241
+  - 242
+  - 243
+  - 244
+  - 245
+  - 246
+  - 248
+  - 249
+  - 270
+  - 273
+ipad.:
+  - 247
+ipad.+:
+  - 266
+ipados:
+  - 243
+iph:
+  - 254
+  - 257
+iph.+ov:
+  - 271
+iphone:
+  - 233
+  - 243
+  - 245
+  - 249
+  - 250
+  - 253
+  - 255
+  - 258
+  - 260
+  - 263
+  - 265
+  - 270
+  - 273
+iphone.:
+  - 251
+iphone.+:
+  - 254
+  - 257
+  - 267
+iphoneos:
+  - 246
+  - 250
+ipod:
+  - 265
+  - 270
+  - 273
+ipod_touch:
+  - 260
+irix:
+  - 319
+itunes-:
+  - 273
+j2me:
+  - 331
+jacuzzi:
+  - 123
+java:
+  - 331
+jelly:
+  - 138
+joli:
+  - 33
+jolla:
+  - 147
+kaios:
+  - 101
+kali:
+  - 63
+kalista:
+  - 123
+kat:
+  - 138
+keeper:
+  - 136
+kin:
+  - 24
+  - 324
+kit:
+  - 138
+knoppix:
+  - 197
+  - 199
+kolibrios:
+  - 10
+kreatv:
+  - 78
+  - 79
+kubuntu:
+  - 197
+  - 199
+kukui:
+  - 123
+ladybird:
+  - 50
+leafos:
+  - 15
+lem14:
+  - 120
+librem:
+  - 163
+lindowsos:
+  - 157
+lineage_:
+  - 115
+  - 116
+linkedin:
+  - 136
+linpus:
+  - 4
+linspire:
+  - 156
+linux-gnu:
+  - 330
+linux.:
+  - 54
+linux.+kanotix:
+  - 159
+linuxos:
+  - 37
+liri:
+  - 54
+lite:
+  - 264
+liteos:
+  - 11
+lns:
+  - 48
+loongarch64:
+  - 48
+loongnix-server:
+  - 47
+lubuntu:
+  - 197
+  - 199
+luneos:
+  - 61
+mac:
+  - 270
+  - 278
+  - 279
+  - 280
+  - 281
+  - 284
+macbook:
+  - 284
+macintosh:
+  - 278
+  - 282
+  - 284
+macos:
+  - 281
+  - 284
+maemo:
+  - 176
+mageia:
+  - 84
+mana:
+  - 259
+  - 277
+mandriva:
+  - 187
+  - 197
+  - 199
+maple:
+  - 88
+marshmallow:
+  - 128
+maui:
+  - 153
+  - 155
+mdcr_:
+  - 284
+mdv:
+  - 187
+meego:
+  - 298
+messenger:
+  - 264
+microsoft:
+  - 19
+  - 230
+microsoft-:
+  - 210
+  - 223
+microsoft_windows_nt_:
+  - 231
+midp:
+  - 331
+mikrotik:
+  - 68
+mildwild:
+  - 106
+mingw32:
+  - 209
+mini:
+  - 118
+minix:
+  - 2
+mint:
+  - 188
+  - 197
+  - 199
+mips:
+  - 80
+mmp:
+  - 331
+mobilesafari:
+  - 272
+mocordroid:
+  - 108
+model:
+  - 235
+moonos:
+  - 160
+morphos:
+  - 205
+mot-.:
+  - 37
+mre:
+  - 153
+  - 154
+  - 155
+ms-office:
+  - 230
+msdw:
+  - 230
+msoffice:
+  - 230
+mtk:
+  - 152
+nami:
+  - 123
+nautilus:
+  - 123
+netbsd:
+  - 315
+networking:
+  - 259
+  - 277
+networkingextension:
+  - 259
+  - 277
+news-os:
+  - 30
+next:
+  - 13
+  - 29
+nintendo:
+  - 321
+  - 325
+nirva:
+  - 123
+nissa:
+  - 123
+nitro:
+  - 325
+nocturne:
+  - 123
+nokia:
+  - 300
+nook:
+  - 284
+nova:
+  - 70
+nucleus:
+  - 151
+nuttx:
+  - 0
+oc105:
+  - 110
+octopus:
+  - 123
+oculusbrowser:
+  - 14
+odd:
+  - 120
+okhttp:
+  - 144
+omdroid:
+  - 130
+one:
+  - 24
+  - 254
+  - 257
+  - 324
+ook:
+  - 288
+openbsd:
+  - 316
+openharmony:
+  - 102
+opensuse:
+  - 199
+openvms:
+  - 27
+opera:
+  - 80
+  - 270
+  - 272
+opr:
+  - 81
+orca-:
+  - 136
+orca-android:
+  - 139
+ordissimo:
+  - 173
+osf1:
+  - 320
+osver:
+  - 268
+osx:
+  - 283
+overcast:
+  - 272
+ovis:
+  - 123
+pacific:
+  - 14
+package:
+  - 178
+palm:
+  - 202
+  - 203
+palmos:
+  - 203
+pardus:
+  - 162
+pclinuxos:
+  - 172
+phone:
+  - 16
+  - 51
+  - 93
+  - 94
+  - 95
+pico.+os:
+  - 66
+pinterest:
+  - 131
+  - 247
+  - 251
+plan:
+  - 3
+plasma:
+  - 77
+play:
+  - 288
+playstation:
+  - 323
+  - 326
+playstation.+:
+  - 322
+pluto:
+  - 166
+pocket:
+  - 272
+podbean:
+  - 129
+podcasts:
+  - 272
+podcat:
+  - 272
+podcatcher:
+  - 144
+podimo:
+  - 129
+podkicker:
+  - 144
+podmn.+iphone:
+  - 254
+  - 257
+portable:
+  - 326
+portalgo:
+  - 14
+post2008server:
+  - 218
+power:
+  - 259
+  - 277
+powermac:
+  - 259
+  - 277
+powerpc:
+  - 284
+ppc:
+  - 284
+pro:
+  - 118
+  - 323
+profile:
+  - 331
+puff:
+  - 123
+pve:
+  - 40
+pyro:
+  - 123
+python.:
+  - 277
+qjy:
+  - 11
+  - 12
+qnx:
+  - 288
+qtopia:
+  - 26
+quest:
+  - 14
+r33a0:
+  - 125
+radiopublic:
+  - 136
+rammus:
+  - 123
+raspbian:
+  - 57
+  - 58
+rauru:
+  - 123
+razodroid:
+  - 105
+red:
+  - 67
+  - 180
+  - 181
+  - 197
+  - 199
+redhat-linux-gnu:
+  - 181
+reef:
+  - 123
+remix:
+  - 118
+remixos:
+  - 118
+revengeos_x2:
+  - 114
+rex:
+  - 123
+  - 305
+rhel:
+  - 180
+  - 181
+rim:
+  - 287
+  - 288
+risc:
+  - 302
+risingos:
+  - 17
+roblox:
+  - 135
+rocky:
+  - 42
+roku:
+  - 166
+  - 167
+rokubrowser:
+  - 168
+rokuos:
+  - 165
+rosa:
+  - 200
+rr_fortuna3g:
+  - 117
+rssradio:
+  - 272
+runtime:
+  - 155
+rutube:
+  - 129
+s60:
+  - 295
+sabayon:
+  - 197
+  - 199
+sailfish:
+  - 147
+samsung:
+  - 88
+  - 90
+sand:
+  - 123
+sarien:
+  - 123
+scientific:
+  - 45
+sdk_gphone64_arm64-userdebug:
+  - 130
+searchhelper:
+  - 259
+  - 277
+seewoos:
+  - 121
+serenityos:
+  - 50
+series:
+  - 295
+series40:
+  - 296
+server:
+  - 180
+  - 181
+  - 214
+  - 222
+silk-accelerated:
+  - 143
+sistema:
+  - 174
+skyrim:
+  - 123
+slackware:
+  - 197
+  - 199
+sles:
+  - 179
+sm-r:
+  - 120
+smart:
+  - 125
+smart-tv:
+  - 88
+smartcast:
+  - 21
+smarthub:
+  - 88
+smartisan:
+  - 110
+smarttv201:
+  - 88
+smarttv_:
+  - 112
+snappy:
+  - 123
+solaris:
+  - 309
+sonos:
+  - 144
+  - 275
+  - 284
+soraka:
+  - 123
+spreadtrum:
+  - 8
+stab:
+  - 41
+standalone:
+  - 14
+star-blade:
+  - 25
+staros:
+  - 130
+staryu:
+  - 123
+store:
+  - 80
+  - 81
+stream:
+  - 182
+stretch:
+  - 191
+strongbad:
+  - 123
+studiodisplay:
+  - 277
+sunos:
+  - 309
+suse:
+  - 197
+  - 199
+switch:
+  - 321
+syllable:
+  - 318
+symbian:
+  - 292
+  - 293
+  - 294
+  - 299
+symbianos:
+  - 297
+symbos:
+  - 295
+  - 299
+tablet:
+  - 131
+  - 287
+  - 288
+  - 301
+tbrowser:
+  - 86
+tclwebkit:
+  - 127
+the:
+  - 138
+threadx:
+  - 150
+titanos:
+  - 9
+tivoos:
+  - 64
+tizen:
+  - 89
+tlinux:
+  - 72
+tos:
+  - 175
+trogdor:
+  - 123
+trustd:
+  - 284
+turbolinux:
+  - 32
+tv-:
+  - 168
+tv.:
+  - 233
+tv_:
+  - 126
+tvos:
+  - 236
+twitterandroid:
+  - 140
+two:
+  - 24
+  - 324
+ubuntu:
+  - 190
+  - 192
+  - 193
+  - 194
+  - 195
+  - 196
+  - 197
+  - 199
+uclient-fetch:
+  - 164
+uek:
+  - 62
+uhd:
+  - 125
+ultrix:
+  - 31
+unknown:
+  - 330
+uos:
+  - 56
+upd:
+  - 230
+update-agent:
+  - 210
+vectorlinux:
+  - 178
+vidaa:
+  - 65
+vista:
+  - 221
+vita:
+  - 326
+vizio:
+  - 21
+vizios:
+  - 20
+volteer:
+  - 123
+warp:
+  - 327
+watch:
+  - 238
+  - 239
+watch1:
+  - 238
+watchos:
+  - 238
+wds:
+  - 94
+web0s:
+  - 202
+webdav-miniredir:
+  - 210
+webian:
+  - 53
+webissimo3:
+  - 173
+webkit:
+  - 259
+  - 277
+webos:
+  - 202
+webtv:
+  - 308
+wetab:
+  - 298
+whaletv:
+  - 85
+whatsapp:
+  - 144
+  - 209
+  - 272
+  - 284
+wii:
+  - 321
+win:
+  - 174
+  - 212
+  - 226
+  - 230
+win10:
+  - 213
+win32:
+  - 228
+  - 230
+win64:
+  - 230
+win7:
+  - 220
+win95:
+  - 228
+win98:
+  - 227
+windows-:
+  - 211
+windows.+andr0id:
+  - 126
+windows.+os:
+  - 207
+windows_64:
+  - 210
+windows_95:
+  - 228
+winhttp:
+  - 209
+winnt:
+  - 225
+wns:
+  - 210
+wophone:
+  - 23
+wv-atv:
+  - 125
+x11:
+  - 330
+x64:
+  - 222
+x86_64:
+  - 18
+  - 73
+  - 121
+  - 123
+  - 184
+  - 259
+  - 272
+  - 277
+x86_64-apple-:
+  - 277
+xblwp7:
+  - 95
+xbox:
+  - 324
+xiino:
+  - 204
+xubuntu:
+  - 197
+  - 199
+yq60:
+  - 110
+yunos:
+  - 92
+zeasn:
+  - 86
+  - 87
+zenwalk:
+  - 158
+zorin:
+  - 189
+zork:
+  - 123

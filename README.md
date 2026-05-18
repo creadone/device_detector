@@ -2,7 +2,7 @@
 
 Device Detector is a Crystal shard for parsing `User-Agent` strings. It detects bots, browsers, browser engines, operating systems, client applications, devices, vendors, models, and a few specialized device classes such as TVs, cameras, consoles, car browsers, and portable media players.
 
-The parser uses regex data from [matomo-org/device-detector](https://github.com/matomo-org/device-detector) and embeds it into the shard at compile time.
+The parser uses regex data from [matomo-org/device-detector](https://github.com/matomo-org/device-detector), generates token indexes for the largest rule sets, and embeds both the regexes and indexes into the shard at compile time.
 
 ## Installation
 
@@ -119,11 +119,13 @@ LLVM: 21.1.0
 Default target: aarch64-apple-darwin23.1.0
 
 workload: 10000 unique user-agents
-full:  4409.90 user-agent/sec (2.267623s)
-lite: 11332.39 user-agent/sec (0.882426s)
+full:  7807.40 user-agent/sec (1.280836s)
+lite: 28040.29 user-agent/sec (0.356630s)
 ```
 
 The benchmark enforces a minimum full-parser speed of 150 user-agent/sec.
+
+The parser keeps generated token indexes for the largest and fastest-growing rule sets: bots, browsers, operating systems, and mobile devices. These indexes narrow the candidate regex list before falling back to the full rule scan, while preserving the original YAML rule priority.
 
 ## Development
 
@@ -163,7 +165,7 @@ crystal spec
 bin/ameba
 ```
 
-Review the regex diff before committing it.
+The update script downloads upstream regexes, mirrors only `regexes/**/*.yml`, and regenerates token indexes under `src/device_detector/regexes/index`. Review and commit both the regex diff and the generated index diff.
 
 ## Contributing
 

@@ -1,3 +1,5 @@
+require "set"
+
 module DeviceDetector
   module Helper
     extend self
@@ -6,6 +8,7 @@ module DeviceDetector
     @@regexes_with_options = {} of Tuple(String, Regex::Options) => Regex
 
     CAPTURE_GROUP_REGEX = /(\$\d)/
+    TOKEN_REGEX         = /[a-z0-9][a-z0-9._+-]{2,}/i
     HUMAN_BROWSER_HINTS = /Mozilla|AppleWebKit|Chrome|Safari|Firefox|Edge|Edg|MSIE|Trident/i
     DESKTOP_HINTS       = /Windows NT|Macintosh|X11|CrOS/i
 
@@ -24,6 +27,27 @@ module DeviceDetector
 
     def desktop?(user_agent : String)
       !!(DESKTOP_HINTS =~ user_agent)
+    end
+
+    def token_candidates(index : Hash(String, Array(Int32)), user_agent : String, reverse = false)
+      candidates = [] of Int32
+      seen = Set(Int32).new
+
+      user_agent.downcase.scan(TOKEN_REGEX) do |match|
+        token = match[0]
+        next unless indexes = index[token]?
+
+        indexes.each do |rule_index|
+          next if seen.includes?(rule_index)
+
+          seen << rule_index
+          candidates << rule_index
+        end
+      end
+
+      candidates.sort!
+      candidates.reverse! if reverse
+      candidates
     end
 
     # Detect capture group
