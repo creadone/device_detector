@@ -105,6 +105,24 @@ response.camera_model
 response.traffic_type # => "bot" | "human"
 ```
 
+## Параллельный парсинг
+
+Regex-кэши безопасны при работе из Crystal execution contexts. Неподготовленные правила используют per-thread кэши; latency-sensitive сервис может заранее скомпилировать нужные наборы парсеров и разделять неизменяемый registry между workers:
+
+```crystal
+require "device_detector"
+require "fiber/execution_context"
+
+DeviceDetector::Parser::Bot.prepare
+DeviceDetector::Parser::OS.prepare
+DeviceDetector::Parser::Mobile.prepare_huawei
+Fiber::ExecutionContext.default.resize(4)
+```
+
+Вызывайте `prepare` до запуска параллельной обработки запросов. Повторные вызовы безопасны. Буферы совпадений и JIT stacks класса `Regex` остаются thread-local внутри Crystal runtime.
+
+Сервисы, которым нужно маршрутизировать Huawei-трафик без полного mobile response, могут использовать `DeviceDetector::Parser::Mobile.huawei?(user_agent)`. Метод использует сгенерированный mobile token index и vendor rules Huawei/Honor.
+
 ## Benchmarks
 
 Запуск benchmark в release mode:

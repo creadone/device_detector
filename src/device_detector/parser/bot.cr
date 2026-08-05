@@ -35,6 +35,11 @@ module DeviceDetector::Parser
       @@bots = Array(Bot).from_yaml(Storage.get("bots.yml"))
     end
 
+    # Compiles all bot rules into a shared immutable registry for parallel parsing.
+    def self.prepare : Nil
+      Helper.prepare_regexes(@@bots.map(&.regex))
+    end
+
     def bot_index
       return @@bot_index if @@bot_index
       @@bot_index = Hash(String, Array(Int32)).from_yaml(Storage.get("index/bots.yml"))

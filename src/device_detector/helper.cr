@@ -1,24 +1,85 @@
 require "set"
+require "sync"
 
 module DeviceDetector
   module Helper
     extend self
 
-    @@regexes = {} of String => Regex
-    @@regexes_with_options = {} of Tuple(String, Regex::Options) => Regex
+    private class PreparedRegexes
+      alias OptionsKey = Tuple(String, Regex::Options)
+
+      def initialize(
+        @defaults = {} of String => Regex,
+        @with_options = {} of OptionsKey => Regex,
+      )
+      end
+
+      def default?(pattern : String) : Regex?
+        @defaults[pattern]?
+      end
+
+      def with_options?(pattern : String, options : Regex::Options) : Regex?
+        @with_options[{pattern, options}]?
+      end
+
+      def with(patterns : Enumerable(String), options : Regex::Options) : self
+        if options == Setting::REGEX_OPTS
+          defaults = @defaults.dup
+          patterns.each { |pattern| defaults[pattern] ||= Regex.new(pattern, options) }
+          self.class.new(defaults, @with_options)
+        else
+          with_options = @with_options.dup
+          patterns.each do |pattern|
+            key = {pattern, options}
+            with_options[key] ||= Regex.new(pattern, options)
+          end
+          self.class.new(@defaults, with_options)
+        end
+      end
+    end
+
+    @@prepared_regexes = Atomic(PreparedRegexes?).new(nil)
+    @@prepare_lock = Sync::Mutex.new
+
+    # `thread_local` declarations generate accessors; they are not assignments.
+    thread_local(local_regexes : Hash(String, Regex)) { {} of String => Regex }              # ameba:disable Lint/UselessAssign
+    thread_local(local_regexes_with_options : Hash(Tuple(String, Regex::Options), Regex)) do # ameba:disable Lint/UselessAssign
+      {} of Tuple(String, Regex::Options) => Regex
+    end
 
     CAPTURE_GROUP_REGEX = /(\$\d)/
     TOKEN_REGEX         = /[a-z0-9][a-z0-9._+-]{2,}/i
     HUMAN_BROWSER_HINTS = /Mozilla|AppleWebKit|Chrome|Safari|Firefox|Edge|Edg|MSIE|Trident/i
     DESKTOP_HINTS       = /Windows NT|Macintosh|X11|CrOS/i
 
-    def regex(pattern : String)
-      @@regexes[pattern] ||= Regex.new(pattern, Setting::REGEX_OPTS)
+    def prepare_regexes(patterns : Enumerable(String), options = Setting::REGEX_OPTS) : Nil
+      @@prepare_lock.synchronize do
+        current = @@prepared_regexes.get(:acquire) || PreparedRegexes.new
+        @@prepared_regexes.set(current.with(patterns, options), :release)
+      end
     end
 
-    def regex(pattern : String, options : Regex::Options)
+    def regex(pattern : String) : Regex
+      if prepared = @@prepared_regexes.get(:acquire)
+        if compiled = prepared.default?(pattern)
+          return compiled
+        end
+      end
+
+      regexes = Helper.local_regexes
+      regexes[pattern] ||= Regex.new(pattern, Setting::REGEX_OPTS)
+    end
+
+    def regex(pattern : String, options : Regex::Options) : Regex
+      if prepared = @@prepared_regexes.get(:acquire)
+        if compiled = prepared.with_options?(pattern, options)
+          return compiled
+        end
+      end
+
       key = {pattern, options}
-      @@regexes_with_options[key] ||= Regex.new(pattern, options)
+      regexes = Helper.local_regexes_with_options
+      regexes[key] ||= Regex.new(pattern, options)
     end
 
     def human_browser?(user_agent : String)

@@ -43,6 +43,11 @@ module DeviceDetector::Parser
       @@os = Array(OS).from_yaml(Storage.get("oss.yml"))
     end
 
+    # Compiles all OS rules into a shared immutable registry for parallel parsing.
+    def self.prepare : Nil
+      Helper.prepare_regexes(@@os.map(&.regex))
+    end
+
     def os_index
       return @@os_index if @@os_index
       @@os_index = Hash(String, Array(Int32)).from_yaml(Storage.get("index/oss.yml"))

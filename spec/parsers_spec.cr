@@ -1,5 +1,7 @@
 require "./spec_helper"
 require "../src/device_detector/parser"
+require "fiber/execution_context"
+require "wait_group"
 
 describe "In the parsers" do
   describe "Bot" do
@@ -7,6 +9,26 @@ describe "In the parsers" do
       user_agent = "Googlebot (gocrawl v0.4)"
       detector = DeviceDetector::Parser::Bot.new user_agent
       detector.call["name"].should eq "Googlebot"
+    end
+
+    it "keeps bot decisions stable across parallel workers after preparation" do
+      DeviceDetector::Parser::Bot.prepare
+      context = Fiber::ExecutionContext::Parallel.new("bot-parser-spec", 4)
+      workers = WaitGroup.new(100)
+      failures = Atomic(Int32).new(0)
+      user_agent = "Googlebot (gocrawl v0.4)"
+
+      100.times do
+        context.spawn do
+          result = DeviceDetector::Parser::Bot.new(user_agent).call
+          failures.add(1, :relaxed) unless result["name"] == "Googlebot"
+        ensure
+          workers.done
+        end
+      end
+
+      workers.wait
+      failures.get(:relaxed).should eq(0)
     end
   end
 
@@ -107,6 +129,64 @@ describe "In the parsers" do
       result["model"].should eq "BV6000"
       result["type"].should eq "smartphone"
     end
+
+    it "classifies Huawei without treating Honor or other Android devices as Huawei" do
+      huawei = "Mozilla/5.0 (Linux; Android 10; ELS-NX9 Build/HUAWEIELS-NX9) AppleWebKit/537.36 Mobile HuaweiBrowser/13.0"
+      harmony = "Mozilla/5.0 (Linux; HarmonyOS 4.0; HUAWEI Mate 60 Pro) AppleWebKit/537.36 Mobile"
+      honor = "Mozilla/5.0 (Linux; Android 14; FCP-AN10 Build/HONORFCP-AN10) AppleWebKit/537.36 Mobile"
+      pixel = "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 Mobile"
+
+      DeviceDetector::Parser::Mobile.prepare_huawei
+      DeviceDetector::Parser::Mobile.huawei?(huawei).should be_true
+      DeviceDetector::Parser::Mobile.huawei?(harmony).should be_true
+      DeviceDetector::Parser::Mobile.huawei?(honor).should be_false
+      DeviceDetector::Parser::Mobile.huawei?(pixel).should be_false
+
+      [huawei, harmony, honor, pixel].each do |user_agent|
+        detected = DeviceDetector::Parser::Mobile.new(user_agent).call["vendor"] == "Huawei"
+        DeviceDetector::Parser::Mobile.huawei?(user_agent).should eq(detected)
+      end
+    end
+
+    it "matches the full mobile parser for every Huawei index token" do
+      parser = DeviceDetector::Parser::Mobile.new("")
+      huawei_rule_index = parser.mobile_entries.index { |entry| entry[0] == "Huawei" }
+      raise "Huawei mobile rule is missing" unless huawei_rule_index
+      huawei_tokens = parser.mobile_index.compact_map do |token, indexes|
+        token if indexes.includes?(huawei_rule_index)
+      end
+
+      huawei_tokens.each do |token|
+        user_agent = "Mozilla/5.0 (Linux; Android 13; #{token} Build/#{token}) AppleWebKit/537.36 Mobile"
+        detected = DeviceDetector::Parser::Mobile.new(user_agent).call["vendor"] == "Huawei"
+        DeviceDetector::Parser::Mobile.huawei?(user_agent).should eq(detected), token
+      end
+    end
+
+    it "keeps Huawei decisions stable across parallel workers" do
+      cases = {
+        "Mozilla/5.0 (Linux; Android 10; ELS-NX9 Build/HUAWEIELS-NX9) AppleWebKit/537.36 Mobile"  => true,
+        "Mozilla/5.0 (Linux; Android 14; FCP-AN10 Build/HONORFCP-AN10) AppleWebKit/537.36 Mobile" => false,
+        "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 Mobile"                      => false,
+      }
+      DeviceDetector::Parser::Mobile.prepare_huawei
+      context = Fiber::ExecutionContext::Parallel.new("huawei-parser-spec", 4)
+      workers = WaitGroup.new(cases.size * 100)
+      failures = Atomic(Int32).new(0)
+
+      100.times do
+        cases.each do |user_agent, expected|
+          context.spawn do
+            failures.add(1, :relaxed) unless DeviceDetector::Parser::Mobile.huawei?(user_agent) == expected
+          ensure
+            workers.done
+          end
+        end
+      end
+
+      workers.wait
+      failures.get(:relaxed).should eq(0)
+    end
   end
 
   describe "OS" do
@@ -124,6 +204,34 @@ describe "In the parsers" do
       result = detector.call
       result["name"].should eq "Windows"
       result["version"].should eq "10"
+    end
+
+    it "keeps Android, iOS, HarmonyOS, OpenHarmony, and desktop decisions stable in parallel" do
+      DeviceDetector::Parser::OS.prepare
+      cases = {
+        "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 Mobile"                        => "Android",
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148" => "iOS",
+        "Mozilla/5.0 (Linux; HarmonyOS 4.0; HUAWEI Mate 60 Pro) AppleWebKit/537.36 Mobile"          => "HarmonyOS",
+        "Mozilla/5.0 (Linux; OpenHarmony 4.0; HUAWEI Mate 60 Pro) AppleWebKit/537.36 Mobile"        => "OpenHarmony",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36"   => "Windows",
+      }
+      context = Fiber::ExecutionContext::Parallel.new("os-parser-spec", 4)
+      workers = WaitGroup.new(cases.size * 20)
+      failures = Atomic(Int32).new(0)
+
+      20.times do
+        cases.each do |user_agent, expected|
+          context.spawn do
+            result = DeviceDetector::Parser::OS.new(user_agent).call
+            failures.add(1, :relaxed) unless result["name"] == expected
+          ensure
+            workers.done
+          end
+        end
+      end
+
+      workers.wait
+      failures.get(:relaxed).should eq(0)
     end
   end
 
