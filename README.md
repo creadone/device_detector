@@ -105,6 +105,24 @@ response.camera_model
 response.traffic_type # => "bot" | "human"
 ```
 
+## Parallel Parsing
+
+Regex caches are safe to use from Crystal execution contexts. Unprepared rules use per-thread caches; latency-sensitive services can precompile the parser sets they use and share the immutable regex registry across workers:
+
+```crystal
+require "device_detector"
+require "fiber/execution_context"
+
+DeviceDetector::Parser::Bot.prepare
+DeviceDetector::Parser::OS.prepare
+DeviceDetector::Parser::Mobile.prepare_huawei
+Fiber::ExecutionContext.default.resize(4)
+```
+
+Call `prepare` before starting parallel request processing. Repeated calls are safe. `Regex` match buffers and JIT stacks remain thread-local inside Crystal's runtime.
+
+Services that route Huawei traffic without needing the full mobile response can use `DeviceDetector::Parser::Mobile.huawei?(user_agent)`. It uses the generated mobile token index and the Huawei/Honor vendor rules.
+
 ## Benchmarks
 
 Run benchmarks in release mode:
