@@ -236,8 +236,8 @@ describe "Response" do
       response.tv_vendor.should eq "Hisense"
     end
     it "should return model" do
-      response.tv.model.should eq "HE65M7000UWTS"
-      response.tv_model.should eq "HE65M7000UWTS"
+      response.tv.model.should eq "HE65M7000UWTSG"
+      response.tv_model.should eq "HE65M7000UWTSG"
     end
   end
 

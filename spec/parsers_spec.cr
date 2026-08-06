@@ -261,7 +261,7 @@ describe "In the parsers" do
       detector = DeviceDetector::Parser::Television.new user_agent
       result = detector.call
       result["vendor"].should eq "Hisense"
-      result["model"].should eq "HE65M7000UWTS"
+      result["model"].should eq "HE65M7000UWTSG"
     end
 
     it "should not have vendor or model of tv for browser UA" do

@@ -1,1524 +1,1568 @@
 115browser:
-  - 234
+  - 239
 20browser:
-  - 183
-  - 357
-  - 421
-  - 474
-  - 587
-20coast:
-  - 570
-20earth:
-  - 527
-20mini:
-  - 393
-20preview:
-  - 572
-20pro:
-  - 527
-20technology:
-  - 572
-20touch:
-  - 385
-  - 386
-360:
-  - 296
-  - 298
-537:
-  - 104
-  - 297
-537.+chrome:
-  - 178
-7654browser:
-  - 147
-7star:
-  - 275
-80.:
-  - 395
-  - 396
-a-z0-9:
-  - 377
-a-za-z0-9:
-  - 312
-abb:
-  - 122
-abrowse:
-  - 508
-acheetahi:
-  - 455
-acoo:
-  - 59
-adg:
-  - 230
-agentweb.+ucbrowser:
-  - 156
-ailw:
-  - 425
-airfind:
-  - 96
-  - 242
-airsearch:
-  - 242
-airwatch:
-  - 228
-airwatchbrowser:
-  - 228
-aldi:
-  - 413
-aloha:
-  - 307
-alohabrowser:
-  - 305
-  - 306
-alohalite:
-  - 245
-alpha:
-  - 411
-altibrowser:
-  - 6
-alva:
-  - 101
-amaya:
-  - 509
-amiga-aweb:
-  - 511
-amigavoyager:
-  - 510
-android:
-  - 178
-  - 193
-  - 312
-  - 454
-  - 568
-android-mobile:
-  - 19
-antfresco:
-  - 366
-antgalio:
-  - 367
-aol:
-  - 229
-aolshield:
-  - 288
-  - 289
-aphone:
-  - 298
-aplix_.:
-  - 60
-app:
-  - 82
-  - 306
-apple:
-  - 576
-  - 578
-applecoremedia:
-  - 576
-applewebkit.+:
-  - 553
-arcmobile2:
-  - 97
-arcticfox:
-  - 341
-arkweb:
-  - 353
-arora:
-  - 512
-artisreader:
-  - 2
-arvin:
-  - 142
-ask:
-  - 70
-asw:
-  - 310
-  - 311
-atlas:
-  - 247
-atom:
-  - 235
-atomicbrowser:
-  - 321
-att:
-  - 390
-avant:
-  - 318
-avast:
-  - 310
-  - 311
-avg:
-  - 238
-avira:
-  - 169
-awesomium:
-  - 27
-awox:
-  - 185
-baidubrowser:
-  - 405
-baiduhd:
-  - 405
-bang:
-  - 71
-banglabrowser:
-  - 175
-basilisk:
-  - 266
-bb10:
-  - 566
-bdbrowser:
-  - 405
-bdhonorbrowser:
-  - 404
-beaker:
-  - 282
-beamrise:
-  - 256
-beonex:
-  - 513
-beta:
-  - 298
-  - 411
-bidubrowser:
-  - 406
-biyubi:
-  - 182
-blackberry:
-  - 566
-blackhawk:
-  - 251
-blazer:
-  - 499
-bline:
-  - 514
-bloket:
-  - 109
-bluebrowser:
-  - 479
-bluefy:
-  - 65
-bonecho:
-  - 365
-bonsai-browser:
-  - 138
-book:
-  - 495
-borealis:
-  - 206
-brave:
-  - 323
-  - 324
-briskbard:
-  - 167
-bro:
-  - 476
-browlser:
-  - 567
-browser:
-  - 16
-  - 22
-  - 25
-  - 33
-  - 36
-  - 59
-  - 60
-  - 70
-  - 82
-  - 96
-  - 104
-  - 107
-  - 108
-  - 110
-  - 129
-  - 130
-  - 144
-  - 168
-  - 184
-  - 185
-  - 191
-  - 228
-  - 231
-  - 254
-  - 270
-  - 279
-  - 282
-  - 295
-  - 298
-  - 315
-  - 316
-  - 318
-  - 334
-  - 350
-  - 353
-  - 354
-  - 358
-  - 377
-  - 416
-  - 435
-  - 440
-  - 442
-  - 443
-  - 453
-  - 465
-  - 480
-  - 483
-  - 484
-  - 497
-  - 522
-  - 533
-  - 551
-  - 555
-  - 563
-  - 586
-browser.:
-  - 349
-  - 352
-browserng:
-  - 469
-browserpro:
-  - 183
-browsex:
-  - 515
-browzar:
-  - 203
-bunjalloo:
-  - 322
-buscari:
-  - 1
-byffox:
-  - 155
-camino:
-  - 302
-catalyst:
-  - 77
-ccleaner:
-  - 244
-centaury:
-  - 343
-cfnetwork:
-  - 113
-  - 115
-  - 290
-  - 357
-  - 381
-  - 385
-  - 386
-  - 387
-  - 393
-  - 570
-  - 578
-chanjetcloud:
-  - 131
-charon:
-  - 516
-chedot:
-  - 151
-cheshire:
-  - 517
-chimlac:
+  - 3
   - 188
-chimlac_browser:
-  - 188
-chrome:
-  - 111
-  - 112
-  - 126
-  - 130
-  - 143
-  - 152
-  - 156
-  - 162
-  - 193
-  - 201
-  - 221
-  - 271
-  - 272
-  - 284
-  - 288
-  - 305
-  - 308
-  - 312
-  - 320
-  - 323
-  - 324
-  - 379
-  - 427
-  - 448
-  - 456
-  - 458
-  - 460
-  - 486
-  - 487
-  - 490
-  - 495
-chrome.+:
-  - 310
-  - 420
-chrome.+briskbard:
-  - 166
-chrome.+maxthon:
-  - 419
-chrome.+midori:
-  - 416
-chrome.+opera:
-  - 397
-chrome.+otter:
-  - 171
-chrome.+safari:
-  - 297
-chrome.+smooz:
-  - 173
-chrome.+sznprohlizec:
-  - 450
-chrome.+uc:
-  - 350
-  - 358
-chromeframe:
-  - 491
-chromeplus:
-  - 401
-chromium:
-  - 85
-  - 152
-  - 492
-  - 493
-classilla:
-  - 46
-client:
-  - 528
-cliqz:
-  - 211
-coast:
-  - 569
-coc_coc_browser:
-  - 437
-coccoc:
-  - 437
-coccocbrowser:
-  - 437
-colibri:
-  - 215
-columbus:
-  - 51
-com:
-  - 70
-  - 82
-  - 96
-  - 191
-  - 242
-  - 442
-  - 578
-cometbird:
-  - 330
-comodo:
-  - 400
-conkeror:
-  - 402
-coolnovo:
-  - 399
-cornowser:
-  - 176
-corp:
-  - 410
-cosbrowser:
-  - 260
-cpu:
-  - 576
-cravingexplorer:
-  - 158
-crazy:
-  - 533
-crios:
-  - 489
-crmo:
-  - 488
-crusta:
-  - 261
-cunaguaro:
-  - 338
-cyberfox:
-  - 345
-cybrowser:
-  - 125
-darwin:
-  - 357
-  - 381
-  - 570
-dbrowser:
-  - 133
-  - 518
-ddg:
-  - 438
-ddg-android-:
-  - 439
-ddg_android:
-  - 439
-decentr:
-  - 119
-deepnet:
-  - 317
-degdegan:
-  - 149
-deledaofamily:
-  - 153
-deledaopersonal:
-  - 153
-deltabrowser:
-  - 242
-deskbrowse:
-  - 159
-dezor:
-  - 15
-diigobrowser:
-  - 63
-dillo:
-  - 519
-docomo:
-  - 95
-dolfin:
-  - 520
-dolphin:
-  - 520
-donerbrowser:
-  - 82
-dooble:
-  - 375
-dorado:
-  - 580
-dotbrowser:
-  - 157
-dragon:
-  - 400
-dt-browser:
-  - 339
-dtb:
-  - 339
-duckduckgo:
-  - 438
-earth:
-  - 527
-  - 529
-eastbrowser:
-  - 55
-ecosia:
-  - 454
-edg:
-  - 294
-edga:
-  - 293
-edge:
-  - 290
-  - 291
-edgios:
-  - 292
-edgw:
-  - 143
-edition:
-  - 86
-  - 395
-ekioh:
-  - 180
-element:
-  - 522
-elements:
-  - 231
-elinks:
-  - 521
-embider:
-  - 558
-eolie:
-  - 44
-epic:
-  - 313
-epiphany:
-  - 429
-escape:
-  - 368
-espial:
-  - 368
-eudoraweb:
-  - 43
-eui:
-  - 443
-explorer:
-  - 317
-  - 448
-  - 542
-ezbrowser:
-  - 523
-falkon:
-  - 248
-faux:
-  - 257
-fennec:
-  - 314
-fget:
-  - 93
-firebird:
-  - 524
-firefox:
-  - 212
-  - 346
-  - 360
-  - 361
-  - 363
-  - 364
-firefox.:
-  - 315
-firefox.+uckai:
-  - 359
-firesendbrowser:
-  - 0
-fireweb:
-  - 370
-  - 371
-flashbrowser:
-  - 140
-flast:
-  - 164
-flock:
-  - 332
-floorp:
-  - 117
-flow:
-  - 178
-  - 179
-fluid:
-  - 525
-flyflow:
-  - 405
-focus:
-  - 344
-freeu:
-  - 264
-fxios:
-  - 362
-galeon:
-  - 526
-gameoverlay:
-  - 233
-ghostery:
-  - 210
-ginxdroid:
-  - 168
-glassbrowser:
-  - 226
-goanna.:
-  - 328
-gobrowser:
-  - 468
-goggalaxyclient:
-  - 585
-goku-ios:
-  - 69
-google:
-  - 527
-  - 529
-googleearth:
-  - 528
-gost:
-  - 152
-granparadiso:
-  - 365
-greenbrowser:
-  - 52
-harman_browser:
-  - 137
-harmony360browser:
-  - 295
-hasbrowser:
-  - 154
-hawk:
-  - 262
-  - 263
-hbpc:
-  - 278
-headlesschrome:
-  - 494
-helio:
-  - 146
-heytapbrowser:
-  - 4
-hibrowser:
-  - 124
-hola:
-  - 272
-hone:
-  - 408
-hotjava:
-  - 530
-hpw:
-  - 501
-huaweibrowser:
-  - 277
-i18n:
-  - 405
-ibrowse:
-  - 464
-ibrowser:
-  - 462
-  - 463
-icab:
-  - 532
-icabmobile:
-  - 531
-icecat:
-  - 300
-icedragon:
-  - 331
-iceweasel:
-  - 326
-iemobile:
-  - 534
-iii:
-  - 7
-ilunascapelite:
-  - 220
-impervious:
-  - 78
-inet:
-  - 25
-inhouse:
-  - 421
-inspectbrowser:
-  - 106
-internet:
-  - 22
-  - 542
-internetbrowser:
-  - 377
-ios:
-  - 62
-  - 92
-  - 198
-  - 454
-  - 574
-ipad:
-  - 92
-  - 183
-  - 486
-  - 573
-  - 576
-iphone:
-  - 92
-  - 421
-  - 486
-  - 573
-  - 576
-ipod:
-  - 573
-  - 576
-iridium:
-  - 325
-iron:
-  - 427
-  - 428
-isivioo:
-  - 446
-japan:
-  - 480
-jasmine:
-  - 504
-javafx:
-  - 150
-jig:
-  - 334
-jigbrowserplus:
-  - 333
-jio:
-  - 270
-juzibrowser:
-  - 74
-k-meleon:
-  - 544
-k-ninja:
-  - 53
-kapiko:
-  - 335
-kazehakase:
-  - 340
-keepsafe:
-  - 107
-kindle:
-  - 543
-kinza:
-  - 255
-kitt:
-  - 37
-kiwi:
-  - 458
-klar:
-  - 344
-kode:
-  - 198
-konqueror:
-  - 403
-kuaiso:
-  - 275
-kun:
-  - 31
-kylo:
-  - 336
-ladybird:
-  - 36
-lagatos-browser:
-  - 135
-lbbrowser:
-  - 431
-lebrowser:
-  - 456
-  - 457
-leganbrowser:
-  - 58
-lexi:
-  - 116
-libjs:
-  - 36
-libweb:
-  - 36
-liebaofast:
-  - 430
-light:
-  - 232
-lilo:
-  - 114
-  - 115
-links:
-  - 545
-liri:
-  - 50
-lite:
-  - 409
-lmw:
-  - 424
-lolifox:
-  - 160
-lorentz:
-  - 365
-lotus:
-  - 73
-lovense:
-  - 241
-ltbrowser:
-  - 134
-luakit:
-  - 546
-lulumi-browser:
-  - 218
-lunascape:
-  - 221
-  - 222
-lynx:
-  - 505
-mac:
-  - 486
-macintosh:
-  - 579
-maemo:
-  - 316
-managedbrowser:
-  - 72
-mandarin:
-  - 144
-maple:
-  - 7
-maui:
-  - 586
-maxbrowser:
-  - 40
-maxthon:
-  - 420
-  - 421
-  - 422
-mb2345browser:
-  - 459
-mcent:
-  - 249
-mercury:
-  - 418
-meta:
-  - 98
-mib:
-  - 24
-midori:
-  - 417
-minefield:
-  - 365
-mini:
-  - 350
-  - 390
-  - 434
-  - 462
-mini.+version:
-  - 391
-minimo:
-  - 252
-mint:
-  - 453
-miuibrowser:
-  - 436
-mixerbox-browser:
-  - 42
-mms:
-  - 383
-mobi:
-  - 389
-mobi.+version:
-  - 382
-mobicip:
-  - 301
-mobile.:
-  - 575
-mobile.+opr:
-  - 382
-mobileiron:
-  - 426
-mobilelenovobrowser:
-  - 456
-mobilesafari:
-  - 573
-mogok:
-  - 61
-monumentbrowser:
-  - 478
-moon:
-  - 86
-motorola:
-  - 291
-motorolawebkit.:
-  - 24
-mrchrome:
-  - 320
-msie:
-  - 535
-  - 540
-msie.:
-  - 536
-  - 537
-  - 538
-mspie:
-  - 542
-mxbrowser:
-  - 420
-  - 421
-mxios:
-  - 421
-mxnitro:
-  - 276
-myie2:
-  - 422
-mypal:
-  - 342
-mzbrowser:
-  - 259
-naenarabrowser:
-  - 32
-namoroka:
-  - 365
-navegador:
-  - 104
-navigateur:
-  - 195
-navigator:
-  - 370
-  - 372
-ncsa_mosaic:
-  - 506
-ndex:
-  - 412
-netfont-:
-  - 551
-netfront:
-  - 551
-  - 552
-netfrontlifebrowser:
-  - 550
-netpositive:
-  - 554
-netscape6:
-  - 372
-netsurf:
-  - 581
-network:
-  - 574
-networking:
-  - 578
-networkingextension:
-  - 574
-  - 578
-next:
-  - 395
-next.+version:
-  - 394
-nfsbrowser:
-  - 205
-ninesky:
-  - 19
-ninetails:
-  - 75
-nintendo:
-  - 553
-nintendobrowser:
-  - 549
-nokia:
-  - 473
-nokia-communicator-www-browser:
-  - 469
-nokiabrowser:
-  - 469
-nook:
-  - 33
-normalized:
-  - 92
-norton:
-  - 102
-novarra-vision:
-  - 66
-noxbrowser:
-  - 265
-ntentbrowser:
-  - 475
-nuanti:
-  - 98
-nuviu:
-  - 94
-obigo:
-  - 377
-  - 378
-oceanhero:
-  - 200
-oculusbrowser:
-  - 269
-odd:
-  - 103
-odin:
-  - 189
-odyssey:
-  - 555
-offbyone:
-  - 556
-ohhaibrowser:
-  - 224
-ojr:
-  - 16
-omi:
-  - 384
-omniweb:
-  - 547
-onbrowserlite:
-  - 64
-onebrowser:
-  - 467
-openfin:
-  - 481
-openwave:
-  - 466
-opera:
-  - 364
-  - 381
-  - 382
-  - 385
-  - 386
-  - 387
-  - 389
-  - 390
-  - 391
-  - 393
-  - 395
-  - 396
-  - 570
-opera.+edition:
-  - 394
-opios:
-  - 392
-oppobrowser:
-  - 319
-opr:
-  - 395
-  - 396
-opt:
-  - 388
-orca:
-  - 177
-ordissimo:
-  - 243
-oreganmediabrowser:
-  - 557
-oregano:
-  - 557
-origin:
-  - 337
-origyn:
-  - 254
-otter:
-  - 172
-owb:
-  - 555
-pages:
-  - 270
-palemoon:
-  - 328
-  - 329
-palmscape:
-  - 503
-perfect:
-  - 183
-perk:
-  - 20
-phantom:
-  - 184
-phoenix:
-  - 548
-phx:
-  - 208
-pibrowser:
-  - 161
-picobrowser:
-  - 100
-playbook:
-  - 566
-playfreebrowser:
-  - 187
-playstation:
-  - 553
-plus:
-  - 528
-pocket:
-  - 542
-pocketbook:
-  - 496
-polaris:
-  - 558
-polarity:
-  - 373
-polybrowser:
-  - 165
-polypane:
-  - 223
-portable:
-  - 420
-pre:
-  - 500
-presearch:
-  - 21
-prism:
-  - 26
-privacybrowser:
-  - 13
-privacywall:
-  - 209
-private:
-  - 130
-pro:
-  - 527
-  - 528
-proxyfox:
-  - 12
-psi-secure-browser:
-  - 136
-puffin:
-  - 423
-  - 424
-  - 425
-qazweb:
-  - 148
-qihoobrowserhd:
-  - 296
-qihu:
-  - 296
-qiyu:
-  - 56
-qqbrowser:
-  - 434
-qqbrowserlite:
+  - 369
   - 433
-qtweb:
-  - 22
-qtwebengine:
-  - 485
-quark:
-  - 477
-quarkpc:
-  - 5
-quick:
-  - 86
-quickbrowser:
-  - 263
-qupzilla:
-  - 374
-qutebrowser:
-  - 162
-  - 163
-qwant:
-  - 286
-qwantios:
-  - 283
-qwantmobile:
+  - 486
+  - 602
+20coast:
+  - 585
+20earth:
+  - 542
+20mini:
+  - 405
+20preview:
+  - 587
+20pro:
+  - 542
+20technology:
+  - 587
+20touch:
+  - 397
+  - 398
+360:
+  - 307
+  - 309
+537:
+  - 109
+  - 308
+537.+chrome:
+  - 183
+7654browser:
+  - 152
+7star:
+  - 280
+80.:
+  - 407
+  - 408
+a-z0-9:
+  - 389
+a-za-z0-9:
+  - 323
+abb:
+  - 127
+abrowse:
+  - 523
+acheetahi:
+  - 467
+acoo:
+  - 64
+adg:
+  - 235
+agentweb.+ucbrowser:
+  - 161
+ailw:
+  - 437
+airfind:
+  - 101
+  - 247
+airsearch:
+  - 247
+airwatch:
+  - 233
+airwatchbrowser:
+  - 233
+aldi:
+  - 425
+aloha:
+  - 318
+alohabrowser:
+  - 316
+  - 317
+alohalite:
+  - 250
+alpha:
+  - 423
+altibrowser:
+  - 11
+alva:
+  - 106
+amaya:
+  - 524
+amiga-aweb:
+  - 526
+amigavoyager:
+  - 525
+android:
+  - 183
+  - 198
+  - 323
+  - 466
+  - 583
+android-mobile:
+  - 24
+antfresco:
+  - 378
+antgalio:
+  - 379
+aol:
+  - 234
+aolshield:
+  - 299
+  - 300
+aphone:
+  - 309
+aplix_.:
+  - 65
+app:
+  - 87
+  - 317
+  - 424
+apple:
+  - 591
+  - 593
+applecoremedia:
+  - 591
+applewebkit.+:
+  - 568
+arcmobile2:
+  - 102
+arcticfox:
+  - 352
+arkweb:
   - 284
   - 285
-rakutenbrowser:
-  - 79
-rakutenwebsearch:
-  - 80
-raspbian:
-  - 85
-rcatorexplorer:
-  - 9
-realmebrowser:
-  - 281
-rekonq:
-  - 398
-reqwirelessweb:
-  - 128
-roccat:
-  - 28
-rocket:
-  - 447
-rockmelt:
-  - 369
-rokubrowser:
-  - 99
-rowser:
-  - 441
-s40ovibrowser:
-  - 472
-safe:
-  - 406
-safer:
-  - 310
-  - 311
-sailfishbrowser:
-  - 299
-salamweb:
-  - 250
-samanthadoubao:
-  - 3
-samsung:
-  - 440
-sberbrowser:
-  - 84
-scout:
-  - 169
-search:
-  - 86
-searchbrowser:
-  - 412
-seb:
-  - 214
-secure:
-  - 141
-securebrowser:
-  - 17
-  - 310
-  - 311
-seewobrowser:
-  - 197
-semc-browser:
-  - 559
-series60:
-  - 470
-  - 471
-servo.:
-  - 360
-  - 363
-sfb:
-  - 441
-sfive:
-  - 193
-sfive_ios:
-  - 194
-shiira:
-  - 560
-shiretoko:
+  - 286
   - 365
-silk:
-  - 460
-  - 461
-simplebrowser:
-  - 583
-singlebox:
-  - 8
-sitekiosk:
-  - 126
-  - 127
-sizzy:
-  - 225
-skye:
-  - 87
-skyfire:
-  - 561
-skyleap:
-  - 39
-slbrowser:
-  - 201
-  - 202
-sleipnir:
-  - 474
-slimboat:
-  - 273
-slimerjs:
-  - 588
-slimjet:
-  - 274
-slp:
-  - 497
-smarttv:
-  - 577
-smooz:
+  - 509
+arora:
+  - 527
+artisreader:
+  - 7
+arvin:
+  - 147
+ask:
+  - 75
+asw:
+  - 321
+  - 322
+atlas:
+  - 252
+atom:
+  - 240
+atomicbrowser:
+  - 332
+att:
+  - 402
+authenticationservicesagent:
+  - 593
+authenticationservicescore:
+  - 593
+avant:
+  - 329
+avast:
+  - 321
+  - 322
+avg:
+  - 243
+avira:
   - 174
-snowshoe:
-  - 562
-sogoumobilebrowser:
-  - 452
-soul:
-  - 483
-spark:
-  - 406
-sparrow:
+awesomium:
+  - 32
+awox:
+  - 190
+baidubrowser:
+  - 417
+baiduhd:
+  - 417
+bang:
+  - 76
+banglabrowser:
+  - 180
+basilisk:
+  - 271
+bb10:
+  - 581
+bdbrowser:
+  - 417
+beaker:
+  - 293
+beamrise:
+  - 261
+beonex:
+  - 528
+beta:
+  - 309
+  - 423
+bidubrowser:
+  - 418
+biyubi:
+  - 187
+blackberry:
+  - 581
+blackhawk:
+  - 256
+blazer:
+  - 514
+bline:
+  - 529
+bloket:
+  - 114
+bluebrowser:
+  - 491
+bluefy:
+  - 70
+bonecho:
+  - 377
+bonsai-browser:
+  - 143
+book:
+  - 509
+  - 510
+borealis:
+  - 211
+brave:
+  - 334
+  - 335
+briskbard:
+  - 172
+bro:
+  - 488
+browlser:
+  - 582
+browser:
+  - 0
+  - 4
+  - 21
+  - 27
+  - 30
+  - 38
+  - 41
+  - 64
+  - 65
+  - 75
+  - 87
+  - 101
+  - 109
   - 112
   - 113
-sparx:
-  - 291
-spectre-browser:
-  - 139
-sphere:
-  - 270
-splash:
-  - 258
-sppm_bizbrowser:
-  - 38
-sputnikbrowser:
-  - 267
-sraf:
-  - 196
-stargon:
-  - 204
-start:
-  - 240
-steam:
-  - 233
-streamy:
-  - 445
-sunrise:
-  - 563
-superbird:
-  - 482
-surf:
-  - 571
-surfbrowser:
-  - 118
-surfybrowser:
-  - 67
-sushibrowser:
-  - 132
-swiftfox:
-  - 346
-swiftweasel:
-  - 29
-symbos:
-  - 382
-  - 389
-sznprohlizec:
-  - 451
-tablet:
-  - 315
-  - 360
-  - 361
-tablet.:
-  - 382
-tansodl:
-  - 198
-taobrowser:
-  - 246
-tararia:
-  - 83
-tbrowser:
+  - 115
+  - 134
+  - 135
+  - 149
+  - 173
+  - 189
   - 190
-tcl:
-  - 191
-tclwebkit:
-  - 123
-teleca:
-  - 378
-tempest:
-  - 21
-tenfourfox:
-  - 287
-tenta:
-  - 308
-  - 309
-teslabrowser:
-  - 111
-tizen:
-  - 497
-  - 498
-tnsbrowser:
-  - 268
-to-browser:
-  - 339
-tob:
-  - 339
-togate:
-  - 227
-torrent:
-  - 145
-tqbrowser:
-  - 10
-trident:
-  - 536
-  - 537
-  - 538
-  - 539
-truelocationbrowser:
-  - 62
-tssomas:
-  - 442
-tungstenbrowser:
-  - 217
-turbobrowser:
-  - 262
-turkcell-:
-  - 212
-  - 213
-tusk:
-  - 14
-tweakstyle:
-  - 415
-ubrowser:
-  - 444
-ucbrowserhd:
-  - 347
-ucmini:
-  - 348
-  - 349
-ucturbo:
-  - 351
-  - 352
-ucweb:
-  - 355
-uphonewebbrowser:
-  - 23
-uzbl:
-  - 582
-valve:
+  - 196
   - 233
-vast:
-  - 108
-veera:
-  - 18
-venusbrowser:
-  - 170
-vertexsurf:
-  - 304
-vibemate:
-  - 81
-vision-browser:
-  - 66
-viv:
-  - 413
-vivaios:
-  - 414
-vivobrowser:
-  - 280
-vms_mosaic:
-  - 507
-vonkeror:
-  - 48
-vr.+firefox:
-  - 237
-w3m:
-  - 45
-wap:
-  - 586
-wap-browser:
-  - 580
-waterfox:
-  - 303
-web:
-  - 195
-  - 254
-  - 334
-  - 448
-  - 501
-  - 555
-webdiscover:
-  - 57
-webexplorer:
-  - 449
-webianshell:
-  - 47
-webissimo3:
-  - 243
-webkit:
-  - 578
-webpositive:
-  - 327
-webpro:
-  - 502
-weltweitimnetzbrowser:
-  - 35
-wetab-browser:
-  - 564
-wexond:
-  - 76
-whale:
-  - 376
-whalebrowser:
-  - 192
-wib:
-  - 253
-wicked:
-  - 469
-wild:
-  - 86
-wkbrowser:
-  - 30
-wolvic:
   - 236
-wyzo:
-  - 49
-x86_64:
-  - 357
+  - 259
+  - 275
+  - 282
+  - 289
+  - 290
+  - 293
+  - 309
+  - 326
+  - 327
+  - 329
+  - 345
+  - 361
+  - 365
+  - 366
+  - 370
+  - 389
+  - 424
+  - 428
+  - 447
+  - 452
+  - 454
+  - 455
+  - 465
+  - 477
+  - 492
+  - 495
+  - 496
+  - 512
+  - 537
+  - 548
+  - 566
   - 570
-xblwp7:
-  - 535
-xchaos_arachne:
-  - 34
-xiino:
-  - 565
-xstand:
-  - 181
-xvast:
+  - 578
+  - 601
+browser.:
+  - 360
+  - 363
+browserng:
+  - 481
+browserpro:
+  - 188
+browsex:
+  - 530
+browzar:
+  - 208
+bunjalloo:
+  - 333
+buscari:
+  - 6
+byffox:
+  - 160
+camino:
+  - 313
+catalyst:
+  - 82
+ccleaner:
+  - 249
+centaury:
+  - 354
+cfnetwork:
+  - 118
+  - 120
+  - 301
+  - 369
+  - 393
+  - 397
+  - 398
+  - 399
+  - 405
+  - 585
+chanjetcloud:
+  - 136
+charon:
+  - 531
+chedot:
+  - 156
+cheshire:
+  - 532
+chimlac:
+  - 193
+chimlac_browser:
+  - 193
+chrome:
+  - 116
+  - 117
+  - 131
+  - 135
+  - 148
+  - 157
+  - 161
+  - 167
+  - 198
+  - 206
+  - 226
+  - 276
+  - 277
+  - 295
+  - 299
+  - 316
+  - 319
+  - 323
+  - 331
+  - 334
+  - 335
+  - 391
+  - 439
+  - 460
+  - 468
+  - 470
+  - 472
+  - 500
+  - 501
+  - 504
+  - 509
+  - 510
+chrome.+:
+  - 321
+  - 432
+chrome.+briskbard:
+  - 171
+chrome.+maxthon:
+  - 431
+chrome.+midori:
+  - 428
+chrome.+opera:
+  - 409
+chrome.+otter:
+  - 176
+chrome.+safari:
+  - 308
+chrome.+smooz:
+  - 178
+chrome.+sznprohlizec:
+  - 462
+chrome.+uc:
+  - 361
+  - 370
+chromeframe:
+  - 505
+chromeplus:
+  - 413
+chromium:
+  - 90
+  - 157
+  - 506
+  - 507
+classilla:
+  - 51
+client:
+  - 543
+cliqz:
   - 216
-xxxandroidapp:
-  - 11
-yaanibrowser:
-  - 212
-  - 213
-yaapp_ios:
+coast:
+  - 584
+coc_coc_browser:
+  - 449
+coccoc:
+  - 449
+coccocbrowser:
+  - 449
+colibri:
+  - 220
+columbus:
+  - 56
+com:
+  - 75
+  - 87
+  - 101
+  - 196
+  - 247
+  - 289
+  - 454
+  - 593
+cometbird:
+  - 341
+comodo:
+  - 412
+conkeror:
+  - 414
+coolnovo:
+  - 411
+cornowser:
+  - 181
+corp:
+  - 422
+cosbrowser:
+  - 265
+cpu:
+  - 591
+cravingexplorer:
+  - 163
+crazy:
+  - 548
+crios:
+  - 503
+crmo:
+  - 502
+crusta:
+  - 266
+cunaguaro:
+  - 349
+cyberfox:
+  - 356
+cybrowser:
+  - 130
+darwin:
+  - 369
+  - 393
+  - 585
+dbrowser:
+  - 138
+  - 533
+ddg:
+  - 450
+ddg-android-:
+  - 451
+ddg_android:
+  - 451
+decentr:
+  - 124
+deepnet:
+  - 328
+degdegan:
+  - 154
+deledaofamily:
+  - 158
+deledaopersonal:
+  - 158
+deltabrowser:
+  - 247
+deskbrowse:
+  - 164
+dezor:
+  - 20
+diigobrowser:
+  - 68
+dillo:
+  - 534
+docomo:
+  - 100
+dolfin:
+  - 535
+dolphin:
+  - 535
+donerbrowser:
+  - 87
+dooble:
+  - 387
+dorado:
+  - 595
+dotbrowser:
+  - 162
+dragon:
+  - 412
+dt-browser:
+  - 350
+dtb:
+  - 350
+duckduckgo:
+  - 450
+earth:
+  - 542
+  - 544
+eastbrowser:
+  - 60
+ecosia:
+  - 466
+edg:
+  - 305
+  - 306
+edga:
+  - 304
+edge:
+  - 301
+  - 302
+edgios:
+  - 303
+edgw:
+  - 148
+edition:
+  - 91
   - 407
-yabrowser:
+ekioh:
+  - 185
+element:
+  - 537
+elements:
+  - 236
+elinks:
+  - 536
+embider:
+  - 573
+eolie:
+  - 49
+epic:
+  - 324
+epiphany:
+  - 441
+escape:
+  - 380
+espial:
+  - 380
+eudoraweb:
+  - 48
+eui:
+  - 455
+explorer:
+  - 328
+  - 460
+  - 557
+ezbrowser:
+  - 538
+falkon:
+  - 253
+faux:
+  - 262
+fennec:
+  - 325
+fget:
+  - 98
+firebird:
+  - 539
+firefox:
+  - 217
+  - 357
+  - 372
+  - 373
+  - 375
+  - 376
+firefox.:
+  - 326
+firefox.+uckai:
+  - 371
+firesendbrowser:
+  - 5
+fireweb:
+  - 382
+  - 383
+flashbrowser:
+  - 145
+flast:
+  - 169
+flock:
+  - 343
+floorp:
+  - 122
+flow:
+  - 183
+  - 184
+fluid:
+  - 540
+flyflow:
+  - 417
+focus:
+  - 355
+freeu:
+  - 269
+fxios:
+  - 374
+galeon:
+  - 541
+gameoverlay:
+  - 238
+ghostery:
+  - 215
+ginxdroid:
+  - 173
+glassbrowser:
+  - 231
+goanna.:
+  - 339
+gobrowser:
+  - 480
+goggalaxyclient:
+  - 600
+goku-ios:
+  - 74
+google:
+  - 542
+  - 544
+googleearth:
+  - 543
+gost:
+  - 157
+granparadiso:
+  - 377
+greenbrowser:
+  - 57
+harman_browser:
+  - 142
+harmony360browser:
+  - 282
+hasbrowser:
+  - 159
+hawk:
+  - 267
+  - 268
+hbpc:
+  - 283
+  - 288
+headless:
+  - 305
+headlesschrome:
+  - 305
+  - 508
+helio:
+  - 151
+heytapbrowser:
+  - 9
+hibrowser:
+  - 129
+hmos:
+  - 289
+hola:
+  - 277
+hone:
+  - 420
+honorbrowser:
+  - 416
+hotjava:
+  - 545
+hpw:
+  - 516
+huawei:
+  - 289
+huaweibrowser:
+  - 284
+  - 286
+  - 287
+i18n:
+  - 417
+ibrowse:
+  - 476
+ibrowser:
+  - 474
+  - 475
+icab:
+  - 547
+icabmobile:
+  - 546
+icecat:
+  - 311
+icedragon:
+  - 342
+iceweasel:
+  - 337
+iemobile:
+  - 549
+iii:
+  - 12
+ilunascapelite:
+  - 225
+impervious:
+  - 83
+inet:
+  - 30
+inhouse:
+  - 433
+inspectbrowser:
+  - 111
+internet:
+  - 27
+  - 557
+internetbrowser:
+  - 389
+ios:
+  - 67
+  - 97
+  - 203
+  - 466
+  - 589
+ipad:
+  - 97
+  - 188
+  - 500
+  - 588
+  - 591
+iphone:
+  - 97
+  - 433
+  - 500
+  - 588
+  - 591
+ipod:
+  - 588
+  - 591
+iridium:
+  - 336
+iron:
+  - 439
+  - 440
+isivioo:
+  - 458
+itop:
+  - 498
+japan:
+  - 492
+jasmine:
+  - 519
+javafx:
+  - 155
+jig:
+  - 345
+jigbrowserplus:
+  - 344
+jio:
+  - 275
+juzibrowser:
+  - 79
+k-meleon:
+  - 559
+k-ninja:
+  - 58
+kapiko:
+  - 346
+kazehakase:
+  - 351
+keepsafe:
+  - 112
+kindle:
+  - 558
+kinza:
+  - 260
+kitt:
+  - 42
+kiwi:
+  - 470
+klar:
+  - 355
+kode:
+  - 203
+konqueror:
+  - 415
+kuaiso:
+  - 280
+kun:
+  - 36
+kylo:
+  - 347
+ladybird:
+  - 41
+lagatos-browser:
+  - 140
+lbbrowser:
+  - 443
+lebrowser:
+  - 468
+  - 469
+leganbrowser:
+  - 63
+lexi:
+  - 121
+libjs:
+  - 41
+libweb:
+  - 41
+liebaofast:
+  - 442
+light:
+  - 237
+lightpanda:
+  - 2
+lilo:
+  - 119
+  - 120
+links:
+  - 560
+liri:
+  - 55
+lite:
+  - 0
+  - 421
+lmw:
+  - 436
+lolifox:
+  - 165
+lorentz:
+  - 377
+lotus:
+  - 78
+lovense:
+  - 246
+ltbrowser:
+  - 139
+luakit:
+  - 561
+lulumi-browser:
+  - 223
+lunascape:
+  - 226
+  - 227
+lynx:
+  - 520
+mac:
+  - 500
+macintosh:
+  - 594
+maemo:
+  - 327
+managedbrowser:
+  - 77
+mandarin:
+  - 149
+maple:
+  - 12
+maui:
+  - 601
+maxbrowser:
+  - 45
+maxthon:
+  - 432
+  - 433
+  - 434
+mb2345browser:
+  - 471
+mcent:
+  - 254
+mercury:
+  - 430
+meta:
+  - 103
+mib:
+  - 29
+midori:
+  - 429
+minefield:
+  - 377
+mini:
+  - 361
+  - 402
+  - 446
+  - 474
+mini.+version:
+  - 403
+minimo:
+  - 257
+mint:
+  - 465
+miuibrowser:
+  - 448
+mixerbox-browser:
+  - 47
+mms:
+  - 395
+mobi:
+  - 401
+mobi.+version:
+  - 394
+mobicip:
+  - 312
+mobile.:
+  - 590
+mobile.+opr:
+  - 394
+mobileiron:
+  - 438
+mobilelenovobrowser:
+  - 468
+mobilesafari:
+  - 588
+mogok:
+  - 66
+monumentbrowser:
+  - 490
+moon:
+  - 91
+motorola:
+  - 302
+motorolawebkit.:
+  - 29
+mrchrome:
+  - 331
+msie:
+  - 550
+  - 555
+msie.:
+  - 551
+  - 552
+  - 553
+mspie:
+  - 557
+mxbrowser:
+  - 432
+  - 433
+mxios:
+  - 433
+mxnitro:
+  - 281
+myie2:
+  - 434
+mypal:
+  - 353
+mysudo:
+  - 4
+mzbrowser:
+  - 264
+naenarabrowser:
+  - 37
+namoroka:
+  - 377
+navegador:
+  - 109
+navigateur:
+  - 200
+navigator:
+  - 382
+  - 384
+ncsa_mosaic:
+  - 521
+ndex:
+  - 424
+netfont-:
+  - 566
+netfront:
+  - 566
+  - 567
+netfrontlifebrowser:
+  - 565
+netpositive:
+  - 569
+netscape6:
+  - 384
+netsurf:
+  - 596
+network:
+  - 589
+  - 593
+networking:
+  - 593
+networkingextension:
+  - 589
+  - 593
+next:
+  - 407
+next.+version:
+  - 406
+nfsbrowser:
+  - 210
+ninesky:
+  - 24
+ninetails:
+  - 80
+nintendo:
+  - 568
+nintendobrowser:
+  - 564
+nokia:
+  - 485
+nokia-communicator-www-browser:
+  - 481
+nokiabrowser:
+  - 481
+nook:
+  - 38
+normalized:
+  - 97
+norton:
+  - 107
+novarra-vision:
+  - 71
+noxbrowser:
+  - 270
+ntentbrowser:
+  - 487
+nuanti:
+  - 103
+nuviu:
+  - 99
+obigo:
+  - 389
+  - 390
+oceanhero:
+  - 205
+oculusbrowser:
+  - 274
+odd:
+  - 108
+odin:
+  - 194
+odyssey:
+  - 570
+offbyone:
+  - 571
+ohhaibrowser:
+  - 229
+ojr:
+  - 21
+omi:
+  - 396
+omniweb:
+  - 562
+onbrowserlite:
+  - 69
+onebrowser:
+  - 479
+openfin:
+  - 493
+openwave:
+  - 478
+opera:
+  - 376
+  - 393
+  - 394
+  - 397
+  - 398
+  - 399
+  - 401
+  - 402
+  - 403
+  - 405
   - 407
   - 408
-  - 409
-  - 410
-  - 411
-yagi:
+  - 585
+opera.+edition:
+  - 406
+opios:
+  - 404
+oppobrowser:
+  - 330
+opr:
+  - 407
+  - 408
+opt:
+  - 400
+orca:
+  - 182
+ordissimo:
+  - 248
+oreganmediabrowser:
+  - 572
+oregano:
+  - 572
+origin:
+  - 348
+origyn:
+  - 259
+otter:
+  - 177
+owb:
+  - 570
+pages:
+  - 275
+palemoon:
+  - 339
+  - 340
+palmscape:
+  - 518
+perfect:
+  - 188
+perk:
+  - 25
+phantom:
+  - 189
+phoenix:
+  - 563
+phx:
+  - 213
+pibrowser:
+  - 166
+picobrowser:
   - 105
-ybrowser:
+playbook:
+  - 581
+playfreebrowser:
+  - 192
+playstation:
+  - 568
+plus:
+  - 543
+pocket:
+  - 557
+pocketbook:
+  - 511
+polaris:
+  - 573
+polarity:
+  - 385
+polybrowser:
+  - 170
+polypane:
+  - 228
+portable:
+  - 432
+pre:
+  - 515
+presearch:
+  - 26
+prism:
+  - 31
+privacybrowser:
+  - 18
+privacywall:
+  - 214
+private:
+  - 135
+pro:
+  - 542
+  - 543
+proxyfox:
+  - 17
+psi-secure-browser:
+  - 141
+puffin:
+  - 435
+  - 436
+  - 437
+qazweb:
+  - 153
+qihoobrowserhd:
+  - 307
+qihu:
+  - 307
+qiyu:
+  - 61
+qqbrowser:
+  - 446
+qqbrowserlite:
+  - 445
+qtweb:
+  - 27
+qtwebengine:
+  - 497
+quark:
+  - 489
+quarkpc:
+  - 10
+quiche:
+  - 3
+quick:
+  - 91
+quickbrowser:
+  - 268
+qupzilla:
+  - 386
+qutebrowser:
+  - 167
+  - 168
+qwant:
+  - 297
+qwantios:
+  - 294
+qwantmobile:
+  - 295
+  - 296
+rakutenbrowser:
+  - 84
+rakutenwebsearch:
+  - 85
+raspbian:
+  - 90
+rcatorexplorer:
+  - 14
+realmebrowser:
+  - 292
+rekonq:
+  - 410
+reqwirelessweb:
+  - 133
+roccat:
+  - 33
+rocket:
+  - 459
+rockmelt:
+  - 381
+rokubrowser:
+  - 104
+rowser:
+  - 453
+s40ovibrowser:
+  - 484
+safe:
+  - 418
+safebrowser:
+  - 499
+safer:
+  - 321
+  - 322
+sailfishbrowser:
+  - 310
+salamweb:
+  - 255
+samanthadoubao:
+  - 8
+samsung:
+  - 452
+sberbrowser:
+  - 89
+scout:
+  - 174
+search:
+  - 91
+  - 424
+seb:
   - 219
-yixia:
-  - 82
-yolobrowser:
+secure:
+  - 146
+securebrowser:
+  - 22
+  - 321
+  - 322
+seewobrowser:
+  - 202
+semc-browser:
+  - 574
+series60:
+  - 482
+  - 483
+servo.:
+  - 372
+  - 375
+sfb:
+  - 453
+sfive:
+  - 198
+sfive_ios:
+  - 199
+shiira:
+  - 575
+shiretoko:
+  - 377
+silk:
+  - 472
+  - 473
+simplebrowser:
+  - 598
+singlebox:
+  - 13
+sitekiosk:
+  - 131
+  - 132
+sizzy:
+  - 230
+skye:
+  - 92
+skyfire:
+  - 576
+skyleap:
+  - 44
+slbrowser:
+  - 206
   - 207
-youbrowser:
-  - 41
-youcare-android-app:
-  - 120
-youcare-ios-app:
-  - 121
-zetakey:
-  - 186
-zte:
+sleipnir:
+  - 486
+slimboat:
+  - 278
+slimerjs:
+  - 603
+slimjet:
   - 279
+slp:
+  - 512
+smarttv:
+  - 592
+smooz:
+  - 179
+snowshoe:
+  - 577
+sogoumobilebrowser:
+  - 464
+soul:
+  - 495
+spark:
+  - 418
+sparrow:
+  - 117
+  - 118
+sparx:
+  - 302
+spectre-browser:
+  - 144
+sphere:
+  - 275
+splash:
+  - 263
+sppm_bizbrowser:
+  - 43
+sputnikbrowser:
+  - 272
+sraf:
+  - 201
+stargon:
+  - 209
+start:
+  - 245
+startpage:
+  - 1
+steam:
+  - 238
+streamy:
+  - 457
+sunrise:
+  - 578
+superbird:
+  - 494
+surf:
+  - 321
+  - 322
+  - 586
+surfbrowser:
+  - 123
+surfybrowser:
+  - 72
+sushibrowser:
+  - 137
+swiftfox:
+  - 357
+swiftweasel:
+  - 34
+symbos:
+  - 394
+  - 401
+sznprohlizec:
+  - 463
+tablet:
+  - 326
+  - 372
+  - 373
+tablet.:
+  - 394
+tansodl:
+  - 203
+taobrowser:
+  - 251
+tararia:
+  - 88
+tbrowser:
+  - 195
+tcl:
+  - 196
+tclwebkit:
+  - 128
+teleca:
+  - 390
+tempest:
+  - 26
+tenfourfox:
+  - 298
+tenta:
+  - 319
+  - 320
+teslabrowser:
+  - 116
+tizen:
+  - 512
+  - 513
+tnsbrowser:
+  - 273
+to-browser:
+  - 350
+tob:
+  - 350
+togate:
+  - 232
+torrent:
+  - 150
+tqbrowser:
+  - 15
+trident:
+  - 551
+  - 552
+  - 553
+  - 554
+truelocationbrowser:
+  - 67
+tssomas:
+  - 454
+tungstenbrowser:
+  - 222
+turbobrowser:
+  - 267
+turkcell-:
+  - 217
+  - 218
+tusk:
+  - 19
+tweakstyle:
+  - 427
+ubrowser:
+  - 456
+ucbrowserhd:
+  - 358
+ucmini:
+  - 359
+  - 360
+ucpc:
+  - 364
+ucturbo:
+  - 362
+  - 363
+ucweb:
+  - 367
+uphonewebbrowser:
+  - 28
+uzbl:
+  - 597
+valve:
+  - 238
+vast:
+  - 113
+veera:
+  - 23
+venusbrowser:
+  - 175
+vertexsurf:
+  - 315
+vibemate:
+  - 86
+vision-browser:
+  - 71
+viv:
+  - 425
+vivaios:
+  - 426
+vivobrowser:
+  - 291
+vms_mosaic:
+  - 522
+vonkeror:
+  - 53
+vr.+firefox:
+  - 242
+w3m:
+  - 50
+wap:
+  - 601
+wap-browser:
+  - 595
+waterfox:
+  - 314
+web:
+  - 200
+  - 259
+  - 345
+  - 460
+  - 516
+  - 570
+webdiscover:
+  - 62
+webexplorer:
+  - 461
+webianshell:
+  - 52
+webissimo3:
+  - 248
+webkit:
+  - 593
+webpositive:
+  - 338
+webpro:
+  - 517
+weltweitimnetzbrowser:
+  - 40
+wetab-browser:
+  - 579
+wexond:
+  - 81
+whale:
+  - 388
+whalebrowser:
+  - 197
+wib:
+  - 258
+wicked:
+  - 481
+wild:
+  - 91
+wkbrowser:
+  - 35
+wolvic:
+  - 241
+wyzo:
+  - 54
+x86_64:
+  - 369
+  - 585
+xblwp7:
+  - 550
+xchaos_arachne:
+  - 39
+xiino:
+  - 580
+xstand:
+  - 186
+xvast:
+  - 221
+xxxandroidapp:
+  - 16
+yaanibrowser:
+  - 217
+  - 218
+yaapp_ios:
+  - 419
+yabrowser:
+  - 419
+  - 420
+  - 421
+  - 422
+  - 423
+yagi:
+  - 110
+ybrowser:
+  - 224
+yixia:
+  - 87
+yolobrowser:
+  - 212
+youbrowser:
+  - 46
+youcare-android-app:
+  - 125
+youcare-ios-app:
+  - 126
+zetakey:
+  - 191
+zte:
+  - 290
 zvu:
-  - 584
+  - 599
