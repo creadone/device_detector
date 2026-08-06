@@ -1,15 +1,24 @@
 name: device_detector
-version: 1.4.0
+version: 1.5.0
 
 authors:
   - creadone <creadone@gmail.com>
   - delef <delef@ya.ru>
 
 description: |
-  Device detection library will parse User Agent and detect the browser, operating system, device used (desktop, tablet, mobile, tv, cars, console, etc.), vendor and model.
+  Fast User-Agent detection for Crystal, available as a shard and a parallel
+  JSONL command-line tool. Detects browsers, operating systems, bots,
+  applications, device types, vendors, and models.
 
-crystal: ">= 1.20.0, < 2.0.0"
+crystal: ">= 1.21.0, < 2.0.0"
 license: MIT
+
+targets:
+  device-detector:
+    main: src/device_detector_cli.cr
+
+executables:
+  - device-detector
 
 dependencies:
   baked_file_system:
