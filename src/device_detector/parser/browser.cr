@@ -26,14 +26,22 @@ module DeviceDetector::Parser
       property version : (String | Int32 | Float32)?
     end
 
-    def browsers
-      return @@browsers if @@browsers
-      @@browsers = Array(Browser).from_yaml(Storage.get("browsers.yml"))
+    def browsers : Array(Browser)
+      @@browsers
     end
 
-    def browser_index
-      return @@browser_index if @@browser_index
-      @@browser_index = Hash(String, Array(Int32)).from_yaml(Storage.get("index/browsers.yml"))
+    def browser_index : Hash(String, Array(Int32))
+      @@browser_index
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      @@browsers.map(&.regex)
+    end
+
+    # Compiles all browser rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def browser_result(name, version)

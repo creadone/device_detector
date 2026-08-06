@@ -5,7 +5,7 @@ module DeviceDetector::Parser
     getter kind = "mobile"
     @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobiles.yml"))
     @@mobile_index = Hash(String, Array(Int32)).from_yaml(Storage.get("index/mobiles.yml"))
-    @@mobile_entries = nil.as(Array(Tuple(String, SingleModelMobile | MultiModelMobile))?)
+    @@mobile_entries : Array(Tuple(String, SingleModelMobile | MultiModelMobile)) = @@mobiles.to_a
     @@huawei_token_prefixes : Hash(String, Array(String)) = begin
       prefixes = Hash(String, Array(String)).new { |hash, key| hash[key] = [] of String }
       rule_index = @@mobiles.keys.index("Huawei") || raise "Huawei mobile rule is missing"
@@ -65,22 +65,20 @@ module DeviceDetector::Parser
     @@honor_model_prefixes : Hash(String, Array(ModelCandidate)) = model_prefixes(@@honor_rule)
     @@huawei_model_prefixes : Hash(String, Array(ModelCandidate)) = model_prefixes(@@huawei_rule)
 
-    def mobiles
-      return @@mobiles if @@mobiles
-      @@mobiles = Hash(String, SingleModelMobile | MultiModelMobile).from_yaml(Storage.get("mobiles.yml"))
+    def mobiles : Hash(String, SingleModelMobile | MultiModelMobile)
+      @@mobiles
     end
 
-    def mobile_index
-      return @@mobile_index if @@mobile_index
-      @@mobile_index = Hash(String, Array(Int32)).from_yaml(Storage.get("index/mobiles.yml"))
+    def mobile_index : Hash(String, Array(Int32))
+      @@mobile_index
     end
 
-    def mobile_entries
-      @@mobile_entries ||= mobiles.to_a
+    def mobile_entries : Array(Tuple(String, SingleModelMobile | MultiModelMobile))
+      @@mobile_entries
     end
 
-    # Compiles every mobile vendor and model rule for parallel parsing.
-    def self.prepare : Nil
+    # Returns every mobile vendor and model regular-expression source.
+    def self.regex_patterns : Array(String)
       patterns = [] of String
       @@mobiles.each_value do |device|
         patterns << device.regex
@@ -88,15 +86,25 @@ module DeviceDetector::Parser
           device.models.each { |model| patterns << model.regex }
         end
       end
-      Helper.prepare_regexes(patterns)
+      patterns
+    end
+
+    # Returns the Huawei and Honor regular-expression sources used by `.huawei?`.
+    def self.huawei_regex_patterns : Array(String)
+      patterns = [] of String
+      append_rule_patterns(patterns, @@honor_rule)
+      append_rule_patterns(patterns, @@huawei_rule)
+      patterns
+    end
+
+    # Compiles every mobile vendor and model rule for parallel parsing.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     # Compiles the Huawei and Honor parent/model rules used by `.huawei?`.
     def self.prepare_huawei : Nil
-      patterns = [] of String
-      append_rule_patterns(patterns, @@honor_rule)
-      append_rule_patterns(patterns, @@huawei_rule)
-      Helper.prepare_regexes(patterns)
+      Helper.prepare_regexes(huawei_regex_patterns)
     end
 
     # Returns true when the mobile vendor rules identify a Huawei model. Honor

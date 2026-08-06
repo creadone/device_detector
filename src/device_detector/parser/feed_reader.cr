@@ -4,7 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "feed_reader"
     @@readers = Array(Reader).from_yaml(Storage.get("feed_readers.yml"))
-    @@overall_regex = nil.as(Regex?)
+    @@overall_pattern : String = @@readers.map(&.regex).join("|")
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -18,13 +18,23 @@ module DeviceDetector::Parser
       property version : String?
     end
 
-    def readers
-      return @@readers if @@readers
-      @@readers = Array(Reader).from_yaml(Storage.get("feed_readers.yml"))
+    def readers : Array(Reader)
+      @@readers
     end
 
-    def overall_regex
-      @@overall_regex ||= regex(readers.map(&.regex).join("|"))
+    def overall_regex : Regex
+      regex(@@overall_pattern)
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      patterns = @@readers.map(&.regex)
+      patterns << @@overall_pattern
+    end
+
+    # Compiles all feed-reader rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

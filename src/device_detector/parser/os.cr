@@ -38,19 +38,22 @@ module DeviceDetector::Parser
       property version : String?
     end
 
-    def os
-      return @@os if @@os
-      @@os = Array(OS).from_yaml(Storage.get("oss.yml"))
+    def os : Array(OS)
+      @@os
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      @@os.map(&.regex)
     end
 
     # Compiles all OS rules into a shared immutable registry for parallel parsing.
     def self.prepare : Nil
-      Helper.prepare_regexes(@@os.map(&.regex))
+      Helper.prepare_regexes(regex_patterns)
     end
 
-    def os_index
-      return @@os_index if @@os_index
-      @@os_index = Hash(String, Array(Int32)).from_yaml(Storage.get("index/oss.yml"))
+    def os_index : Hash(String, Array(Int32))
+      @@os_index
     end
 
     def os_result(name, version = "")

@@ -4,7 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "camera"
     @@cameras = Hash(String, SingleModel | MultiModel).from_yaml(Storage.get("cameras.yml"))
-    @@overall_regex = nil.as(Regex?)
+    @@overall_pattern : String = @@cameras.values.map(&.regex).join("|")
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -28,13 +28,29 @@ module DeviceDetector::Parser
       property models : Array(SingleModel)
     end
 
-    def cameras
-      return @@cameras if @@cameras
-      @@cameras = Hash(String, SingleModel | MultiModel).from_yaml(Storage.get("cameras.yml"))
+    def cameras : Hash(String, SingleModel | MultiModel)
+      @@cameras
     end
 
-    def overall_regex
-      @@overall_regex ||= regex(cameras.values.map(&.regex).join("|"))
+    def overall_regex : Regex
+      regex(@@overall_pattern)
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      patterns = [@@overall_pattern]
+      @@cameras.each_value do |device|
+        patterns << device.regex
+        if device.is_a?(MultiModel)
+          device.models.each { |model| patterns << model.regex }
+        end
+      end
+      patterns
+    end
+
+    # Compiles all camera rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

@@ -2,7 +2,7 @@ module DeviceDetector::Parser
   struct BrowserEngine
     getter kind = "browser_engine"
     @@engines = Array(Engine).from_yaml(Storage.get("browser_engine.yml"))
-    @@overall_regex = nil.as(Regex?)
+    @@overall_pattern : String = @@engines.map(&.regex).join("|")
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -15,13 +15,23 @@ module DeviceDetector::Parser
       property name : String
     end
 
-    def engines
-      return @@engines if @@engines
-      @@engines = Array(Engine).from_yaml(Storage.get("browser_engine.yml"))
+    def engines : Array(Engine)
+      @@engines
     end
 
-    def overall_regex
-      @@overall_regex ||= Helper.regex(engines.map(&.regex).join("|"))
+    def overall_regex : Regex
+      Helper.regex(@@overall_pattern)
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      patterns = @@engines.map(&.regex)
+      patterns << @@overall_pattern
+    end
+
+    # Compiles all browser-engine rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

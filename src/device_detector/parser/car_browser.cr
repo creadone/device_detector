@@ -4,7 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "car_browser"
     @@car_browsers = Hash(String, MultiModelBrowser | SingleModelBrowser).from_yaml(Storage.get("car_browsers.yml"))
-    @@overall_regex = nil.as(Regex?)
+    @@overall_pattern : String = @@car_browsers.values.map(&.regex).join("|")
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -35,13 +35,29 @@ module DeviceDetector::Parser
       property models : Array(SingleModelBrowser)
     end
 
-    def car_browsers
-      return @@car_browsers if @@car_browsers
-      @@car_browsers = Hash(String, MultiModelBrowser | SingleModelBrowser).from_yaml(Storage.get("car_browsers.yml"))
+    def car_browsers : Hash(String, MultiModelBrowser | SingleModelBrowser)
+      @@car_browsers
     end
 
-    def overall_regex
-      @@overall_regex ||= regex(car_browsers.values.map(&.regex).join("|"))
+    def overall_regex : Regex
+      regex(@@overall_pattern)
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      patterns = [@@overall_pattern]
+      @@car_browsers.each_value do |browser|
+        patterns << browser.regex
+        if browser.is_a?(MultiModelBrowser)
+          browser.models.each { |model| patterns << model.regex }
+        end
+      end
+      patterns
+    end
+
+    # Compiles all car-browser rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

@@ -4,7 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "tv"
     @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml"))
-    @@overall_regex = nil.as(Regex?)
+    @@overall_pattern : String = @@tvs.values.map(&.regex).join("|")
 
     TV_HINTS = /TV|HbbTV|SmartTV|NetCast|Web0S|Tizen|BRAVIA|AFT|Roku|CrKey|AppleTV|GoogleTV|Aquos|Viera|DTV/i
 
@@ -26,13 +26,29 @@ module DeviceDetector::Parser
       property models : Array(SingleModelTV)
     end
 
-    def tvs
-      return @@tvs if @@tvs
-      @@tvs = Hash(String, SingleModelTV | MultiModelTV).from_yaml(Storage.get("televisions.yml"))
+    def tvs : Hash(String, SingleModelTV | MultiModelTV)
+      @@tvs
     end
 
-    def overall_regex
-      @@overall_regex ||= regex(tvs.values.map(&.regex).join("|"))
+    def overall_regex : Regex
+      regex(@@overall_pattern)
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      patterns = [@@overall_pattern]
+      @@tvs.each_value do |device|
+        patterns << device.regex
+        if device.is_a?(MultiModelTV)
+          device.models.each { |model| patterns << model.regex }
+        end
+      end
+      patterns
+    end
+
+    # Compiles all television rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

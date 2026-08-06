@@ -9,9 +9,18 @@ module DeviceDetector::Parser
       @user_agent = user_agent
     end
 
-    def fragments
-      return @@fragments if @@fragments
-      @@fragments = Hash(String, Array(String)).from_yaml(Storage.get("vendorfragments.yml"))
+    def fragments : Hash(String, Array(String))
+      @@fragments
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      @@fragments.values.flatten
+    end
+
+    # Compiles all vendor-fragment rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

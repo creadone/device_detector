@@ -4,7 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "console"
     @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml"))
-    @@overall_regex = nil.as(Regex?)
+    @@overall_pattern : String = @@consoles.values.map(&.regex).join("|")
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -26,13 +26,29 @@ module DeviceDetector::Parser
       property models : Array(SingleModelConsole)
     end
 
-    def consoles
-      return @@consoles if @@consoles
-      @@consoles = Hash(String, MultiModelConsole | SingleModelConsole).from_yaml(Storage.get("consoles.yml"))
+    def consoles : Hash(String, MultiModelConsole | SingleModelConsole)
+      @@consoles
     end
 
-    def overall_regex
-      @@overall_regex ||= regex(consoles.values.map(&.regex).join("|"))
+    def overall_regex : Regex
+      regex(@@overall_pattern)
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      patterns = [@@overall_pattern]
+      @@consoles.each_value do |device|
+        patterns << device.regex
+        if device.is_a?(MultiModelConsole)
+          device.models.each { |model| patterns << model.regex }
+        end
+      end
+      patterns
+    end
+
+    # Compiles all console rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

@@ -4,7 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "mobile_app"
     @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml"))
-    @@overall_regex = nil.as(Regex?)
+    @@overall_pattern : String = @@mobile_apps.map(&.regex).join("|")
 
     MOBILE_APP_HINTS = /Mobile|Mobi|Android|iPhone|iPad|iPod|Windows Phone|CFNetwork|Darwin|FBAN|FBAV|WhatsApp|Instagram|Telegram|Twitter|Line\//i
 
@@ -20,13 +20,23 @@ module DeviceDetector::Parser
       property version : String?
     end
 
-    def mobile_apps
-      return @@mobile_apps if @@mobile_apps
-      @@mobile_apps = Array(MobileApp).from_yaml(Storage.get("mobile_apps.yml"))
+    def mobile_apps : Array(MobileApp)
+      @@mobile_apps
     end
 
-    def overall_regex
-      @@overall_regex ||= regex(mobile_apps.map(&.regex).join("|"))
+    def overall_regex : Regex
+      regex(@@overall_pattern)
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      patterns = @@mobile_apps.map(&.regex)
+      patterns << @@overall_pattern
+    end
+
+    # Compiles all mobile-app rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

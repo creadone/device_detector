@@ -30,19 +30,22 @@ module DeviceDetector::Parser
       property category : String?
     end
 
-    def bots
-      return @@bots if @@bots
-      @@bots = Array(Bot).from_yaml(Storage.get("bots.yml"))
+    def bots : Array(Bot)
+      @@bots
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      @@bots.map(&.regex)
     end
 
     # Compiles all bot rules into a shared immutable registry for parallel parsing.
     def self.prepare : Nil
-      Helper.prepare_regexes(@@bots.map(&.regex))
+      Helper.prepare_regexes(regex_patterns)
     end
 
-    def bot_index
-      return @@bot_index if @@bot_index
-      @@bot_index = Hash(String, Array(Int32)).from_yaml(Storage.get("index/bots.yml"))
+    def bot_index : Hash(String, Array(Int32))
+      @@bot_index
     end
 
     def detect_bot(bot, detected_bot)

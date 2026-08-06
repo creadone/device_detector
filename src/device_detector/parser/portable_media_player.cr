@@ -4,7 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "portable_media_player"
     @@media_players = Hash(String, SingleModelPlayer | MultiModelPlayer).from_yaml(Storage.get("portable_media_player.yml"))
-    @@overall_regex = nil.as(Regex?)
+    @@overall_pattern : String = @@media_players.values.map(&.regex).join("|")
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -26,13 +26,29 @@ module DeviceDetector::Parser
       property models : Array(SingleModelPlayer)
     end
 
-    def media_players
-      return @@media_players if @@media_players
-      @@media_players = Hash(String, SingleModelPlayer | MultiModelPlayer).from_yaml(Storage.get("portable_media_player.yml"))
+    def media_players : Hash(String, SingleModelPlayer | MultiModelPlayer)
+      @@media_players
     end
 
-    def overall_regex
-      @@overall_regex ||= regex(media_players.values.map(&.regex).join("|"))
+    def overall_regex : Regex
+      regex(@@overall_pattern)
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      patterns = [@@overall_pattern]
+      @@media_players.each_value do |device|
+        patterns << device.regex
+        if device.is_a?(MultiModelPlayer)
+          device.models.each { |model| patterns << model.regex }
+        end
+      end
+      patterns
+    end
+
+    # Compiles all portable-media-player rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

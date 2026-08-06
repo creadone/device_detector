@@ -4,7 +4,7 @@ module DeviceDetector::Parser
 
     getter kind = "mediaplayer"
     @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayers.yml"))
-    @@overall_regex = nil.as(Regex?)
+    @@overall_pattern : String = @@mediaplayers.map(&.regex).join("|")
 
     def initialize(user_agent : String)
       @user_agent = user_agent
@@ -18,13 +18,23 @@ module DeviceDetector::Parser
       property version : String?
     end
 
-    def mediaplayers
-      return @@mediaplayers if @@mediaplayers
-      @@mediaplayers = Array(Mediaplayer).from_yaml(Storage.get("mediaplayers.yml"))
+    def mediaplayers : Array(Mediaplayer)
+      @@mediaplayers
     end
 
-    def overall_regex
-      @@overall_regex ||= regex(mediaplayers.map(&.regex).join("|"))
+    def overall_regex : Regex
+      regex(@@overall_pattern)
+    end
+
+    # Returns the regular-expression sources used by this parser.
+    def self.regex_patterns : Array(String)
+      patterns = @@mediaplayers.map(&.regex)
+      patterns << @@overall_pattern
+    end
+
+    # Compiles all media-player rules into the shared immutable registry.
+    def self.prepare : Nil
+      Helper.prepare_regexes(regex_patterns)
     end
 
     def call

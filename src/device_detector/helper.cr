@@ -24,14 +24,24 @@ module DeviceDetector
 
       def with(patterns : Enumerable(String), options : Regex::Options) : self
         if options == Setting::REGEX_OPTS
+          missing = Set(String).new
+          patterns.each { |pattern| missing << pattern unless @defaults.has_key?(pattern) }
+          return self if missing.empty?
+
           defaults = @defaults.dup
-          patterns.each { |pattern| defaults[pattern] ||= Regex.new(pattern, options) }
+          missing.each { |pattern| defaults[pattern] = Regex.new(pattern, options) }
           self.class.new(defaults, @with_options)
         else
-          with_options = @with_options.dup
+          missing = Set(OptionsKey).new
           patterns.each do |pattern|
             key = {pattern, options}
-            with_options[key] ||= Regex.new(pattern, options)
+            missing << key unless @with_options.has_key?(key)
+          end
+          return self if missing.empty?
+
+          with_options = @with_options.dup
+          missing.each do |key|
+            with_options[key] = Regex.new(key[0], options)
           end
           self.class.new(@defaults, with_options)
         end
